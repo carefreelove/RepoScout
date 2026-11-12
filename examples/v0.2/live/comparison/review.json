@@ -1,0 +1,430 @@
+{
+  "current": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "948846e3e735d66134f9e535a68728bf6dd077bd9d64435dd0781b1b882c9724",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "README 明确其为 JVM 惯用 Java LLM 库，提供统一 API、工具箱含 Agents 与 RAG；@Agent 注解源码证实 agentic 模块以方法注解声明式定义 agent。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "Java Agent 框架定位、纯 Java 库且框架无关、注解式声明 agent 均有 README 与源码依据；维护活跃由当日提交与近期发布（1.19.5，2026-11-02）佐证，处于 180 天窗口内。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0",
+          "ev-40834a5858e0",
+          "ev-24d3cfe35c44"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 17、24-25 行明确声明简化 LLM 集成、统一 API，并支持 20+ LLM 提供商与 30+ embedding store，表述层级为文档声明，准确。",
+        "evidence_ids": [
+          "ev-0680a6ede790"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "README 第 42-44 行明确说明非 Python LangChain 移植，围绕 Java 惯例从零设计，并与 Quarkus、Spring Boot、Helidon、Micronaut 集成。",
+        "evidence_ids": [
+          "ev-0680a6ede790"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "@Agent 注解源码显示 @Target({METHOD})、@Retention(RUNTIME)，方法即 agent 可被其他 agent 调用，并含 name/description/outputKey/typedOutputKey 属性。",
+        "evidence_ids": [
+          "ev-09465efc6ec0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "元数据快照显示 Apache-2.0、13393 stars、pushed_at 2026-11-12；维护快照显示最近发布 1.19.5（2026-11-02），与表述一致。",
+        "evidence_ids": [
+          "ev-40834a5858e0",
+          "ev-24d3cfe35c44"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "README 将 Agents 列为高层模式，且存在 langchain4j-agentic 模块 @Agent 注解源码，满足 Java Agent 框架判定。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "README 说明其为 Java 库、可集成 Quarkus/Spring Boot/Helidon/Micronaut，元数据确认语言为 Java、Maven 坐标 dev.langchain4j，技术栈判定成立。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-40834a5858e0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "ev-09465efc6ec0 显示 @Agent 注解标注 Java 方法（@Target({METHOD})），ev-0680a6ede790 的 README 明确列出 plain Java、Quarkus、Spring Boot、Helidon、Micronaut 示例入口，与表述一致。",
+        "evidence_ids": [
+          "ev-09465efc6ec0",
+          "ev-0680a6ede790"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/summary",
+        "verdict": "supported",
+        "reason": "README（ev-eee1a793e6be）说明由 Agent Framework、Graph 运行时与 Admin 平台组成，内置 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent 编排、Context Engineering、A2A 与 MCP 支持；使用方式为 Spring Boot starter + YAML 配置（ev-4580b0b5e647 的 application.yml 佐证）。表述与证据一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be",
+          "ev-4580b0b5e647",
+          "ev-c6479813222f",
+          "ev-67f10d2c9fc3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/decision_reason",
+        "verdict": "supported",
+        "reason": "定位、技术栈与使用方式均有 README 与元数据佐证；维护窗口（180 天）内最近提交 2026-10-07（ev-67f10d2c9fc3），距 2026-11-12 约 36 天，最新发布 v2.0.0-M1.1 为预发布版，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be",
+          "ev-4580b0b5e647",
+          "ev-c6479813222f",
+          "ev-67f10d2c9fc3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 11 行定位为 production-ready framework for building Agentic, Workflow, and Multi-agent applications，第 29 行列出 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/1",
+        "verdict": "supported",
+        "reason": "README 第 31 行说明 Graph 是 Agent Framework 的底层运行时，提供 persistence、workflow orchestration、streaming；第 126-134 行列出 agent-framework、graph、admin、studio、spring-boot-starters 模块，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/2",
+        "verdict": "supported",
+        "reason": "README 第 59 行要求 JDK 17+，第 98-112 行给出 spring-ai-alibaba-agent-framework 与 spring-ai-alibaba-starter-dashscope 依赖，第 83 行给出 ./mvnw -pl examples/chatbot spring-boot:run 启动命令，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/3",
+        "verdict": "supported",
+        "reason": "ev-4580b0b5e647 的 application.yml 实际包含 spring.ai.dashscope 的 api-key 与 qwen-plus 模型配置、spring.ai.mcp.client（streamable-http/sse）以及 spring.ai.alibaba.a2a.nacos 的 discovery/registry 配置，与表述一致。",
+        "evidence_ids": [
+          "ev-4580b0b5e647"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/4",
+        "verdict": "supported",
+        "reason": "ev-c6479813222f 显示 Apache-2.0、约 11139 stars、pushed_at 2026-10-07；ev-67f10d2c9fc3 显示 v2.0.0-M1.1（2026-06-25，prerelease）与 v1.1.2.2（2026-03-10，非预发布），与表述一致。",
+        "evidence_ids": [
+          "ev-c6479813222f",
+          "ev-67f10d2c9fc3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/assessments/0",
+        "verdict": "supported",
+        "reason": "README 明确声明为 Agentic AI 框架，含 Agent Framework 与多智能体编排模式（SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent），证据支持该表述。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/assessments/1",
+        "verdict": "supported",
+        "reason": "README 显示 Maven 坐标 com.alibaba.cloud.ai 及 JDK 17+ 要求，项目为 Java + Spring Boot/Spring AI 生态，证据支持。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/assessments/2",
+        "verdict": "supported",
+        "reason": "README 展示 starter 依赖方式，application.yml 展示模型、MCP、A2A/Nacos 配置，README 提及 Admin 可视化平台，证据支持。",
+        "evidence_ids": [
+          "ev-eee1a793e6be",
+          "ev-4580b0b5e647"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "结论对两框架的技术栈与使用方式描述均有对应证据：langchain4j 为框架无关 Java 库（README 声明非 LangChain 移植、支持 Quarkus/Spring Boot 等），@Agent 注解有实际代码依据；spring-ai-alibaba 深度绑定 Spring AI/Spring Boot、starter+YAML 配置、Graph 运行时、多智能体编排、A2A/MCP 与 Admin 平台均有 README 依据。维护窗口内均有近期提交。性能未实测已明确声明。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0",
+          "ev-24d3cfe35c44",
+          "ev-40834a5858e0",
+          "ev-4580b0b5e647",
+          "ev-67f10d2c9fc3",
+          "ev-c6479813222f",
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  },
+  "history": [
+    {
+      "status": "passed",
+      "model": "deepseek-v4-pro",
+      "rounds": 1,
+      "supplement_rounds": 0,
+      "draft_hash": "948846e3e735d66134f9e535a68728bf6dd077bd9d64435dd0781b1b882c9724",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "supported",
+          "reason": "README 明确其为 JVM 惯用 Java LLM 库，提供统一 API、工具箱含 Agents 与 RAG；@Agent 注解源码证实 agentic 模块以方法注解声明式定义 agent。",
+          "evidence_ids": [
+            "ev-0680a6ede790",
+            "ev-09465efc6ec0"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "supported",
+          "reason": "Java Agent 框架定位、纯 Java 库且框架无关、注解式声明 agent 均有 README 与源码依据；维护活跃由当日提交与近期发布（1.19.5，2026-11-02）佐证，处于 180 天窗口内。",
+          "evidence_ids": [
+            "ev-0680a6ede790",
+            "ev-09465efc6ec0",
+            "ev-40834a5858e0",
+            "ev-24d3cfe35c44"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "supported",
+          "reason": "README 第 17、24-25 行明确声明简化 LLM 集成、统一 API，并支持 20+ LLM 提供商与 30+ embedding store，表述层级为文档声明，准确。",
+          "evidence_ids": [
+            "ev-0680a6ede790"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/1",
+          "verdict": "supported",
+          "reason": "README 第 42-44 行明确说明非 Python LangChain 移植，围绕 Java 惯例从零设计，并与 Quarkus、Spring Boot、Helidon、Micronaut 集成。",
+          "evidence_ids": [
+            "ev-0680a6ede790"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/2",
+          "verdict": "supported",
+          "reason": "@Agent 注解源码显示 @Target({METHOD})、@Retention(RUNTIME)，方法即 agent 可被其他 agent 调用，并含 name/description/outputKey/typedOutputKey 属性。",
+          "evidence_ids": [
+            "ev-09465efc6ec0"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/3",
+          "verdict": "supported",
+          "reason": "元数据快照显示 Apache-2.0、13393 stars、pushed_at 2026-11-12；维护快照显示最近发布 1.19.5（2026-11-02），与表述一致。",
+          "evidence_ids": [
+            "ev-40834a5858e0",
+            "ev-24d3cfe35c44"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "supported",
+          "reason": "README 将 Agents 列为高层模式，且存在 langchain4j-agentic 模块 @Agent 注解源码，满足 Java Agent 框架判定。",
+          "evidence_ids": [
+            "ev-0680a6ede790",
+            "ev-09465efc6ec0"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/1",
+          "verdict": "supported",
+          "reason": "README 说明其为 Java 库、可集成 Quarkus/Spring Boot/Helidon/Micronaut，元数据确认语言为 Java、Maven 坐标 dev.langchain4j，技术栈判定成立。",
+          "evidence_ids": [
+            "ev-0680a6ede790",
+            "ev-40834a5858e0"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/2",
+          "verdict": "supported",
+          "reason": "ev-09465efc6ec0 显示 @Agent 注解标注 Java 方法（@Target({METHOD})），ev-0680a6ede790 的 README 明确列出 plain Java、Quarkus、Spring Boot、Helidon、Micronaut 示例入口，与表述一致。",
+          "evidence_ids": [
+            "ev-09465efc6ec0",
+            "ev-0680a6ede790"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/summary",
+          "verdict": "supported",
+          "reason": "README（ev-eee1a793e6be）说明由 Agent Framework、Graph 运行时与 Admin 平台组成，内置 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent 编排、Context Engineering、A2A 与 MCP 支持；使用方式为 Spring Boot starter + YAML 配置（ev-4580b0b5e647 的 application.yml 佐证）。表述与证据一致。",
+          "evidence_ids": [
+            "ev-eee1a793e6be",
+            "ev-4580b0b5e647",
+            "ev-c6479813222f",
+            "ev-67f10d2c9fc3"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/decision_reason",
+          "verdict": "supported",
+          "reason": "定位、技术栈与使用方式均有 README 与元数据佐证；维护窗口（180 天）内最近提交 2026-10-07（ev-67f10d2c9fc3），距 2026-11-12 约 36 天，最新发布 v2.0.0-M1.1 为预发布版，与表述一致。",
+          "evidence_ids": [
+            "ev-eee1a793e6be",
+            "ev-4580b0b5e647",
+            "ev-c6479813222f",
+            "ev-67f10d2c9fc3"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/claims/0",
+          "verdict": "supported",
+          "reason": "README 第 11 行定位为 production-ready framework for building Agentic, Workflow, and Multi-agent applications，第 29 行列出 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent，与表述一致。",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/claims/1",
+          "verdict": "supported",
+          "reason": "README 第 31 行说明 Graph 是 Agent Framework 的底层运行时，提供 persistence、workflow orchestration、streaming；第 126-134 行列出 agent-framework、graph、admin、studio、spring-boot-starters 模块，与表述一致。",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/claims/2",
+          "verdict": "supported",
+          "reason": "README 第 59 行要求 JDK 17+，第 98-112 行给出 spring-ai-alibaba-agent-framework 与 spring-ai-alibaba-starter-dashscope 依赖，第 83 行给出 ./mvnw -pl examples/chatbot spring-boot:run 启动命令，与表述一致。",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/claims/3",
+          "verdict": "supported",
+          "reason": "ev-4580b0b5e647 的 application.yml 实际包含 spring.ai.dashscope 的 api-key 与 qwen-plus 模型配置、spring.ai.mcp.client（streamable-http/sse）以及 spring.ai.alibaba.a2a.nacos 的 discovery/registry 配置，与表述一致。",
+          "evidence_ids": [
+            "ev-4580b0b5e647"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/claims/4",
+          "verdict": "supported",
+          "reason": "ev-c6479813222f 显示 Apache-2.0、约 11139 stars、pushed_at 2026-10-07；ev-67f10d2c9fc3 显示 v2.0.0-M1.1（2026-06-25，prerelease）与 v1.1.2.2（2026-03-10，非预发布），与表述一致。",
+          "evidence_ids": [
+            "ev-c6479813222f",
+            "ev-67f10d2c9fc3"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/assessments/0",
+          "verdict": "supported",
+          "reason": "README 明确声明为 Agentic AI 框架，含 Agent Framework 与多智能体编排模式（SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent），证据支持该表述。",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/assessments/1",
+          "verdict": "supported",
+          "reason": "README 显示 Maven 坐标 com.alibaba.cloud.ai 及 JDK 17+ 要求，项目为 Java + Spring Boot/Spring AI 生态，证据支持。",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/1/assessments/2",
+          "verdict": "supported",
+          "reason": "README 展示 starter 依赖方式，application.yml 展示模型、MCP、A2A/Nacos 配置，README 提及 Admin 可视化平台，证据支持。",
+          "evidence_ids": [
+            "ev-eee1a793e6be",
+            "ev-4580b0b5e647"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "supported",
+          "reason": "结论对两框架的技术栈与使用方式描述均有对应证据：langchain4j 为框架无关 Java 库（README 声明非 LangChain 移植、支持 Quarkus/Spring Boot 等），@Agent 注解有实际代码依据；spring-ai-alibaba 深度绑定 Spring AI/Spring Boot、starter+YAML 配置、Graph 运行时、多智能体编排、A2A/MCP 与 Admin 平台均有 README 依据。维护窗口内均有近期提交。性能未实测已明确声明。",
+          "evidence_ids": [
+            "ev-0680a6ede790",
+            "ev-09465efc6ec0",
+            "ev-24d3cfe35c44",
+            "ev-40834a5858e0",
+            "ev-4580b0b5e647",
+            "ev-67f10d2c9fc3",
+            "ev-c6479813222f",
+            "ev-eee1a793e6be"
+          ],
+          "needed_query": ""
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    }
+  ]
+}

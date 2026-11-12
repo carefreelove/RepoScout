@@ -1,0 +1,9 @@
+{"at": "2026-11-12T16:00:34.716772+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:00:37.163401+00:00", "code": "stage", "detail": "inspect 完成"}
+{"at": "2026-11-12T16:00:39.466414+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T16:00:39.475057+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T16:00:41.157131+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T16:00:41.170928+00:00", "code": "retrieval", "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"agentic\", \"hits\": 4, \"bytes\": 12847}"}
+{"at": "2026-11-12T16:00:41.171496+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:00:47.898718+00:00", "code": "stage", "detail": "Pro 核验第 1 轮"}
+{"at": "2026-11-12T16:01:11.289394+00:00", "code": "submitted", "detail": "结构与 Pro 辅助核验通过"}

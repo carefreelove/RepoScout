@@ -1,0 +1,265 @@
+{
+  "current": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 2,
+    "supplement_rounds": 1,
+    "draft_hash": "f9d186b94ac8344f822e6e82020c9fb0a892978a250fe2d30bc1130e2d47bff7",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "ev-1f12d3dd4de5 明确显示 langchain4j-parent/pom.xml 第39行 java.version=17，第40行 maven.compiler.release 与第42行 kotlin.compiler.jvmTarget 均引用该值，构建目标为 Java 17 有源码依据。",
+        "evidence_ids": [
+          "ev-1f12d3dd4de5"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "构建目标 Java 17 由父 POM 源码佐证；维护活跃由 ev-eee0469cd401 的近期提交与 release 快照支持。",
+        "evidence_ids": [
+          "ev-1f12d3dd4de5",
+          "ev-eee0469cd401"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "ev-1f12d3dd4de5 第39行确为 <java.version>17</java.version>。",
+        "evidence_ids": [
+          "ev-1f12d3dd4de5"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "ev-1f12d3dd4de5 第40行确为 <maven.compiler.release>${java.version}</maven.compiler.release>。",
+        "evidence_ids": [
+          "ev-1f12d3dd4de5"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "ev-1f12d3dd4de5 第42行确为 <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>。",
+        "evidence_ids": [
+          "ev-1f12d3dd4de5"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "ev-3a8e0f5d1976 显示根 pom.xml 第156-160行 properties 段仅含 langchain4j 版本与 gib.disable，未定义 java.version。",
+        "evidence_ids": [
+          "ev-3a8e0f5d1976"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/4",
+        "verdict": "supported",
+        "reason": "ev-ff393c600b77 显示 jdk21/jdk25 profile 仅追加模块，未改动 java.version 或 compiler.release，表述与证据一致。",
+        "evidence_ids": [
+          "ev-ff393c600b77"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/5",
+        "verdict": "supported",
+        "reason": "ev-eee0469cd401 显示最新提交 2026-11-12、release 1.19.5 于 2026-11-02；ev-cc531204cd1e 显示 Apache-2.0 许可与 13393 stars，均与表述相符。",
+        "evidence_ids": [
+          "ev-cc531204cd1e",
+          "ev-eee0469cd401"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "ev-1f12d3dd4de5 的 langchain4j-parent/pom.xml 第 39 行明确 <java.version>17</java.version>，第 40 行 maven.compiler.release 与第 42 行 kotlin.compiler.jvmTarget 均引用 ${java.version}，与表述一致。",
+        "evidence_ids": [
+          "ev-1f12d3dd4de5"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "父 POM 第 39-42 行定义 java.version=17 并用于 maven.compiler.release 与 Kotlin jvmTarget（ev-1f12d3dd4de5）；根 POM 的 jdk21/jdk25 profile 仅按 JDK 版本追加模块（ev-ff393c600b77），未改动 java.version，结论与证据一致。",
+        "evidence_ids": [
+          "ev-1f12d3dd4de5",
+          "ev-ff393c600b77"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  },
+  "history": [
+    {
+      "status": "needs_evidence",
+      "model": "deepseek-v4-pro",
+      "rounds": 1,
+      "supplement_rounds": 0,
+      "draft_hash": "96ca2e5ad99791dd5f20200dc3dfa1f9778456be2f73986a71691652ca111b73",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "insufficient",
+          "reason": "摘要仅称\"已定位公开 Java Agent 仓库\"，未提及 Java 构建目标，且证据为 README 内容，未包含 java.version 源码依据。",
+          "evidence_ids": [
+            "ev-58122da7b2eb"
+          ],
+          "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "insufficient",
+          "reason": "声称\"构建版本已获得源码依据\"，但提供的证据仅为 README 文档，未包含任何 java.version 源码依据。",
+          "evidence_ids": [
+            "ev-58122da7b2eb"
+          ],
+          "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "insufficient",
+          "reason": "声称 Java 构建目标为 8，但证据 README 中未出现 java.version 或 Java 8 相关内容，无源码依据。",
+          "evidence_ids": [
+            "ev-58122da7b2eb"
+          ],
+          "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "insufficient",
+          "reason": "评估称\"已确认构建目标为 Java 8\"，但证据 README 中无 java.version 或 Java 8 相关内容，无法确认。",
+          "evidence_ids": [
+            "ev-58122da7b2eb"
+          ],
+          "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "insufficient",
+          "reason": "结论称 Java 构建目标为 8，但证据 README 中无 java.version 或 Java 8 相关内容，无源码依据。",
+          "evidence_ids": [
+            "ev-58122da7b2eb"
+          ],
+          "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    },
+    {
+      "status": "passed",
+      "model": "deepseek-v4-pro",
+      "rounds": 2,
+      "supplement_rounds": 1,
+      "draft_hash": "f9d186b94ac8344f822e6e82020c9fb0a892978a250fe2d30bc1130e2d47bff7",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "supported",
+          "reason": "ev-1f12d3dd4de5 明确显示 langchain4j-parent/pom.xml 第39行 java.version=17，第40行 maven.compiler.release 与第42行 kotlin.compiler.jvmTarget 均引用该值，构建目标为 Java 17 有源码依据。",
+          "evidence_ids": [
+            "ev-1f12d3dd4de5"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "supported",
+          "reason": "构建目标 Java 17 由父 POM 源码佐证；维护活跃由 ev-eee0469cd401 的近期提交与 release 快照支持。",
+          "evidence_ids": [
+            "ev-1f12d3dd4de5",
+            "ev-eee0469cd401"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "supported",
+          "reason": "ev-1f12d3dd4de5 第39行确为 <java.version>17</java.version>。",
+          "evidence_ids": [
+            "ev-1f12d3dd4de5"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/1",
+          "verdict": "supported",
+          "reason": "ev-1f12d3dd4de5 第40行确为 <maven.compiler.release>${java.version}</maven.compiler.release>。",
+          "evidence_ids": [
+            "ev-1f12d3dd4de5"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/2",
+          "verdict": "supported",
+          "reason": "ev-1f12d3dd4de5 第42行确为 <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>。",
+          "evidence_ids": [
+            "ev-1f12d3dd4de5"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/3",
+          "verdict": "supported",
+          "reason": "ev-3a8e0f5d1976 显示根 pom.xml 第156-160行 properties 段仅含 langchain4j 版本与 gib.disable，未定义 java.version。",
+          "evidence_ids": [
+            "ev-3a8e0f5d1976"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/4",
+          "verdict": "supported",
+          "reason": "ev-ff393c600b77 显示 jdk21/jdk25 profile 仅追加模块，未改动 java.version 或 compiler.release，表述与证据一致。",
+          "evidence_ids": [
+            "ev-ff393c600b77"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/5",
+          "verdict": "supported",
+          "reason": "ev-eee0469cd401 显示最新提交 2026-11-12、release 1.19.5 于 2026-11-02；ev-cc531204cd1e 显示 Apache-2.0 许可与 13393 stars，均与表述相符。",
+          "evidence_ids": [
+            "ev-cc531204cd1e",
+            "ev-eee0469cd401"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "supported",
+          "reason": "ev-1f12d3dd4de5 的 langchain4j-parent/pom.xml 第 39 行明确 <java.version>17</java.version>，第 40 行 maven.compiler.release 与第 42 行 kotlin.compiler.jvmTarget 均引用 ${java.version}，与表述一致。",
+          "evidence_ids": [
+            "ev-1f12d3dd4de5"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "supported",
+          "reason": "父 POM 第 39-42 行定义 java.version=17 并用于 maven.compiler.release 与 Kotlin jvmTarget（ev-1f12d3dd4de5）；根 POM 的 jdk21/jdk25 profile 仅按 JDK 版本追加模块（ev-ff393c600b77），未改动 java.version，结论与证据一致。",
+          "evidence_ids": [
+            "ev-1f12d3dd4de5",
+            "ev-ff393c600b77"
+          ],
+          "needed_query": ""
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    }
+  ]
+}

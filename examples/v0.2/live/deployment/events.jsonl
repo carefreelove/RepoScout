@@ -1,0 +1,11 @@
+{"at": "2026-11-12T16:02:13.040778+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:02:13.303678+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:02:17.315580+00:00", "code": "stage", "detail": "inspect 完成"}
+{"at": "2026-11-12T16:02:19.409636+00:00", "code": "stage", "detail": "tree 完成"}
+{"at": "2026-11-12T16:02:23.744147+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T16:02:23.890814+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T16:02:27.109855+00:00", "code": "analysis_limit", "detail": "深入分析的仓库数量达到上限"}
+{"at": "2026-11-12T16:02:27.109906+00:00", "code": "analysis_limit", "detail": "深入分析的仓库数量达到上限"}
+{"at": "2026-11-12T16:02:36.180546+00:00", "code": "validation_error", "detail": "候选必须经过 inspect_repository"}
+{"at": "2026-11-12T16:02:40.367125+00:00", "code": "stage", "detail": "Pro 核验第 1 轮"}
+{"at": "2026-11-12T16:02:54.610332+00:00", "code": "submitted", "detail": "结构与 Pro 辅助核验通过"}

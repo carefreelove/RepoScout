@@ -24,6 +24,7 @@ from reposcout.evaluation import (
     FIXTURE_SHA,
     SUITE,
     ScriptedModel,
+    ScriptedReviewer,
     evaluate,
     fixture_draft,
     fixture_response,
@@ -200,7 +201,7 @@ def test_report_export(context):
     context[0].update(context[1], draft=draft.model_dump_json(), status="completed")
     path = export(context[0], context[1])
     report = json.loads((path / "report.json").read_text())
-    assert report["schema_version"] == "1.0"
+    assert report["schema_version"] == "1.1"
     assert report["original_request"] == "查找 Java Agent"
     assert "证据索引" in (path / "report.md").read_text()
     assert (path / "events.jsonl").exists()
@@ -320,7 +321,7 @@ def test_context_compression_is_metered(context, monkeypatch):
         graph = build_agent(metered(context), create_tools(github, store, run_id), SqliteSaver(db), store, run_id)
         graph.invoke({"messages": history}, {"configurable": {"thread_id": run_id}})
     assert summaries
-    assert store.statistics(run_id)["model_calls"] == 6
+    assert store.statistics(run_id)["model_calls"] == 8
     assert store.run(run_id)["draft"]
 
 
@@ -356,7 +357,7 @@ def test_cancel_and_resume(context):
             transport=httpx.MockTransport(fixture_response))
     assert store.run(run_id)["status"] == "cancelled"
     execute(store, run_id, resume=True, model=ScriptedModel().attach(store, run_id, SUITE[0]),
-            transport=httpx.MockTransport(fixture_response))
+            transport=httpx.MockTransport(fixture_response), reviewer=ScriptedReviewer())
     assert store.run(run_id)["status"] == "completed"
 
 

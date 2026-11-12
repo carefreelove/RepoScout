@@ -2,6 +2,7 @@
 
 import base64
 import binascii
+import fnmatch
 import hashlib
 import json
 import os
@@ -12,6 +13,7 @@ from urllib.parse import quote, urlencode
 import httpx
 
 from reposcout.domain import ResearchError
+from reposcout.retrieval import RepositoryIndex
 from reposcout.storage import Deadline, Store
 
 REPOSITORY = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
@@ -23,7 +25,7 @@ class GitHub:
                  transport: httpx.BaseTransport | None = None):
         self.store, self.run_id, self.deadline = store, run_id, deadline
         headers = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
-                   "User-Agent": "RepoScout/0.1.0"}
+                   "User-Agent": "RepoScout/0.2.0"}
         if token := os.getenv("GITHUB_TOKEN"):
             headers["Authorization"] = "Bearer " + token
         self.client = httpx.Client(base_url="https://api.github.com", headers=headers,
@@ -216,9 +218,28 @@ class GitHub:
         if not kept:
             raise ResearchError("line_too_large", "单行内容超过 24 KB 限制")
         last = start_line + len(kept) - 1
+        RepositoryIndex(self.store).add(repository, pin["commit"], path, text)
         return self.store.evidence(self.run_id, repository=repository, kind="file", commit=pin["commit"],
             path=path, start_line=start_line, end_line=last,
             url=f"https://github.com/{repository}/blob/{pin['commit']}/{quote(path, safe='/')}#L{start_line}-L{last}",
             summary=f"{path} 第 {start_line} 至 {last} 行，共 {len(lines)} 行",
             content="\n".join(f"{i}: {line}" for i, line in enumerate(kept, start_line)),
             truncated=start_line > 1 or last < len(lines))
+
+    def directory(self, repository: str, path: str = "", pattern: str = "*", offset: int = 0) -> dict:
+        pin = self.pinned(repository)
+        if path and (len(path) > 512 or path.startswith("/") or any(p in ("..", ".", "") for p in path.split("/"))):
+            raise ResearchError("invalid_path", "请使用仓库内的相对目录路径")
+        if offset < 0 or len(pattern) > 128:
+            raise ResearchError("invalid_range", "目录偏移必须非负，文件名模式最多128字符")
+        data = self.request(f"/repos/{repository}/contents/{quote(path, safe='/')}", {"ref": pin["commit"]})
+        if not isinstance(data, list):
+            raise ResearchError("not_directory", "目标不是目录")
+        matches = [item for item in data if fnmatch.fnmatchcase(item["name"].lower(), pattern.lower())]
+        items = [{key: item.get(key) for key in ("name", "path", "type", "size")} for item in matches[offset:offset + 200]]
+        evidence = self.store.evidence(self.run_id, repository=repository, kind="tree", commit=pin["commit"], path=path,
+            url=f"https://github.com/{repository}/tree/{pin['commit']}/{quote(path, safe='/')}",
+            summary=f"目录 {path or '/'}，文件名匹配 {pattern}，展示偏移 {offset} 后最多200项",
+            content=json.dumps(items, ensure_ascii=False), truncated=offset + 200 < len(matches) or len(data) >= 1000)
+        return {"evidence": evidence, "next_offset": offset + 200 if offset + 200 < len(matches) else None,
+                "api_limit_possible": len(data) >= 1000}

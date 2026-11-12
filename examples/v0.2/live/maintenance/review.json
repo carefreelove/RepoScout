@@ -1,0 +1,242 @@
+{
+  "current": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "ce840c808f8c05fba2045635d6e3e347d0c2a01eb7564e387da27c465281561c",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "元数据证实 Java 语言、Apache-2.0、13393 stars、未归档；README 明确将 Agents 列为高层模式；源码存在 langchain4j-agentic 模块的 @Agent 方法级注解。固定 commit 与证据一致。",
+        "evidence_ids": [
+          "ev-e78f6b986a37",
+          "ev-c4f32a51f6a9",
+          "ev-83674fb763d3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "三项硬性条件均有证据：Java 语言且含 agentic 模块（@Agent 注解源码），最近提交 2026-11-12 与最近发布 2026-11-02 均在 180 天窗口内。",
+        "evidence_ids": [
+          "ev-e78f6b986a37",
+          "ev-04abc7d0a31b",
+          "ev-83674fb763d3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "元数据证据与表述一致：Java、apache-2.0、13393 stars、未归档未禁用、pushed_at 2026-11-12T15:25:46Z。",
+        "evidence_ids": [
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "提交记录显示 2026-11-12 的 #7097（Agentic 异步 agent 挂起通知）、#7087（watsonx.ai SDK 升级）、#7094（CI Maven 缓存）等，与表述一致。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "release 快照显示 1.19.5、1.5.4、1.19.4 均发布于 2026-11-02 且 prerelease 为 false，与表述一致。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "README 第 29-30 行明确将 Agents 与 RAG 列为高层模式，并提及 prompt 模板、chat memory、function calling，与表述一致。",
+        "evidence_ids": [
+          "ev-c4f32a51f6a9"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/4",
+        "verdict": "supported",
+        "reason": "Agent.java 源码显示 @Agent 为 @Target({METHOD}) 的方法级注解，含 name/value/description/outputKey/typedOutputKey 属性，与表述一致。",
+        "evidence_ids": [
+          "ev-83674fb763d3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "Java 语言由元数据证实，README 将 Agents 列为高层模式，且存在 langchain4j-agentic 模块的 @Agent 注解源码，满足 Java Agent 项目条件。",
+        "evidence_ids": [
+          "ev-c4f32a51f6a9",
+          "ev-83674fb763d3",
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "ev-e78f6b986a37 显示 pushed_at 为 2026-11-12，ev-04abc7d0a31b 的 recent_commits 最新提交 b7fe277 日期为 2026-11-12T13:43:40Z，均在 180 天窗口内，支持该表述。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b",
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "ev-04abc7d0a31b 的 recent_releases 显示 1.19.5 于 2026-11-02 发布且 prerelease 为 false，距运行时间约 10 天，在 180 天窗口内，支持该表述。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "提交与发布证据（ev-04abc7d0a31b、ev-e78f6b986a37）支持维护活跃的结论；Java Agent 定位由 README 声明（ev-c4f32a51f6a9）及 langchain4j-agentic 模块的 Agent 注解代码（ev-83674fb763d3）佐证。但结论中“含 Agentic 相关修复”仅能由提交信息推断，且“其余两个候选仅保留为未深入分析”属对未提供证据候选的表述，未超出证据范围。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b",
+          "ev-83674fb763d3",
+          "ev-c4f32a51f6a9",
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  },
+  "history": [
+    {
+      "status": "passed",
+      "model": "deepseek-v4-pro",
+      "rounds": 1,
+      "supplement_rounds": 0,
+      "draft_hash": "ce840c808f8c05fba2045635d6e3e347d0c2a01eb7564e387da27c465281561c",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "supported",
+          "reason": "元数据证实 Java 语言、Apache-2.0、13393 stars、未归档；README 明确将 Agents 列为高层模式；源码存在 langchain4j-agentic 模块的 @Agent 方法级注解。固定 commit 与证据一致。",
+          "evidence_ids": [
+            "ev-e78f6b986a37",
+            "ev-c4f32a51f6a9",
+            "ev-83674fb763d3"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "supported",
+          "reason": "三项硬性条件均有证据：Java 语言且含 agentic 模块（@Agent 注解源码），最近提交 2026-11-12 与最近发布 2026-11-02 均在 180 天窗口内。",
+          "evidence_ids": [
+            "ev-e78f6b986a37",
+            "ev-04abc7d0a31b",
+            "ev-83674fb763d3"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "supported",
+          "reason": "元数据证据与表述一致：Java、apache-2.0、13393 stars、未归档未禁用、pushed_at 2026-11-12T15:25:46Z。",
+          "evidence_ids": [
+            "ev-e78f6b986a37"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/1",
+          "verdict": "supported",
+          "reason": "提交记录显示 2026-11-12 的 #7097（Agentic 异步 agent 挂起通知）、#7087（watsonx.ai SDK 升级）、#7094（CI Maven 缓存）等，与表述一致。",
+          "evidence_ids": [
+            "ev-04abc7d0a31b"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/2",
+          "verdict": "supported",
+          "reason": "release 快照显示 1.19.5、1.5.4、1.19.4 均发布于 2026-11-02 且 prerelease 为 false，与表述一致。",
+          "evidence_ids": [
+            "ev-04abc7d0a31b"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/3",
+          "verdict": "supported",
+          "reason": "README 第 29-30 行明确将 Agents 与 RAG 列为高层模式，并提及 prompt 模板、chat memory、function calling，与表述一致。",
+          "evidence_ids": [
+            "ev-c4f32a51f6a9"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/4",
+          "verdict": "supported",
+          "reason": "Agent.java 源码显示 @Agent 为 @Target({METHOD}) 的方法级注解，含 name/value/description/outputKey/typedOutputKey 属性，与表述一致。",
+          "evidence_ids": [
+            "ev-83674fb763d3"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "supported",
+          "reason": "Java 语言由元数据证实，README 将 Agents 列为高层模式，且存在 langchain4j-agentic 模块的 @Agent 注解源码，满足 Java Agent 项目条件。",
+          "evidence_ids": [
+            "ev-c4f32a51f6a9",
+            "ev-83674fb763d3",
+            "ev-e78f6b986a37"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/1",
+          "verdict": "supported",
+          "reason": "ev-e78f6b986a37 显示 pushed_at 为 2026-11-12，ev-04abc7d0a31b 的 recent_commits 最新提交 b7fe277 日期为 2026-11-12T13:43:40Z，均在 180 天窗口内，支持该表述。",
+          "evidence_ids": [
+            "ev-04abc7d0a31b",
+            "ev-e78f6b986a37"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/2",
+          "verdict": "supported",
+          "reason": "ev-04abc7d0a31b 的 recent_releases 显示 1.19.5 于 2026-11-02 发布且 prerelease 为 false，距运行时间约 10 天，在 180 天窗口内，支持该表述。",
+          "evidence_ids": [
+            "ev-04abc7d0a31b"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "supported",
+          "reason": "提交与发布证据（ev-04abc7d0a31b、ev-e78f6b986a37）支持维护活跃的结论；Java Agent 定位由 README 声明（ev-c4f32a51f6a9）及 langchain4j-agentic 模块的 Agent 注解代码（ev-83674fb763d3）佐证。但结论中“含 Agentic 相关修复”仅能由提交信息推断，且“其余两个候选仅保留为未深入分析”属对未提供证据候选的表述，未超出证据范围。",
+          "evidence_ids": [
+            "ev-04abc7d0a31b",
+            "ev-83674fb763d3",
+            "ev-c4f32a51f6a9",
+            "ev-e78f6b986a37"
+          ],
+          "needed_query": ""
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    }
+  ]
+}

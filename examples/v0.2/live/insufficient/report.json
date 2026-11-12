@@ -1,0 +1,478 @@
+{
+  "interpreted_request": "搜索 Java Agent 框架候选；重点核查 langchain4j/langchain4j 是否存在可证明单机 1 万 QPS 的独立基准测试；资料不足时明确标注未确认。",
+  "criteria": [
+    {
+      "name": "Java Agent 框架",
+      "required": true
+    },
+    {
+      "name": "存在可证明单机 1 万 QPS 的独立基准",
+      "required": true
+    }
+  ],
+  "maintenance_window_days": 180,
+  "candidates": [
+    {
+      "repository": "langchain4j/langchain4j",
+      "summary": "Java 生态主流 LLM 应用库，含 agentic 模块（@Agent 注解、异步 agent 等），Apache-2.0，活跃维护。仓库内未发现 bench/perf 命名的基准目录，也未检索到性能基准相关文本，无法证明单机 1 万 QPS。",
+      "claims": [
+        {
+          "text": "仓库定位为 JVM 上的 LLM 应用库，工具箱包含 Agents 与 RAG 等高层模式。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-82bceb1d4b2b"
+          ]
+        },
+        {
+          "text": "存在 langchain4j-agentic 模块，@Agent 注解支持异步调用（async）、可选跳过、补偿等属性。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-7ef0d238786f",
+            "ev-d580cf7d3a37",
+            "ev-30d6443900eb"
+          ]
+        },
+        {
+          "text": "根目录按 *bench* 与 *perf* 过滤均无匹配项；已采集文本中检索 performance 零命中。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-742942de347b",
+            "ev-9a359596b22c"
+          ]
+        },
+        {
+          "text": "维护活跃：最近提交为 2026-11-12，最新 release 1.19.5 发布于 2026-11-02，Apache-2.0，约 13.4k stars。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-d0515d811308",
+            "ev-347ae4770196"
+          ]
+        }
+      ],
+      "assessments": [
+        {
+          "criterion": "Java Agent 框架",
+          "verdict": "满足",
+          "reason": "README 明确工具箱包含 Agents，且存在 langchain4j-agentic 模块与 @Agent 注解。",
+          "evidence_ids": [
+            "ev-82bceb1d4b2b",
+            "ev-7ef0d238786f",
+            "ev-30d6443900eb"
+          ]
+        },
+        {
+          "criterion": "存在可证明单机 1 万 QPS 的独立基准",
+          "verdict": "未确认",
+          "reason": "根目录无 bench/perf 命名条目，已采集文本检索 performance 零命中；未读到任何 QPS 或吞吐基准数据。零命中不能证明不存在，但当前无证据支持 1 万 QPS。",
+          "evidence_ids": [
+            "ev-742942de347b",
+            "ev-9a359596b22c"
+          ]
+        }
+      ],
+      "decision": "待确认",
+      "decision_reason": "满足 Java Agent 框架条件且维护活跃，但单机 1 万 QPS 的独立基准在已采集范围内无任何证据，需补充基准或压测资料后再定。",
+      "evidence_ids": [
+        "ev-82bceb1d4b2b",
+        "ev-7ef0d238786f",
+        "ev-742942de347b",
+        "ev-9a359596b22c",
+        "ev-d0515d811308",
+        "ev-347ae4770196"
+      ],
+      "unknowns": [
+        "是否存在未以 bench/perf 命名的基准模块或文档（如 docs 站点、CI 压测任务）",
+        "单机吞吐/QPS 实测数据完全缺失",
+        "LLM 调用场景下 QPS 受外部模型服务限制，框架自身吞吐未测"
+      ]
+    }
+  ],
+  "conclusion": "langchain4j/langchain4j 可确认为 Java Agent 框架（agentic 模块 + @Agent 注解），维护活跃（2026-11-12 有提交，1.19.5 于 2026-11-02 发布）。但关于“单机 1 万 QPS 的独立基准”：根目录无 bench/perf 命名条目，已采集文本检索 performance 零命中，未发现任何 QPS/吞吐基准数据，因此该条件判定为未确认，不能宣称其具备可证明的 1 万 QPS 能力。搜索另命中 spring-ai-alibaba、agents-flex、EnterpriseAgentFramework 等候选，但本次分析仓库数量已达上限，未能 inspect，均未深入分析。",
+  "unknowns": [
+    "langchain4j 是否存在未以 bench/perf 命名的基准或压测文档",
+    "所有候选的单机吞吐实测数据均缺失",
+    "spring-ai-alibaba、agents-flex、EnterpriseAgentFramework 因分析限额未 inspect"
+  ],
+  "schema_version": "1.1",
+  "run_id": "7da2e3c99b51",
+  "original_request": "搜索 Java Agent 框架，检查 langchain4j/langchain4j 是否有可证明单机 1 万 QPS 的独立基准，资料不足时明确未确认。",
+  "generated_at": "2026-11-12T16:23:41.025245+00:00",
+  "status": "completed",
+  "execution_mode": "live",
+  "commits": {
+    "langchain4j/langchain4j": "b7fe277c7437145617bcd49b77febfa5698c9ef4"
+  },
+  "evidence": [
+    {
+      "id": "ev-13c25badd429",
+      "repository": "langchain4j/langchain4j",
+      "kind": "tree",
+      "url": "https://github.com/langchain4j/langchain4j/tree/b7fe277c7437145617bcd49b77febfa5698c9ef4/",
+      "retrieved_at": "2026-11-12T16:04:16.282324+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "",
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "目录 /，文件名匹配 *，展示偏移 0 后最多200项",
+      "content": "[{\"name\": \".devcontainer\", \"path\": \".devcontainer\", \"type\": \"dir\", \"size\": 0}, {\"name\": \".editorconfig\", \"path\": \".editorconfig\", \"type\": \"file\", \"size\": 48784}, {\"name\": \".gitattributes\", \"path\": \".gitattributes\", \"type\": \"file\", \"size\": 43}, {\"name\": \".github\", \"path\": \".github\", \"type\": \"dir\", \"size\": 0}, {\"name\": \".gitignore\", \"path\": \".gitignore\", \"type\": \"file\", \"size\": 827}, {\"name\": \".idea\", \"path\": \".idea\", \"type\": \"dir\", \"size\": 0}, {\"name\": \".mvn\", \"path\": \".mvn\", \"type\": \"dir\", \"size\": 0}, {\"name\": \".prettierrc\", \"path\": \".prettierrc\", \"type\": \"file\", \"size\": 41}, {\"name\": \"CODE_OF_CONDUCT.md\", \"path\": \"CODE_OF_CONDUCT.md\", \"type\": \"file\", \"size\": 5222}, {\"name\": \"CONTRIBUTING.md\", \"path\": \"CONTRIBUTING.md\", \"type\": \"file\", \"size\": 8287}, {\"name\": \"LICENSE\", \"path\": \"LICENSE\", \"type\": \"file\", \"size\": 11357}, {\"name\": \"LOGO_LICENSE.md\", \"path\": \"LOGO_LICENSE.md\", \"type\": \"file\", \"size\": 1106}, {\"name\": \"Makefile\", \"path\": \"Makefile\", \"type\": \"file\", \"size\": 420}, {\"name\": \"README.md\", \"path\": \"README.md\", \"type\": \"file\", \"size\": 5924}, {\"name\": \"SECURITY.md\", \"path\": \"SECURITY.md\", \"type\": \"file\", \"size\": 1526}, {\"name\": \"check-split-packages.sh\", \"path\": \"check-split-packages.sh\", \"type\": \"file\", \"size\": 2329}, {\"name\": \"code-execution-engines\", \"path\": \"code-execution-engines\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"detekt.yml\", \"path\": \"detekt.yml\", \"type\": \"file\", \"size\": 190}, {\"name\": \"docs\", \"path\": \"docs\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"document-loaders\", \"path\": \"document-loaders\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"document-parsers\", \"path\": \"document-parsers\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"document-transformers\", \"path\": \"document-transformers\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"embedding-store-filter-parsers\", \"path\": \"embedding-store-filter-parsers\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"embeddings\", \"path\": \"embeddings\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"experimental\", \"path\": \"experimental\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"http-clients\", \"path\": \"http-clients\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"integration-tests\", \"path\": \"integration-tests\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"internal\", \"path\": \"internal\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-agentic-a2a\", \"path\": \"langchain4j-agentic-a2a\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-agentic-mcp\", \"path\": \"langchain4j-agentic-mcp\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-agentic-patterns\", \"path\": \"langchain4j-agentic-patterns\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-agentic\", \"path\": \"langchain4j-agentic\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-anthropic\", \"path\": \"langchain4j-anthropic\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-azure-ai-search\", \"path\": \"langchain4j-azure-ai-search\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-azure-cosmos-mongo-vcore\", \"path\": \"langchain4j-azure-cosmos-mongo-vcore\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-azure-cosmos-nosql\", \"path\": \"langchain4j-azure-cosmos-nosql\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-azure-documentdb\", \"path\": \"langchain4j-azure-documentdb\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-azure-open-ai\", \"path\": \"langchain4j-azure-open-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-bedrock\", \"path\": \"langchain4j-bedrock\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-bom\", \"path\": \"langchain4j-bom\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-cassandra\", \"path\": \"langchain4j-cassandra\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-chroma\", \"path\": \"langchain4j-chroma\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-cohere\", \"path\": \"langchain4j-cohere\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-coherence\", \"path\": \"langchain4j-coherence\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-core-jackson3\", \"path\": \"langchain4j-core-jackson3\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-core\", \"path\": \"langchain4j-core\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-couchbase\", \"path\": \"langchain4j-couchbase\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-easy-rag\", \"path\": \"langchain4j-easy-rag\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-elasticsearch\", \"path\": \"langchain4j-elasticsearch\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-google-ai-gemini\", \"path\": \"langchain4j-google-ai-gemini\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-google-genai\", \"path\": \"langchain4j-google-genai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-gpu-llama3\", \"path\": \"langchain4j-gpu-llama3\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-guardrails\", \"path\": \"langchain4j-guardrails\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-hibernate-milvus\", \"path\": \"langchain4j-hibernate-milvus\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-hibernate\", \"path\": \"langchain4j-hibernate\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-http-client\", \"path\": \"langchain4j-http-client\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-hugging-face\", \"path\": \"langchain4j-hugging-face\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-infinispan\", \"path\": \"langchain4j-infinispan\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-jackson3\", \"path\": \"langchain4j-jackson3\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-jina\", \"path\": \"langchain4j-jina\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-jitllm\", \"path\": \"langchain4j-jitllm\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-jlama\", \"path\": \"langchain4j-jlama\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-kotlin\", \"path\": \"langchain4j-kotlin\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-local-ai\", \"path\": \"langchain4j-local-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-mariadb\", \"path\": \"langchain4j-mariadb\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-mcp-docker\", \"path\": \"langchain4j-mcp-docker\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-mcp\", \"path\": \"langchain4j-mcp\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-micrometer-metrics\", \"path\": \"langchain4j-micrometer-metrics\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-milvus-v2\", \"path\": \"langchain4j-milvus-v2\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-milvus\", \"path\": \"langchain4j-milvus\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-mistral-ai\", \"path\": \"langchain4j-mistral-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-mongodb-atlas\", \"path\": \"langchain4j-mongodb-atlas\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-nomic\", \"path\": \"langchain4j-nomic\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-observation\", \"path\": \"langchain4j-observation\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-ollama\", \"path\": \"langchain4j-ollama\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-onnx-scoring\", \"path\": \"langchain4j-onnx-scoring\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-open-ai-official\", \"path\": \"langchain4j-open-ai-official\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-open-ai\", \"path\": \"langchain4j-open-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-opensearch\", \"path\": \"langchain4j-opensearch\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-oracle\", \"path\": \"langchain4j-oracle\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-ovh-ai\", \"path\": \"langchain4j-ovh-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-parent\", \"path\": \"langchain4j-parent\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-pgvector\", \"path\": \"langchain4j-pgvector\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-pinecone\", \"path\": \"langchain4j-pinecone\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-qdrant\", \"path\": \"langchain4j-qdrant\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-reactive-streaming\", \"path\": \"langchain4j-reactive-streaming\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-skills\", \"path\": \"langchain4j-skills\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-tablestore\", \"path\": \"langchain4j-tablestore\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-test\", \"path\": \"langchain4j-test\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-typesafe\", \"path\": \"langchain4j-typesafe\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-vertex-ai-anthropic\", \"path\": \"langchain4j-vertex-ai-anthropic\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-vertex-ai-gemini\", \"path\": \"langchain4j-vertex-ai-gemini\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-vertex-ai\", \"path\": \"langchain4j-vertex-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-vespa\", \"path\": \"langchain4j-vespa\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-voyage-ai\", \"path\": \"langchain4j-voyage-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-watsonx\", \"path\": \"langchain4j-watsonx\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-weaviate\", \"path\": \"langchain4j-weaviate\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j-workers-ai\", \"path\": \"langchain4j-workers-ai\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"langchain4j\", \"path\": \"langchain4j\", \"type\": \"dir\", \"size\": 0}, {\"name\": \"mvnw\", \"path\": \"mvnw\", \"type\": \"file\", \"size\": 11790}, {\"name\": \"mvnw.cmd\", \"path\": \"mvnw.cmd\", \"type\": \"file\", \"size\": 8481}, {\"name\": \"pom.xml\", \"path\": \"pom.xml\", \"type\": \"file\", \"size\": 13660}, {\"name\": \"renovate.json5\", \"path\": \"renovate.json5\", \"type\": \"file\", \"size\": 5347}, {\"name\": \"web-search-engines\", \"path\": \"web-search-engines\", \"type\": \"dir\", \"size\": 0}]",
+      "truncated": false
+    },
+    {
+      "id": "ev-30d6443900eb",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/pom.xml#L71-L150",
+      "retrieved_at": "2026-11-12T15:48:12.394333+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "pom.xml",
+      "start_line": 71,
+      "end_line": 150,
+      "query": "Agent",
+      "summary": "全文检索命中 pom.xml 第 71 至 150 行",
+      "content": "71: \n72:         <!-- embedding / chat memory stores -->\n73:         <module>langchain4j-azure-ai-search</module>\n74:         <module>langchain4j-azure-cosmos-mongo-vcore</module>\n75:         <module>langchain4j-azure-cosmos-nosql</module>\n76:         <module>langchain4j-azure-documentdb</module>\n77:         <module>langchain4j-cassandra</module>\n78:         <module>langchain4j-chroma</module>\n79:         <module>langchain4j-coherence</module>\n80:         <module>langchain4j-couchbase</module>\n81:         <module>langchain4j-elasticsearch</module>\n82:         <module>langchain4j-hibernate</module>\n83:         <module>langchain4j-hibernate-milvus</module>\n84:         <module>langchain4j-infinispan</module>\n85:         <module>langchain4j-mariadb</module>\n86:         <module>langchain4j-milvus</module>\n87:         <module>langchain4j-milvus-v2</module>\n88:         <module>langchain4j-mongodb-atlas</module>\n89:         <module>langchain4j-oracle</module>\n90:         <module>langchain4j-opensearch</module>\n91:         <module>langchain4j-pgvector</module>\n92:         <module>langchain4j-pinecone</module>\n93:         <module>langchain4j-qdrant</module>\n94:         <module>langchain4j-tablestore</module>\n95:         <module>langchain4j-vespa</module>\n96:         <module>langchain4j-weaviate</module>\n97: \n98:         <!-- document loaders -->\n99:         <module>document-loaders/langchain4j-document-loader-amazon-s3</module>\n100:         <module>document-loaders/langchain4j-document-loader-azure-storage-blob</module>\n101:         <module>document-loaders/langchain4j-document-loader-github</module>\n102:         <module>document-loaders/langchain4j-document-loader-selenium</module>\n103:         <module>document-loaders/langchain4j-document-loader-playwright</module>\n104:         <module>document-loaders/langchain4j-document-loader-tencent-cos</module>\n105:         <module>document-loaders/langchain4j-document-loader-google-cloud-storage</module>\n106: \n107:         <!-- document parsers -->\n108:         <module>document-parsers/langchain4j-document-parser-apache-pdfbox</module>\n109:         <module>document-parsers/langchain4j-document-parser-apache-poi</module>\n110:         <module>document-parsers/langchain4j-document-parser-apache-tika</module>\n111:         <module>document-parsers/langchain4j-document-parser-docling</module>\n112:         <module>document-parsers/langchain4j-document-parser-markdown</module>\n113:         <module>document-parsers/langchain4j-document-parser-yaml</module>\n114: \n115:         <!-- document transformers -->\n116:         <module>document-transformers/langchain4j-document-transformer-jsoup</module>\n117: \n118:         <!-- code execution engines -->\n119:         <module>code-execution-engines/langchain4j-code-execution-engine-graalvm-polyglot</module>\n120:         <module>code-execution-engines/langchain4j-code-execution-engine-judge0</module>\n121:         <module>code-execution-engines/langchain4j-code-execution-engine-azure-acads</module>\n122: \n123:         <!-- web search engines -->\n124:         <module>web-search-engines/langchain4j-web-search-engine-google-custom</module>\n125:         <module>web-search-engines/langchain4j-web-search-engine-tavily</module>\n126:         <module>web-search-engines/langchain4j-web-search-engine-searchapi</module>\n127: \n128:         <!-- embedding store filter parsers -->\n129:         <module>embedding-store-filter-parsers/langchain4j-embedding-store-filter-parser-sql</module>\n130: \n131:         <!-- guardrails -->\n132:         <module>langchain4j-guardrails</module>\n133: \n134:         <!-- experimental -->\n135:         <module>experimental/langchain4j-experimental-sql</module>\n136:         <module>experimental/langchain4j-experimental-hibernate</module>\n137:         <module>experimental/langchain4j-experimental-skills-shell</module>\n138:         <module>langchain4j-agentic</module>\n139:         <module>langchain4j-agentic-a2a</module>\n140:         <module>langchain4j-agentic-mcp</module>\n141:         <module>langchain4j-agentic-patterns</module>\n142:         <module>langchain4j-skills</module>\n143: \n144:         <!-- observability -->\n145:         <module>langchain4j-micrometer-metrics</module>\n146:         <module>langchain4j-observation</module>\n147: \n148:         <!-- integration tests -->\n149:         <module>integration-tests</module>",
+      "truncated": false
+    },
+    {
+      "id": "ev-347ae4770196",
+      "repository": "langchain4j/langchain4j",
+      "kind": "metadata",
+      "url": "https://github.com/langchain4j/langchain4j",
+      "retrieved_at": "2026-11-12T16:04:08.351027+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "仓库元数据快照，状态适用于读取时间",
+      "content": "{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"archived\": false, \"disabled\": false, \"license\": {\"key\": \"apache-2.0\", \"name\": \"Apache License 2.0\", \"spdx_id\": \"Apache-2.0\", \"url\": \"https://api.github.com/licenses/apache-2.0\", \"node_id\": \"MDc6TGljZW5zZTI=\"}, \"pushed_at\": \"2026-11-12T15:25:46Z\", \"updated_at\": \"2026-11-12T14:21:06Z\", \"stargazers_count\": 13393, \"default_branch\": \"main\", \"open_issues_count\": 1122}",
+      "truncated": false
+    },
+    {
+      "id": "ev-4d6527e20885",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L71-L150",
+      "retrieved_at": "2026-11-12T15:50:59.131625+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 71,
+      "end_line": 150,
+      "query": "Agent",
+      "summary": "全文检索命中 langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 71 至 150 行",
+      "content": "71:      *         name = \"categoryRouter\",\n72:      *         typedOutputKey = Category.class\n73:      * )\n74:      * RequestCategory classify(String request);\n75:      * }</pre>\n76:      *\n77:      * <p>\n78:      * When the agent completes successfully, its returned\n79:      * {@code RequestCategory} value is stored in the agentic scope using\n80:      * {@code Category.class} as the typed state key.\n81:      * </p>\n82:      *\n83:      * <p>\n84:      * The value can later be retrieved without using a string key and\n85:      * without requiring an explicit type cast:\n86:      * </p>\n87:      *\n88:      * <pre>{@code\n89:      * RequestCategory category =\n90:      *         scope.readState(Category.class);\n91:      * }</pre>\n92:      *\n93:      * <p>\n94:      * This is particularly useful in multi-agent workflows where the output\n95:      * of one agent becomes the input of another agent. The typed key acts as\n96:      * both:\n97:      * </p>\n98:      *\n99:      * <ul>\n100:      *     <li>the identity of the state variable, and</li>\n101:      *     <li>the declaration of the Java type associated with that variable.</li>\n102:      * </ul>\n103:      *\n104:      * <p>\n105:      * Multiple typed keys may use the same Java value type while still\n106:      * representing different state variables. For example:\n107:      * </p>\n108:      *\n109:      * <pre>{@code\n110:      * public class InitialCategory\n111:      *         implements TypedKey<RequestCategory> {\n112:      * }\n113:      *\n114:      * public class ValidatedCategory\n115:      *         implements TypedKey<RequestCategory> {\n116:      * }\n117:      * }</pre>\n118:      *\n119:      * <p>\n120:      * Even though both keys contain {@code RequestCategory} values,\n121:      * {@code InitialCategory.class} and {@code ValidatedCategory.class}\n122:      * identify two independent variables in the agentic scope.\n123:      * </p>\n124:      *\n125:      * <p>\n126:      * {@code typedOutputKey} and {@link #outputKey()} are alternative ways\n127:      * of defining the output variable. Only one of them should be configured\n128:      * for an agent:\n129:      * </p>\n130:      *\n131:      * <ul>\n132:      *     <li>\n133:      *         {@link #outputKey()} identifies the output using a\n134:      *         {@link String}.\n135:      *     </li>\n136:      *     <li>\n137:      *         {@code typedOutputKey} identifies the output using a\n138:      *         {@link TypedKey} implementation and preserves its associated\n139:      *         Java type.\n140:      *     </li>\n141:      * </ul>\n142:      *\n143:      *\n144:      * @return the {@link TypedKey} class identifying the strongly typed\n145:      *         output variable where the result of this agent invocation\n146:      *         will be stored\n147:      *\n148:      * @see TypedKey\n149:      * @see #outputKey()\n150:      */",
+      "truncated": false
+    },
+    {
+      "id": "ev-742942de347b",
+      "repository": "langchain4j/langchain4j",
+      "kind": "tree",
+      "url": "https://github.com/langchain4j/langchain4j/tree/b7fe277c7437145617bcd49b77febfa5698c9ef4/",
+      "retrieved_at": "2026-11-12T16:04:13.871112+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "",
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "目录 /，文件名匹配 *bench*，展示偏移 0 后最多200项",
+      "content": "[]",
+      "truncated": false
+    },
+    {
+      "id": "ev-7ef0d238786f",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L1-L80",
+      "retrieved_at": "2026-11-12T15:50:59.131625+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 1,
+      "end_line": 80,
+      "query": "Agent",
+      "summary": "全文检索命中 langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 1 至 80 行",
+      "content": "1: package dev.langchain4j.agentic;\n2: \n3: import static java.lang.annotation.ElementType.METHOD;\n4: import static java.lang.annotation.RetentionPolicy.RUNTIME;\n5: \n6: import dev.langchain4j.agentic.declarative.TypedKey;\n7: import dev.langchain4j.agentic.observability.AgentListener;\n8: import java.lang.annotation.Retention;\n9: import java.lang.annotation.Target;\n10: \n11: /**\n12:  * Java methods annotated with {@code @Agent} are considered agents that other agents can invoke.\n13:  */\n14: @Retention(RUNTIME)\n15: @Target({METHOD})\n16: public @interface Agent {\n17: \n18:     /**\n19:      * Name of the agent. If not provided, method name will be used.\n20:      *\n21:      * @return name of the agent.\n22:      */\n23:     String name() default \"\";\n24: \n25:     /**\n26:      * Description of the agent. This is an alias of the {@code description} attribute, and it is possible to use either.\n27:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n28:      *\n29:      * @return description of the agent.\n30:      */\n31:     String value() default \"\";\n32: \n33:     /**\n34:      * Description of the agent. This is an alias of the {@code value} attribute, and it is possible to use either.\n35:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n36:      *\n37:      * @return description of the agent.\n38:      */\n39:     String description() default \"\";\n40: \n41:     /**\n42:      * Key of the output variable that will be used to store the result of the agent's invocation.\n43:      *\n44:      * @return name of the output variable.\n45:      */\n46:     String outputKey() default \"\";\n47: \n48:     /**\n49:      * Strongly typed key of the output variable that will be used to store\n50:      * the result of this agent's invocation in the {@link dev.langchain4j.agentic.scope.AgenticScope}.\n51:      * <p>\n52:      * This attribute provides a type-safe alternative to {@link #outputKey()}.\n53:      * Instead of identifying the output variable using a {@link String},\n54:      * the output is identified by a class implementing {@link TypedKey}.\n55:      * </p>\n56:      *\n57:      * <p>\n58:      * The generic type declared by the {@link TypedKey} represents the type\n59:      * of value associated with the output variable.\n60:      * </p>\n61:      *\n62:      * <p>\n63:      * For example:\n64:      * </p>\n65:      *\n66:      * <pre>{@code\n67:      * public class Category implements TypedKey<RequestCategory> {\n68:      * }\n69:      *\n70:      * @Agent(\n71:      *         name = \"categoryRouter\",\n72:      *         typedOutputKey = Category.class\n73:      * )\n74:      * RequestCategory classify(String request);\n75:      * }</pre>\n76:      *\n77:      * <p>\n78:      * When the agent completes successfully, its returned\n79:      * {@code RequestCategory} value is stored in the agentic scope using\n80:      * {@code Category.class} as the typed state key.",
+      "truncated": false
+    },
+    {
+      "id": "ev-82bceb1d4b2b",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/README.md#L1-L80",
+      "retrieved_at": "2026-11-12T16:04:13.663383+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "README.md 第 1 至 80 行，共 85 行",
+      "content": "1: # LangChain4j: idiomatic, open-source Java library for building LLM-powered applications on the JVM\n2: \n3: [![Build Status](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/main.yaml?branch=main&style=for-the-badge&label=CI%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/main.yaml)\n4: [![Nightly Build](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/nightly_jdk17.yaml?branch=main&style=for-the-badge&label=NIGHTLY%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/nightly_jdk17.yaml)\n5: [![CODACY](https://img.shields.io/badge/Codacy-Dashboard-blue?style=for-the-badge&logo=codacy)](https://app.codacy.com/gh/langchain4j/langchain4j/dashboard)\n6: \n7: [![Discord](https://img.shields.io/discord/1156626270772269217?logo=discord&style=for-the-badge)](https://discord.gg/JzTFvyjG6R)\n8: [![BlueSky](https://img.shields.io/badge/@langchain4j-follow-blue?logo=bluesky&style=for-the-badge)](https://bsky.app/profile/langchain4j.dev)\n9: [![X](https://img.shields.io/badge/@langchain4j-follow-blue?logo=x&style=for-the-badge)](https://x.com/langchain4j)\n10: [![Maven Version](https://img.shields.io/maven-central/v/dev.langchain4j/langchain4j?logo=apachemaven&style=for-the-badge)](https://search.maven.org/#search|gav|1|g:\"dev.langchain4j\"%20AND%20a:\"langchain4j\")\n11: \n12: \n13: ## Introduction\n14: \n15: Welcome!\n16: \n17: The goal of LangChain4j is to simplify integrating LLMs into Java applications.\n18: \n19: Here's how:\n20: 1. **Unified APIs:**\n21:    LLM providers (like OpenAI or Google Vertex AI) and embedding (vector) stores (such as Pinecone or Milvus)\n22:    use proprietary APIs. LangChain4j offers a unified API to avoid the need for learning and implementing specific APIs for each of them.\n23:    To experiment with different LLMs or embedding stores, you can easily switch between them without the need to rewrite your code.\n24:    LangChain4j currently supports [20+ popular LLM providers](https://docs.langchain4j.dev/integrations/language-models/)\n25:    and [30+ embedding stores](https://docs.langchain4j.dev/integrations/embedding-stores/).\n26: 2. **Comprehensive Toolbox:**\n27:    Since early 2023, the community has been building numerous LLM-powered applications,\n28:    identifying common abstractions, patterns, and techniques. LangChain4j has refined these into practical code.\n29:    Our toolbox includes tools ranging from low-level prompt templating, chat memory management, and function calling\n30:    to high-level patterns like Agents and RAG.\n31:    For each abstraction, we provide an interface along with multiple ready-to-use implementations based on common techniques.\n32:    Whether you're building a chatbot or developing a RAG with a complete pipeline from data ingestion to retrieval,\n33:    LangChain4j offers a wide variety of options.\n34: 3. **Numerous Examples:**\n35:    These [examples](https://github.com/langchain4j/langchain4j-examples) showcase how to begin creating various LLM-powered applications,\n36:    providing inspiration and enabling you to start building quickly.\n37: \n38: LangChain4j began development in early 2023 amid the ChatGPT hype.\n39: We noticed a lack of Java counterparts to the numerous Python and JavaScript LLM libraries and frameworks,\n40: and we had to fix that!\n41: \n42: **Despite the name, LangChain4j is not a Java port of LangChain (Python) — it is built for Java, not ported to it.**\n43: It is an idiomatic Java library designed from the ground up around Java conventions:\n44: type safety, POJOs, annotations, interfaces, dependency injection, fluent APIs, and first-class integrations with Quarkus, Spring Boot, Helidon, and Micronaut.\n45: Its API, internals, and release cycle are independent of the Python LangChain project.\n46: \n47: We actively monitor community developments, aiming to quickly incorporate new techniques and integrations,\n48: ensuring you stay up-to-date.\n49: The library is under active development. While some features are still being worked on,\n50: the core functionality is in place, allowing you to start building LLM-powered apps now!\n51: \n52: \n53: ## Documentation\n54: Documentation can be found [here](https://docs.langchain4j.dev).\n55: \n56: The documentation chatbot (experimental) can be found [here](https://chat.langchain4j.dev/).\n57: \n58: \n59: ## Getting Started\n60: Getting started guide can be found [here](https://docs.langchain4j.dev/get-started).\n61: \n62: \n63: ## Code Examples\n64: Please see examples of how LangChain4j can be used in [langchain4j-examples](https://github.com/langchain4j/langchain4j-examples) repo:\n65: - [Examples in plain Java](https://github.com/langchain4j/langchain4j-examples/tree/main/other-examples/src/main/java)\n66: - [Examples with Quarkus](https://github.com/quarkiverse/quarkus-langchain4j/tree/main/samples) (uses [quarkus-langchain4j](https://github.com/quarkiverse/quarkus-langchain4j) dependency)\n67: - [Example with Spring Boot](https://github.com/langchain4j/langchain4j-examples/tree/main/spring-boot-example/src/main/java/dev/langchain4j/example)\n68: - [Examples with Helidon](https://github.com/helidon-io/helidon-examples/tree/helidon-4.x/examples/integrations/langchain4j) (uses [io.helidon.integrations.langchain4j](https://mvnrepository.com/artifact/io.helidon.integrations.langchain4j) dependency)\n69: - [Examples with Micronaut](https://github.com/micronaut-projects/micronaut-langchain4j/tree/0.3.x/doc-examples/example-openai-java) (uses [micronaut-langchain4j](https://micronaut-projects.github.io/micronaut-langchain4j/latest/guide/) dependency)\n70: \n71: ## Useful Materials\n72: Useful materials can be found [here](https://docs.langchain4j.dev/useful-materials).\n73: \n74: \n75: ## Get Help\n76: Please use [Discord](https://discord.gg/JzTFvyjG6R) or [GitHub discussions](https://github.com/langchain4j/langchain4j/discussions)\n77: to get help.\n78: \n79: \n80: ## Request Features",
+      "truncated": true
+    },
+    {
+      "id": "ev-9a359596b22c",
+      "repository": "langchain4j/langchain4j",
+      "kind": "tree",
+      "url": "https://github.com/langchain4j/langchain4j/tree/b7fe277c7437145617bcd49b77febfa5698c9ef4/",
+      "retrieved_at": "2026-11-12T16:04:15.239384+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "",
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "目录 /，文件名匹配 *perf*，展示偏移 0 后最多200项",
+      "content": "[]",
+      "truncated": false
+    },
+    {
+      "id": "ev-d0515d811308",
+      "repository": "langchain4j/langchain4j",
+      "kind": "maintenance",
+      "url": "https://github.com/langchain4j/langchain4j/commits/b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "retrieved_at": "2026-11-12T16:04:09.599095+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "近期提交及 release 快照，维护判断需结合时间窗口",
+      "content": "{\"recent_commits\": [{\"sha\": \"b7fe277c7437145617bcd49b77febfa5698c9ef4\", \"date\": \"2026-11-12T13:43:40Z\", \"message\": \"Agentic: notify the suspension of an async agent only once (#7097)\\n\\n## Change\\n\\n`DetachedAsyncAgentTest.a_later_agent_reading_the_result_of_a_suspending_async_agent_suspends_the_root_call`\\nis flaky ([failed job on\\n`main`](https://github.com/langchain4j/langchain4j/actions/runs/43182251869/job/1310608\"}, {\"sha\": \"f472bbb0784f95ef21cca9f16b348c04e89eabb3\", \"date\": \"2026-11-12T13:22:31Z\", \"message\": \"Update watsonx.ai sdk to version 0.50.0 (#7087)\\n\\n## Issue\\nCloses #6511\\nSupersedes #6517\\n\\n## Change\\nwatsonx.ai now returns a model's reasoning in the `reasoning` field\\ninstead of `reasoning_content`, so `AiMessage.thinking()` was `null` for\\nmodels such as `openai/gpt-oss-120b` (#6511). The watsonx.ai\"}, {\"sha\": \"14e9e8984b5d6718e9ca16e23a79adb9eaf6cb68\", \"date\": \"2026-11-12T13:20:59Z\", \"message\": \"CI: cache the Maven repository of the build jobs with restore keys (#7094)\\n\\n## Change\\nThe Maven cache of the Java CI build jobs did not contain the build\\nplugins, and it was empty after every `pom.xml` change:\\n- setup-java saves its Maven cache in whichever job finishes first. That\\nis the `complianc\"}, {\"sha\": \"fb6e252b7a67e0d0579957127cafea9202ba1019\", \"date\": \"2026-11-12T09:38:42Z\", \"message\": \"Update dependency io.quarkiverse.langchain4j:quarkus-langchain4j-core to v1.15.1 (#7081)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---|\\n|\\n[io.quark\"}, {\"sha\": \"0e0b57a8edce80c0c7efb54b62ef62c0e83e479c\", \"date\": \"2026-11-12T09:35:55Z\", \"message\": \"Renovate: keep Reactor in Cosmos NoSQL on the Azure SDK's line and gpu-llama3 on the 0.4 JDK 25 build (#7098)\\n\\n## Issue\\n\\nNo issue. Renovate opened #7077, #7078 and #7074, which should not or\\ncannot be merged, and it would propose the next versions again after\\nthey are closed.\\n\\n## Change\\n\\nTwo Renovat\"}], \"recent_releases\": [{\"tag\": \"1.19.5\", \"published_at\": \"2026-11-02T16:06:15Z\", \"prerelease\": false}, {\"tag\": \"1.5.4\", \"published_at\": \"2026-11-02T14:38:38Z\", \"prerelease\": false}, {\"tag\": \"1.19.4\", \"published_at\": \"2026-11-02T14:37:38Z\", \"prerelease\": false}]}",
+      "truncated": false
+    },
+    {
+      "id": "ev-d580cf7d3a37",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L141-L193",
+      "retrieved_at": "2026-11-12T15:50:59.131625+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 141,
+      "end_line": 193,
+      "query": "Agent",
+      "summary": "全文检索命中 langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 141 至 193 行",
+      "content": "141:      * </ul>\n142:      *\n143:      *\n144:      * @return the {@link TypedKey} class identifying the strongly typed\n145:      *         output variable where the result of this agent invocation\n146:      *         will be stored\n147:      *\n148:      * @see TypedKey\n149:      * @see #outputKey()\n150:      */\n151:     Class<? extends TypedKey<?>> typedOutputKey() default NoTypedKey.class;\n152: \n153:     /**\n154:      * If true, the agent will be invoked in an asynchronous manner, allowing the workflow to continue without waiting for the agent's result.\n155:      * The result is awaited only where it is read: by another agent taking it as an argument, or by the output\n156:      * function or output key of the agentic system.\n157:      * <p>\n158:      * When nothing reads the result, the call to the agentic system returns while the agent is still running, and\n159:      * the result or the failure of the agent is then reported only to its {@link AgentListener}. The next call on\n160:      * the same memory id waits for these agents to complete before it starts.\n161:      *\n162:      * @return true if the agent should be invoked in an asynchronous manner, false otherwise.\n163:      */\n164:     boolean async() default false;\n165: \n166:     /**\n167:      * If true, the agent's execution will be silently skipped when any of its arguments is missing in the agentic scope,\n168:      * instead of making the agentic system's execution fail.\n169:      *\n170:      * @return true if the agent is optional, false otherwise.\n171:      */\n172:     boolean optional() default false;\n173: \n174:     /**\n175:      * If true, all previously successful tool invocations with {@code @CompensateFor} actions will be\n176:      * compensated in reverse order when any tool in this agent fails.\n177:      *\n178:      * @return true if cross-agent compensation should be enabled, false otherwise.\n179:      */\n180:     boolean compensateOnError() default false;\n181: \n182:     /**\n183:      * Names of other agents participating in the definition of the context of this agent.\n184:      * Their outputs are summarized by an additional, blocking call to this agent's model, made before the agent's\n185:      * own request. If the agent uses a {@code StreamingChatModel}, the summary is fully generated before the agent\n186:      * starts streaming its response.\n187:      *\n188:      * @return array of names of other agents participating in the definition of the context of this agent.\n189:      */\n190:     String[] summarizedContext() default {};\n191: \n192:     class NoTypedKey implements TypedKey<Void> {}\n193: }",
+      "truncated": false
+    },
+    {
+      "id": "ev-ffe207e1f8a6",
+      "repository": null,
+      "kind": "search",
+      "url": "https://github.com/search?q=java+agent+framework+language%3Ajava+stars%3A%3E1000&type=repositories",
+      "retrieved_at": "2026-11-12T16:04:06.185638+00:00",
+      "commit": null,
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": "java agent framework language:java stars:>1000",
+      "summary": "GitHub 搜索，返回 4 个公开候选",
+      "content": "[{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"stargazers_count\": 13393, \"archived\": false, \"pushed_at\": \"2026-11-12T15:25:46Z\"}, {\"full_name\": \"agents-flex/agents-flex\", \"description\": \"Agents-flex is A lightweight Java AI agent development framework (positioned as a counterpart to Spring AI). It supports features such as RAG, MCP, Skills, Text2SQL , LLM Wiki, Sub-agents, Web Search, TTS (synchronous and streaming), and STT.\", \"language\": \"Java\", \"stargazers_count\": 1054, \"archived\": false, \"pushed_at\": \"2026-11-09T12:34:29Z\"}, {\"full_name\": \"w8123/EnterpriseAgentFramework\", \"description\": \"ReachAI企业级智能体开发平台：快速、安全完成已有业务系统智能化改造，让 AI 在 OA、ERP、CRM 等原系统中查数据、填表单、办业务。ReachAI: Quickly and securely bring AI to existing enterprise systems, enabling AI to query data, fill out forms, and execute business tasks directly within OA, ERP, CRM, and other business applications.\", \"language\": \"Java\", \"stargazers_count\": 1049, \"archived\": false, \"pushed_at\": \"2026-11-08T13:50:19Z\"}, {\"full_name\": \"alibaba/spring-ai-alibaba\", \"description\": \"Agentic AI Framework for Java Developers\", \"language\": \"Java\", \"stargazers_count\": 11139, \"archived\": false, \"pushed_at\": \"2026-10-07T13:48:56Z\"}]",
+      "truncated": false
+    }
+  ],
+  "errors": [
+    {
+      "at": "2026-11-12T16:04:10.785779+00:00",
+      "code": "invalid_query",
+      "detail": "检索词长度应为 1 至 256，返回条数应为 1 至 5"
+    },
+    {
+      "at": "2026-11-12T16:04:10.785829+00:00",
+      "code": "invalid_query",
+      "detail": "检索词长度应为 1 至 256，返回条数应为 1 至 5"
+    },
+    {
+      "at": "2026-11-12T16:04:11.823438+00:00",
+      "code": "retrieval",
+      "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"benchmark\", \"hits\": 0, \"bytes\": 0}"
+    },
+    {
+      "at": "2026-11-12T16:04:11.826970+00:00",
+      "code": "retrieval",
+      "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"QPS\", \"hits\": 0, \"bytes\": 0}"
+    },
+    {
+      "at": "2026-11-12T16:04:15.248450+00:00",
+      "code": "retrieval",
+      "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"throughput\", \"hits\": 0, \"bytes\": 0}"
+    },
+    {
+      "at": "2026-11-12T16:04:18.014269+00:00",
+      "code": "retrieval",
+      "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"performance\", \"hits\": 0, \"bytes\": 0}"
+    },
+    {
+      "at": "2026-11-12T16:04:18.030412+00:00",
+      "code": "retrieval",
+      "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"Agent\", \"hits\": 4, \"bytes\": 12847}"
+    },
+    {
+      "at": "2026-11-12T16:04:28.359738+00:00",
+      "code": "validation_error",
+      "detail": "候选必须经过 inspect_repository"
+    },
+    {
+      "at": "2026-11-12T16:04:29.696314+00:00",
+      "code": "analysis_limit",
+      "detail": "深入分析的仓库数量达到上限"
+    },
+    {
+      "at": "2026-11-12T16:04:29.696482+00:00",
+      "code": "analysis_limit",
+      "detail": "深入分析的仓库数量达到上限"
+    },
+    {
+      "at": "2026-11-12T16:04:29.696540+00:00",
+      "code": "analysis_limit",
+      "detail": "深入分析的仓库数量达到上限"
+    }
+  ],
+  "statistics": {
+    "model_calls": 16,
+    "input_tokens": 158987,
+    "output_tokens": 5933,
+    "estimated_cost_cny_upper_bound": 0.49542,
+    "global_reserved_and_spent_cny": 13.926723,
+    "unconfirmed_calls": 1,
+    "billing_blocked": false,
+    "usage_complete": true,
+    "run_unconfirmed_calls": 0,
+    "github_requests": 7,
+    "elapsed_seconds": 48.938,
+    "models": [
+      {
+        "model": "deepseek-flash",
+        "role": "research",
+        "calls": 14,
+        "cost_cny": 0.325176,
+        "input_tokens": 143716,
+        "output_tokens": 4718
+      },
+      {
+        "model": "deepseek-v4-pro",
+        "role": "review",
+        "calls": 2,
+        "cost_cny": 0.170244,
+        "input_tokens": 15271,
+        "output_tokens": 1215
+      }
+    ],
+    "retrieval": {
+      "queries": 4,
+      "returned_bytes": 12847,
+      "seconds": 0.035937
+    }
+  },
+  "review": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "ecb7f968c43e4d059da7e3b585d23f4d1bd01d7ba83d0f170a5d0632eb89278f",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "README 明确工具箱含 Agents，pom.xml 存在 langchain4j-agentic 模块，@Agent 注解源码可见，Apache-2.0 与活跃维护有元数据支撑；根目录按 *bench*/*perf* 过滤为空且已采集文本无 performance 命中，故无法证明 1 万 QPS，表述与证据一致。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b",
+          "ev-7ef0d238786f",
+          "ev-742942de347b",
+          "ev-9a359596b22c",
+          "ev-d0515d811308",
+          "ev-347ae4770196"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "Java Agent 框架条件有 README 与 agentic 模块代码支撑；1 万 QPS 独立基准在已采集范围内无证据，结论为待确认且明确需补充资料，表述恰当。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b",
+          "ev-7ef0d238786f",
+          "ev-742942de347b",
+          "ev-9a359596b22c",
+          "ev-d0515d811308",
+          "ev-347ae4770196"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 1、30 行明确描述 JVM 上的 LLM 应用库，工具箱含 Agents 与 RAG 等高层模式。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "pom.xml 第 138 行列出 langchain4j-agentic 模块，Agent.java 源码含 async()、optional()、compensateOnError() 等属性，与表述一致。",
+        "evidence_ids": [
+          "ev-7ef0d238786f",
+          "ev-d580cf7d3a37",
+          "ev-30d6443900eb"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "ev-742942de347b 与 ev-9a359596b22c 均为根目录按 *bench*/*perf* 过滤的空结果；但 performance 零命中仅基于已采集文本，未提供对应检索证据，该部分为已读范围内结论，表述未越界。",
+        "evidence_ids": [
+          "ev-742942de347b",
+          "ev-9a359596b22c"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "维护快照显示最近提交 2026-11-12、release 1.19.5 发布于 2026-11-02，元数据含 apache-2.0 与 13393 stars，与表述一致。",
+        "evidence_ids": [
+          "ev-d0515d811308",
+          "ev-347ae4770196"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "README 明确工具箱含 Agents，且存在 langchain4j-agentic 模块与 @Agent 注解源码，满足 Java Agent 框架条件。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b",
+          "ev-7ef0d238786f",
+          "ev-30d6443900eb"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "根目录无 bench/perf 命名条目，已采集文本无 performance 命中，未读到 QPS 或吞吐数据；评估正确指出零命中不能证明不存在，当前无证据支持 1 万 QPS，判定为未确认恰当。",
+        "evidence_ids": [
+          "ev-742942de347b",
+          "ev-9a359596b22c"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "结论正确区分了已确认与未确认：Java Agent 框架有 agentic 模块与 @Agent 注解代码佐证（ev-7ef0d238786f），维护活跃有提交与 1.19.5 发布佐证（ev-d0515d811308）。关于 1 万 QPS 独立基准，根目录 bench/perf 检索均为空（ev-742942de347b、ev-9a359596b22c），未发现 QPS/吞吐数据，判定为未确认且不宣称具备该能力，表述层级恰当。对 spring-ai-alibaba 等候选仅说明未深入分析，未新增无依据事实。",
+        "evidence_ids": [
+          "ev-347ae4770196",
+          "ev-742942de347b",
+          "ev-7ef0d238786f",
+          "ev-82bceb1d4b2b",
+          "ev-9a359596b22c",
+          "ev-d0515d811308"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  }
+}

@@ -1,0 +1,9 @@
+{"at": "2026-11-12T16:07:58.444118+00:00", "code": "stage", "detail": "Pro 核验第 1 轮"}
+{"at": "2026-11-12T16:08:03.034108+00:00", "code": "review_issues", "detail": "第 1 轮发现 5 项待处理问题"}
+{"at": "2026-11-12T16:08:04.784189+00:00", "code": "invalid_query", "detail": "检索词长度应为 1 至 256，返回条数应为 1 至 5"}
+{"at": "2026-11-12T16:08:05.688197+00:00", "code": "retrieval", "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"java.version\", \"hits\": 4, \"bytes\": 12689}"}
+{"at": "2026-11-12T16:08:05.688694+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:08:06.553457+00:00", "code": "stage", "detail": "directory 完成"}
+{"at": "2026-11-12T16:08:08.443954+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T16:08:13.468370+00:00", "code": "stage", "detail": "Pro 核验第 2 轮"}
+{"at": "2026-11-12T16:08:23.499945+00:00", "code": "submitted", "detail": "结构与 Pro 辅助核验通过"}

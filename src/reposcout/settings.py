@@ -25,6 +25,7 @@ class Settings(Record):
     input_micro_cny: Literal[2] = 2
     output_micro_cny: Literal[8] = 8
     model: Literal["deepseek-flash"] = "deepseek-flash"
+    review_model: Literal["deepseek-v4-pro"] = "deepseek-v4-pro"
     base_url: Literal["https://api.deepseek.com/anthropic"] = "https://api.deepseek.com/anthropic"
 
     @model_validator(mode="after")

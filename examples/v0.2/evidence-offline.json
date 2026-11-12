@@ -1,0 +1,269 @@
+{
+  "suite": "evidence",
+  "generated_at": "2026-11-12T16:22:09.051943+00:00",
+  "retrieval_mode": "offline_synthetic_documents",
+  "retrieval": [
+    {
+      "query": "SqliteSaver",
+      "expected_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "actual_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.001289
+    },
+    {
+      "query": "checkpoint",
+      "expected_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "actual_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.000611
+    },
+    {
+      "query": "断点恢复",
+      "expected_paths": [
+        "docs/recovery.md"
+      ],
+      "actual_paths": [
+        "docs/recovery.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.001794
+    },
+    {
+      "query": "失败重试",
+      "expected_paths": [
+        "docs/recovery.md"
+      ],
+      "actual_paths": [
+        "docs/recovery.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.000788
+    },
+    {
+      "query": "Docker",
+      "expected_paths": [
+        "docs/deploy.md"
+      ],
+      "actual_paths": [
+        "docs/deploy.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 62,
+      "seconds": 0.001642
+    },
+    {
+      "query": "JAVA_HOME",
+      "expected_paths": [
+        "docs/deploy.md"
+      ],
+      "actual_paths": [
+        "docs/deploy.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 62,
+      "seconds": 0.000974
+    },
+    {
+      "query": "only_old_commit",
+      "expected_paths": [],
+      "actual_paths": [],
+      "recall_at_5": null,
+      "empty_result_correct": true,
+      "returned_bytes": 0,
+      "seconds": 0.000628
+    },
+    {
+      "query": "not_present_anywhere",
+      "expected_paths": [],
+      "actual_paths": [],
+      "recall_at_5": null,
+      "empty_result_correct": true,
+      "returned_bytes": 0,
+      "seconds": 0.000744
+    }
+  ],
+  "reviews": [
+    {
+      "id": "unrelated_citation",
+      "text": "该框架支持断点恢复。",
+      "basis": "source",
+      "content": "public String greet() { return \"Hello\"; }",
+      "expected": "insufficient",
+      "actual": "insufficient",
+      "reason": "预置标签，仅用于离线协议回放",
+      "matches_expected": true,
+      "mode": "offline_protocol_replay",
+      "run_id": "22b16e57a178",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 0.0,
+        "models": [],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "documentation_as_test",
+      "text": "已经实际部署并验证支持 Docker。",
+      "basis": "documentation",
+      "content": "README: We provide a Dockerfile for deployment. This document contains no execution logs.",
+      "expected": "insufficient",
+      "actual": "insufficient",
+      "reason": "预置标签，仅用于离线协议回放",
+      "matches_expected": true,
+      "mode": "offline_protocol_replay",
+      "run_id": "9dc9723d79a9",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 0.0,
+        "models": [],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "version_conflict",
+      "text": "此 POM 中 java.version 等于 8。",
+      "basis": "source",
+      "content": "<properties><java.version>17</java.version></properties>",
+      "expected": "contradicted",
+      "actual": "contradicted",
+      "reason": "预置标签，仅用于离线协议回放",
+      "matches_expected": true,
+      "mode": "offline_protocol_replay",
+      "run_id": "53245f07b795",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 0.0,
+        "models": [],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "outdated_maintenance",
+      "text": "2026-11-12之前180天内有提交。",
+      "basis": "metadata",
+      "content": "{\"recent_commits\":[{\"date\":\"2020-01-01T00:00:00Z\"}],\"complete_for_requested_window\":true}",
+      "expected": "contradicted",
+      "actual": "contradicted",
+      "reason": "预置标签，仅用于离线协议回放",
+      "matches_expected": true,
+      "mode": "offline_protocol_replay",
+      "run_id": "3f70b4bdc28d",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 0.0,
+        "models": [],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "unsupported_performance",
+      "text": "已独立实测单机达到10000 QPS。",
+      "basis": "source",
+      "content": "class Agent { void run() {} } // No benchmark results are provided.",
+      "expected": "insufficient",
+      "actual": "insufficient",
+      "reason": "预置标签，仅用于离线协议回放",
+      "matches_expected": true,
+      "mode": "offline_protocol_replay",
+      "run_id": "def4bdd3c198",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 0.0,
+        "models": [],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "supported_version",
+      "text": "此 POM 声明 java.version 为 17。",
+      "basis": "source",
+      "content": "<properties><java.version>17</java.version></properties>",
+      "expected": "supported",
+      "actual": "supported",
+      "reason": "预置标签，仅用于离线协议回放",
+      "matches_expected": true,
+      "mode": "offline_protocol_replay",
+      "run_id": "0dcdca318a3f",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 0.0,
+        "models": [],
+        "retrieval": {}
+      }
+    }
+  ],
+  "note": "检索采用固定合成语料；离线审查采用预置标签。--live 使用真实Pro审查合成证据，不代表真实仓库的整体正确率。",
+  "passed": true
+}

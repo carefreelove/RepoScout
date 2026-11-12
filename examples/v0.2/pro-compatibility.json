@@ -1,0 +1,41 @@
+{
+  "purpose": "compatibility_probe",
+  "run_id": "fd56e7973d74",
+  "result": {
+    "findings": [
+      {
+        "target": "/probe",
+        "verdict": "contradicted",
+        "reason": "证据中 java.version 为 17，与声明中的 8 不符。",
+        "evidence_ids": [
+          "ev-probe"
+        ],
+        "needed_query": ""
+      }
+    ]
+  },
+  "statistics": {
+    "model_calls": 1,
+    "input_tokens": 727,
+    "output_tokens": 91,
+    "estimated_cost_cny_upper_bound": 0.009,
+    "global_reserved_and_spent_cny": 9.905026,
+    "unconfirmed_calls": 0,
+    "github_requests": 0,
+    "elapsed_seconds": 0.0,
+    "models": [
+      {
+        "model": "deepseek-v4-pro",
+        "role": "review",
+        "calls": 1,
+        "cost_cny": 0.009,
+        "input_tokens": 727,
+        "output_tokens": 91
+      }
+    ],
+    "retrieval": {}
+  },
+  "price_date": "2026-11-12",
+  "price_source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+  "timing_note": "该探针仅验收接口、结构化返回与计费，耗时未单独测量"
+}

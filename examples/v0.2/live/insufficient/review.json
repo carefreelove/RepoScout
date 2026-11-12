@@ -1,0 +1,230 @@
+{
+  "current": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "ecb7f968c43e4d059da7e3b585d23f4d1bd01d7ba83d0f170a5d0632eb89278f",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "README 明确工具箱含 Agents，pom.xml 存在 langchain4j-agentic 模块，@Agent 注解源码可见，Apache-2.0 与活跃维护有元数据支撑；根目录按 *bench*/*perf* 过滤为空且已采集文本无 performance 命中，故无法证明 1 万 QPS，表述与证据一致。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b",
+          "ev-7ef0d238786f",
+          "ev-742942de347b",
+          "ev-9a359596b22c",
+          "ev-d0515d811308",
+          "ev-347ae4770196"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "Java Agent 框架条件有 README 与 agentic 模块代码支撑；1 万 QPS 独立基准在已采集范围内无证据，结论为待确认且明确需补充资料，表述恰当。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b",
+          "ev-7ef0d238786f",
+          "ev-742942de347b",
+          "ev-9a359596b22c",
+          "ev-d0515d811308",
+          "ev-347ae4770196"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 1、30 行明确描述 JVM 上的 LLM 应用库，工具箱含 Agents 与 RAG 等高层模式。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "pom.xml 第 138 行列出 langchain4j-agentic 模块，Agent.java 源码含 async()、optional()、compensateOnError() 等属性，与表述一致。",
+        "evidence_ids": [
+          "ev-7ef0d238786f",
+          "ev-d580cf7d3a37",
+          "ev-30d6443900eb"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "ev-742942de347b 与 ev-9a359596b22c 均为根目录按 *bench*/*perf* 过滤的空结果；但 performance 零命中仅基于已采集文本，未提供对应检索证据，该部分为已读范围内结论，表述未越界。",
+        "evidence_ids": [
+          "ev-742942de347b",
+          "ev-9a359596b22c"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "维护快照显示最近提交 2026-11-12、release 1.19.5 发布于 2026-11-02，元数据含 apache-2.0 与 13393 stars，与表述一致。",
+        "evidence_ids": [
+          "ev-d0515d811308",
+          "ev-347ae4770196"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "README 明确工具箱含 Agents，且存在 langchain4j-agentic 模块与 @Agent 注解源码，满足 Java Agent 框架条件。",
+        "evidence_ids": [
+          "ev-82bceb1d4b2b",
+          "ev-7ef0d238786f",
+          "ev-30d6443900eb"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "根目录无 bench/perf 命名条目，已采集文本无 performance 命中，未读到 QPS 或吞吐数据；评估正确指出零命中不能证明不存在，当前无证据支持 1 万 QPS，判定为未确认恰当。",
+        "evidence_ids": [
+          "ev-742942de347b",
+          "ev-9a359596b22c"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "结论正确区分了已确认与未确认：Java Agent 框架有 agentic 模块与 @Agent 注解代码佐证（ev-7ef0d238786f），维护活跃有提交与 1.19.5 发布佐证（ev-d0515d811308）。关于 1 万 QPS 独立基准，根目录 bench/perf 检索均为空（ev-742942de347b、ev-9a359596b22c），未发现 QPS/吞吐数据，判定为未确认且不宣称具备该能力，表述层级恰当。对 spring-ai-alibaba 等候选仅说明未深入分析，未新增无依据事实。",
+        "evidence_ids": [
+          "ev-347ae4770196",
+          "ev-742942de347b",
+          "ev-7ef0d238786f",
+          "ev-82bceb1d4b2b",
+          "ev-9a359596b22c",
+          "ev-d0515d811308"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  },
+  "history": [
+    {
+      "status": "passed",
+      "model": "deepseek-v4-pro",
+      "rounds": 1,
+      "supplement_rounds": 0,
+      "draft_hash": "ecb7f968c43e4d059da7e3b585d23f4d1bd01d7ba83d0f170a5d0632eb89278f",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "supported",
+          "reason": "README 明确工具箱含 Agents，pom.xml 存在 langchain4j-agentic 模块，@Agent 注解源码可见，Apache-2.0 与活跃维护有元数据支撑；根目录按 *bench*/*perf* 过滤为空且已采集文本无 performance 命中，故无法证明 1 万 QPS，表述与证据一致。",
+          "evidence_ids": [
+            "ev-82bceb1d4b2b",
+            "ev-7ef0d238786f",
+            "ev-742942de347b",
+            "ev-9a359596b22c",
+            "ev-d0515d811308",
+            "ev-347ae4770196"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "supported",
+          "reason": "Java Agent 框架条件有 README 与 agentic 模块代码支撑；1 万 QPS 独立基准在已采集范围内无证据，结论为待确认且明确需补充资料，表述恰当。",
+          "evidence_ids": [
+            "ev-82bceb1d4b2b",
+            "ev-7ef0d238786f",
+            "ev-742942de347b",
+            "ev-9a359596b22c",
+            "ev-d0515d811308",
+            "ev-347ae4770196"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "supported",
+          "reason": "README 第 1、30 行明确描述 JVM 上的 LLM 应用库，工具箱含 Agents 与 RAG 等高层模式。",
+          "evidence_ids": [
+            "ev-82bceb1d4b2b"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/1",
+          "verdict": "supported",
+          "reason": "pom.xml 第 138 行列出 langchain4j-agentic 模块，Agent.java 源码含 async()、optional()、compensateOnError() 等属性，与表述一致。",
+          "evidence_ids": [
+            "ev-7ef0d238786f",
+            "ev-d580cf7d3a37",
+            "ev-30d6443900eb"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/2",
+          "verdict": "supported",
+          "reason": "ev-742942de347b 与 ev-9a359596b22c 均为根目录按 *bench*/*perf* 过滤的空结果；但 performance 零命中仅基于已采集文本，未提供对应检索证据，该部分为已读范围内结论，表述未越界。",
+          "evidence_ids": [
+            "ev-742942de347b",
+            "ev-9a359596b22c"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/3",
+          "verdict": "supported",
+          "reason": "维护快照显示最近提交 2026-11-12、release 1.19.5 发布于 2026-11-02，元数据含 apache-2.0 与 13393 stars，与表述一致。",
+          "evidence_ids": [
+            "ev-d0515d811308",
+            "ev-347ae4770196"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "supported",
+          "reason": "README 明确工具箱含 Agents，且存在 langchain4j-agentic 模块与 @Agent 注解源码，满足 Java Agent 框架条件。",
+          "evidence_ids": [
+            "ev-82bceb1d4b2b",
+            "ev-7ef0d238786f",
+            "ev-30d6443900eb"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/1",
+          "verdict": "supported",
+          "reason": "根目录无 bench/perf 命名条目，已采集文本无 performance 命中，未读到 QPS 或吞吐数据；评估正确指出零命中不能证明不存在，当前无证据支持 1 万 QPS，判定为未确认恰当。",
+          "evidence_ids": [
+            "ev-742942de347b",
+            "ev-9a359596b22c"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "supported",
+          "reason": "结论正确区分了已确认与未确认：Java Agent 框架有 agentic 模块与 @Agent 注解代码佐证（ev-7ef0d238786f），维护活跃有提交与 1.19.5 发布佐证（ev-d0515d811308）。关于 1 万 QPS 独立基准，根目录 bench/perf 检索均为空（ev-742942de347b、ev-9a359596b22c），未发现 QPS/吞吐数据，判定为未确认且不宣称具备该能力，表述层级恰当。对 spring-ai-alibaba 等候选仅说明未深入分析，未新增无依据事实。",
+          "evidence_ids": [
+            "ev-347ae4770196",
+            "ev-742942de347b",
+            "ev-7ef0d238786f",
+            "ev-82bceb1d4b2b",
+            "ev-9a359596b22c",
+            "ev-d0515d811308"
+          ],
+          "needed_query": ""
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    }
+  ]
+}

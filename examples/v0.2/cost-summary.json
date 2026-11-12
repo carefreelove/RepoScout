@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-11-12T16:22:09.052815+00:00",
+  "budget_cny": 20,
+  "accounted_upper_bound_cny": 13.926723,
+  "remaining_cny": 6.073277,
+  "groups": [
+    {
+      "state": "reserved_unknown",
+      "model": "deepseek-v4-pro",
+      "role": "review",
+      "calls": 1,
+      "cost_cny": 0.54054,
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    {
+      "state": "settled",
+      "model": "deepseek-flash",
+      "role": "research",
+      "calls": 419,
+      "cost_cny": 11.715486,
+      "input_tokens": 4539075,
+      "output_tokens": 329667
+    },
+    {
+      "state": "settled",
+      "model": "deepseek-v4-pro",
+      "role": "review",
+      "calls": 27,
+      "cost_cny": 1.670697,
+      "input_tokens": 144863,
+      "output_tokens": 13590
+    }
+  ],
+  "unknown_usage": [
+    {
+      "id": "39620d7a82544f5193281ae13de5a23f",
+      "run_id": "c7bbd1808d4b",
+      "state": "reserved_unknown",
+      "reserved_cny": 0.54054,
+      "model": "deepseek-v4-pro",
+      "role": "review"
+    }
+  ],
+  "note": "费用按高峰价格保守估算。reserved_unknown 保留完整预留费用，实际用量未确认，经操作者明确接受后继续；token仅汇总已返回usage的调用。"
+}

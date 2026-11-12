@@ -1,0 +1,172 @@
+{
+  "suite": "smoke",
+  "generated_at": "2026-11-12T16:22:09.024971+00:00",
+  "note": "离线模式使用合成 HTTP 与脚本模型，正确性人工评分为 null 时表示尚未评分。对照模型仅收到原始问题，缺少实时 GitHub 工具。",
+  "results": [
+    {
+      "case_id": "stack",
+      "request": "搜索支持 Java 的开源 LLM Agent 框架，重点调研 langchain4j/langchain4j，给出依赖或源码依据。",
+      "mode": "offline_synthetic",
+      "run_id": "20a2ecf566ce",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 6,
+        "elapsed_seconds": 0.086,
+        "models": [],
+        "retrieval": {
+          "queries": 1,
+          "returned_bytes": 81,
+          "seconds": 0.003417
+        }
+      },
+      "checks": {
+        "valid_report": true,
+        "review_passed": true,
+        "source_coverage": 1.0,
+        "fact_correctness": null,
+        "condition_correctness": null,
+        "expected_verdict": true
+      }
+    },
+    {
+      "case_id": "maintenance",
+      "request": "搜索 Java Agent 项目，重点检查 langchain4j/langchain4j 最近 180 天的维护情况，说明提交与发布证据。",
+      "mode": "offline_synthetic",
+      "run_id": "6cea02f67d95",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 6,
+        "elapsed_seconds": 0.053,
+        "models": [],
+        "retrieval": {
+          "queries": 1,
+          "returned_bytes": 81,
+          "seconds": 0.001416
+        }
+      },
+      "checks": {
+        "valid_report": true,
+        "review_passed": true,
+        "source_coverage": 1.0,
+        "fact_correctness": null,
+        "condition_correctness": null,
+        "expected_verdict": true
+      }
+    },
+    {
+      "case_id": "deployment",
+      "request": "搜索可用于 Java 后端的 Agent 项目，重点调研 alibaba/spring-ai-alibaba 的使用与部署资料，区分文档和实测。",
+      "mode": "offline_synthetic",
+      "run_id": "429485452b3b",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 6,
+        "elapsed_seconds": 0.05,
+        "models": [],
+        "retrieval": {
+          "queries": 1,
+          "returned_bytes": 81,
+          "seconds": 0.001515
+        }
+      },
+      "checks": {
+        "valid_report": true,
+        "review_passed": true,
+        "source_coverage": 1.0,
+        "fact_correctness": null,
+        "condition_correctness": null,
+        "expected_verdict": true
+      }
+    },
+    {
+      "case_id": "comparison",
+      "request": "搜索 Java Agent 框架，比较 langchain4j/langchain4j 与 alibaba/spring-ai-alibaba 的技术栈与使用方式，给出来源。",
+      "mode": "offline_synthetic",
+      "run_id": "d171cbfb9c3f",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 6,
+        "elapsed_seconds": 0.081,
+        "models": [],
+        "retrieval": {
+          "queries": 1,
+          "returned_bytes": 81,
+          "seconds": 0.0015
+        }
+      },
+      "checks": {
+        "valid_report": true,
+        "review_passed": true,
+        "source_coverage": 1.0,
+        "fact_correctness": null,
+        "condition_correctness": null,
+        "expected_verdict": true
+      }
+    },
+    {
+      "case_id": "insufficient",
+      "request": "搜索 Java Agent 框架，检查 langchain4j/langchain4j 是否有可证明单机 1 万 QPS 的独立基准，资料不足时明确未确认。",
+      "mode": "offline_synthetic",
+      "run_id": "06b067e8e6ed",
+      "statistics": {
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "estimated_cost_cny_upper_bound": 0.0,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 6,
+        "elapsed_seconds": 0.048,
+        "models": [],
+        "retrieval": {
+          "queries": 1,
+          "returned_bytes": 81,
+          "seconds": 0.001285
+        }
+      },
+      "checks": {
+        "valid_report": true,
+        "review_passed": true,
+        "source_coverage": null,
+        "fact_correctness": null,
+        "condition_correctness": null,
+        "expected_verdict": true
+      }
+    }
+  ]
+}

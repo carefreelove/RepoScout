@@ -17,6 +17,10 @@ app = typer.Typer(help="RepoScout｜开源项目调研 Agent", no_args_is_help=T
 console = Console()
 
 
+def progress(stage: str):
+    console.print(stage, style="dim", markup=False)
+
+
 @app.callback()
 def configure():
     load_dotenv()
@@ -40,7 +44,7 @@ def research(request: str = typer.Argument(..., min=1),
     if not request.strip():
         raise typer.BadParameter("调研需求不能为空")
     settings = Settings(search_limit=search_limit, analyze_limit=analyze_limit)
-    store = Store(settings)
+    store = Store(settings, on_event=progress)
     run_id = store.create(request)
     console.print(f"开始任务 {run_id}")
     finish(store, run_id, execute(store, run_id))
@@ -66,8 +70,19 @@ def resume(run_id: str):
         initial = Store(Settings())
         config = json.loads(initial.run(run_id)["config"])
         config["home"] = initial.settings.home
-        store = Store(Settings.model_validate(config))
+        store = Store(Settings.model_validate(config), on_event=progress)
         finish(store, run_id, execute(store, run_id, resume=True))
+    except ResearchError as exc:
+        console.print(str(exc))
+        raise typer.Exit(1) from exc
+
+
+@app.command()
+def acknowledge_usage(ticket: str):
+    """人工接受某次未知用量的最高预留额，保留费用并解除该记录的调用冻结。"""
+    try:
+        cost = Store(Settings()).acknowledge_uncertain(ticket)
+        console.print(f"已保留最高预留 {cost / 1e6:.6f} 元，实际用量仍未确认")
     except ResearchError as exc:
         console.print(str(exc))
         raise typer.Exit(1) from exc
@@ -76,8 +91,16 @@ def resume(run_id: str):
 @app.command()
 def evaluate(suite: str = "smoke", live: bool = False):
     """运行固定问题集。默认合成离线回放，--live 会产生模型费用。"""
+    if suite == "evidence":
+        from reposcout.evidence_evaluation import evaluate_evidence
+        path = evaluate_evidence(Store(Settings()), live=live)
+        console.print(str(path.resolve()))
+        result = json.loads(path.read_text())
+        if not result["passed"]:
+            raise typer.Exit(1)
+        return
     if suite != "smoke":
-        raise typer.BadParameter("当前支持 --suite smoke")
+        raise typer.BadParameter("支持 --suite smoke 或 --suite evidence")
     from reposcout.evaluation import evaluate as run_evaluation
     path = run_evaluation(Store(Settings()), live=live)
     console.print(str(path.resolve()))

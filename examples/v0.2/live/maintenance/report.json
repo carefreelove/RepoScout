@@ -1,0 +1,347 @@
+{
+  "interpreted_request": "搜索 Java Agent 相关项目，重点核查 langchain4j/langchain4j 最近 180 天（2026-05-16 至 2026-11-12）的维护情况，并给出提交与发布证据。搜索上限 10 个候选，深入分析 1 个。",
+  "criteria": [
+    {
+      "name": "Java Agent 项目",
+      "required": true
+    },
+    {
+      "name": "最近 180 天有提交",
+      "required": true
+    },
+    {
+      "name": "最近 180 天有发布",
+      "required": true
+    }
+  ],
+  "maintenance_window_days": 180,
+  "candidates": [
+    {
+      "repository": "langchain4j/langchain4j",
+      "summary": "JVM 上的 Java LLM 应用库，提供统一 LLM/向量库 API，并含 agentic 模块（@Agent 注解、AgenticScope 等）。固定 commit b7fe277c7437145617bcd49b77febfa5698c9ef4，Apache-2.0，13.4k stars，未归档。",
+      "claims": [
+        {
+          "text": "仓库元数据：Java 语言、Apache-2.0、13393 stars、未归档未禁用，pushed_at 为 2026-11-12T15:25:46Z。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-e78f6b986a37"
+          ]
+        },
+        {
+          "text": "最近提交集中在 2026-11-12，含 Agentic 异步 agent 挂起通知修复（#7097）、watsonx.ai SDK 升级（#7087）、CI Maven 缓存（#7094）等。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-04abc7d0a31b"
+          ]
+        },
+        {
+          "text": "最近发布为 1.19.5（2026-11-02）、1.5.4 与 1.19.4（均 2026-11-02），均为正式版。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-04abc7d0a31b"
+          ]
+        },
+        {
+          "text": "README 说明其工具箱覆盖从 prompt 模板、chat memory、function calling 到 Agents 与 RAG 的高层模式。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-c4f32a51f6a9"
+          ]
+        },
+        {
+          "text": "源码中 dev.langchain4j.agentic.Agent 为方法级注解，标注的方法被视为可被其他 agent 调用的 agent，支持 name/description/outputKey/typedOutputKey 等属性。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-83674fb763d3"
+          ]
+        }
+      ],
+      "assessments": [
+        {
+          "criterion": "Java Agent 项目",
+          "verdict": "满足",
+          "reason": "仓库为 Java 库，README 明确将 Agents 列为工具箱高层模式，且存在 langchain4j-agentic 模块的 @Agent 注解源码。",
+          "evidence_ids": [
+            "ev-c4f32a51f6a9",
+            "ev-83674fb763d3",
+            "ev-e78f6b986a37"
+          ]
+        },
+        {
+          "criterion": "最近 180 天有提交",
+          "verdict": "满足",
+          "reason": "最近提交日期为 2026-11-12，距今天 0 天，远在 180 天窗口内；pushed_at 同为 2026-11-12。",
+          "evidence_ids": [
+            "ev-04abc7d0a31b",
+            "ev-e78f6b986a37"
+          ]
+        },
+        {
+          "criterion": "最近 180 天有发布",
+          "verdict": "满足",
+          "reason": "最近正式发布 1.19.5 于 2026-11-02，距今天约 10 天，在 180 天窗口内。",
+          "evidence_ids": [
+            "ev-04abc7d0a31b"
+          ]
+        }
+      ],
+      "decision": "推荐",
+      "decision_reason": "三项硬性条件均有证据满足：Java 语言且具备 agentic 能力，最近提交（2026-11-12）与最近发布（2026-11-02）均在 180 天窗口内，维护活跃。",
+      "evidence_ids": [
+        "ev-e78f6b986a37",
+        "ev-04abc7d0a31b",
+        "ev-c4f32a51f6a9",
+        "ev-83674fb763d3"
+      ],
+      "unknowns": [
+        "未统计 180 天内提交总数与发布总数，仅依据最近若干条快照",
+        "未实测 agentic 模块运行效果与性能",
+        "未评估 1122 个 open issues 的响应时效"
+      ]
+    }
+  ],
+  "conclusion": "在 3 个搜索候选中（langchain4j/langchain4j、JetBrains/koog、agents-flex/agents-flex），仅深入分析用户点名的 langchain4j/langchain4j。该仓库为 Java 生态的 LLM/Agent 库，最近 180 天维护活跃：最近提交 2026-11-12（含 Agentic 相关修复），最近正式发布 1.19.5 于 2026-11-02，满足全部硬性条件，推荐作为 Java Agent 技术选型候选。其余两个候选仅保留为未深入分析。",
+  "unknowns": [
+    "未统计 180 天内提交与发布的总量趋势",
+    "未实测运行效果、性能与稳定性",
+    "未评估 issue 响应时效与社区支持质量"
+  ],
+  "schema_version": "1.1",
+  "run_id": "44ea217a174b",
+  "original_request": "搜索 Java Agent 项目，重点检查 langchain4j/langchain4j 最近 180 天的维护情况，说明提交与发布证据。",
+  "generated_at": "2026-11-12T16:23:41.009336+00:00",
+  "status": "completed",
+  "execution_mode": "live",
+  "commits": {
+    "langchain4j/langchain4j": "b7fe277c7437145617bcd49b77febfa5698c9ef4"
+  },
+  "evidence": [
+    {
+      "id": "ev-04abc7d0a31b",
+      "repository": "langchain4j/langchain4j",
+      "kind": "maintenance",
+      "url": "https://github.com/langchain4j/langchain4j/commits/b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "retrieved_at": "2026-11-12T16:01:31.049285+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "近期提交及 release 快照，维护判断需结合时间窗口",
+      "content": "{\"recent_commits\": [{\"sha\": \"b7fe277c7437145617bcd49b77febfa5698c9ef4\", \"date\": \"2026-11-12T13:43:40Z\", \"message\": \"Agentic: notify the suspension of an async agent only once (#7097)\\n\\n## Change\\n\\n`DetachedAsyncAgentTest.a_later_agent_reading_the_result_of_a_suspending_async_agent_suspends_the_root_call`\\nis flaky ([failed job on\\n`main`](https://github.com/langchain4j/langchain4j/actions/runs/43182251869/job/1310608\"}, {\"sha\": \"f472bbb0784f95ef21cca9f16b348c04e89eabb3\", \"date\": \"2026-11-12T13:22:31Z\", \"message\": \"Update watsonx.ai sdk to version 0.50.0 (#7087)\\n\\n## Issue\\nCloses #6511\\nSupersedes #6517\\n\\n## Change\\nwatsonx.ai now returns a model's reasoning in the `reasoning` field\\ninstead of `reasoning_content`, so `AiMessage.thinking()` was `null` for\\nmodels such as `openai/gpt-oss-120b` (#6511). The watsonx.ai\"}, {\"sha\": \"14e9e8984b5d6718e9ca16e23a79adb9eaf6cb68\", \"date\": \"2026-11-12T13:20:59Z\", \"message\": \"CI: cache the Maven repository of the build jobs with restore keys (#7094)\\n\\n## Change\\nThe Maven cache of the Java CI build jobs did not contain the build\\nplugins, and it was empty after every `pom.xml` change:\\n- setup-java saves its Maven cache in whichever job finishes first. That\\nis the `complianc\"}, {\"sha\": \"fb6e252b7a67e0d0579957127cafea9202ba1019\", \"date\": \"2026-11-12T09:38:42Z\", \"message\": \"Update dependency io.quarkiverse.langchain4j:quarkus-langchain4j-core to v1.15.1 (#7081)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---|\\n|\\n[io.quark\"}, {\"sha\": \"0e0b57a8edce80c0c7efb54b62ef62c0e83e479c\", \"date\": \"2026-11-12T09:35:55Z\", \"message\": \"Renovate: keep Reactor in Cosmos NoSQL on the Azure SDK's line and gpu-llama3 on the 0.4 JDK 25 build (#7098)\\n\\n## Issue\\n\\nNo issue. Renovate opened #7077, #7078 and #7074, which should not or\\ncannot be merged, and it would propose the next versions again after\\nthey are closed.\\n\\n## Change\\n\\nTwo Renovat\"}], \"recent_releases\": [{\"tag\": \"1.19.5\", \"published_at\": \"2026-11-02T16:06:15Z\", \"prerelease\": false}, {\"tag\": \"1.5.4\", \"published_at\": \"2026-11-02T14:38:38Z\", \"prerelease\": false}, {\"tag\": \"1.19.4\", \"published_at\": \"2026-11-02T14:37:38Z\", \"prerelease\": false}]}",
+      "truncated": false
+    },
+    {
+      "id": "ev-83674fb763d3",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L1-L80",
+      "retrieved_at": "2026-11-12T16:01:33.466044+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 1 至 80 行，共 193 行",
+      "content": "1: package dev.langchain4j.agentic;\n2: \n3: import static java.lang.annotation.ElementType.METHOD;\n4: import static java.lang.annotation.RetentionPolicy.RUNTIME;\n5: \n6: import dev.langchain4j.agentic.declarative.TypedKey;\n7: import dev.langchain4j.agentic.observability.AgentListener;\n8: import java.lang.annotation.Retention;\n9: import java.lang.annotation.Target;\n10: \n11: /**\n12:  * Java methods annotated with {@code @Agent} are considered agents that other agents can invoke.\n13:  */\n14: @Retention(RUNTIME)\n15: @Target({METHOD})\n16: public @interface Agent {\n17: \n18:     /**\n19:      * Name of the agent. If not provided, method name will be used.\n20:      *\n21:      * @return name of the agent.\n22:      */\n23:     String name() default \"\";\n24: \n25:     /**\n26:      * Description of the agent. This is an alias of the {@code description} attribute, and it is possible to use either.\n27:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n28:      *\n29:      * @return description of the agent.\n30:      */\n31:     String value() default \"\";\n32: \n33:     /**\n34:      * Description of the agent. This is an alias of the {@code value} attribute, and it is possible to use either.\n35:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n36:      *\n37:      * @return description of the agent.\n38:      */\n39:     String description() default \"\";\n40: \n41:     /**\n42:      * Key of the output variable that will be used to store the result of the agent's invocation.\n43:      *\n44:      * @return name of the output variable.\n45:      */\n46:     String outputKey() default \"\";\n47: \n48:     /**\n49:      * Strongly typed key of the output variable that will be used to store\n50:      * the result of this agent's invocation in the {@link dev.langchain4j.agentic.scope.AgenticScope}.\n51:      * <p>\n52:      * This attribute provides a type-safe alternative to {@link #outputKey()}.\n53:      * Instead of identifying the output variable using a {@link String},\n54:      * the output is identified by a class implementing {@link TypedKey}.\n55:      * </p>\n56:      *\n57:      * <p>\n58:      * The generic type declared by the {@link TypedKey} represents the type\n59:      * of value associated with the output variable.\n60:      * </p>\n61:      *\n62:      * <p>\n63:      * For example:\n64:      * </p>\n65:      *\n66:      * <pre>{@code\n67:      * public class Category implements TypedKey<RequestCategory> {\n68:      * }\n69:      *\n70:      * @Agent(\n71:      *         name = \"categoryRouter\",\n72:      *         typedOutputKey = Category.class\n73:      * )\n74:      * RequestCategory classify(String request);\n75:      * }</pre>\n76:      *\n77:      * <p>\n78:      * When the agent completes successfully, its returned\n79:      * {@code RequestCategory} value is stored in the agentic scope using\n80:      * {@code Category.class} as the typed state key.",
+      "truncated": true
+    },
+    {
+      "id": "ev-c4f32a51f6a9",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/README.md#L1-L80",
+      "retrieved_at": "2026-11-12T16:01:33.466271+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "README.md 第 1 至 80 行，共 85 行",
+      "content": "1: # LangChain4j: idiomatic, open-source Java library for building LLM-powered applications on the JVM\n2: \n3: [![Build Status](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/main.yaml?branch=main&style=for-the-badge&label=CI%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/main.yaml)\n4: [![Nightly Build](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/nightly_jdk17.yaml?branch=main&style=for-the-badge&label=NIGHTLY%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/nightly_jdk17.yaml)\n5: [![CODACY](https://img.shields.io/badge/Codacy-Dashboard-blue?style=for-the-badge&logo=codacy)](https://app.codacy.com/gh/langchain4j/langchain4j/dashboard)\n6: \n7: [![Discord](https://img.shields.io/discord/1156626270772269217?logo=discord&style=for-the-badge)](https://discord.gg/JzTFvyjG6R)\n8: [![BlueSky](https://img.shields.io/badge/@langchain4j-follow-blue?logo=bluesky&style=for-the-badge)](https://bsky.app/profile/langchain4j.dev)\n9: [![X](https://img.shields.io/badge/@langchain4j-follow-blue?logo=x&style=for-the-badge)](https://x.com/langchain4j)\n10: [![Maven Version](https://img.shields.io/maven-central/v/dev.langchain4j/langchain4j?logo=apachemaven&style=for-the-badge)](https://search.maven.org/#search|gav|1|g:\"dev.langchain4j\"%20AND%20a:\"langchain4j\")\n11: \n12: \n13: ## Introduction\n14: \n15: Welcome!\n16: \n17: The goal of LangChain4j is to simplify integrating LLMs into Java applications.\n18: \n19: Here's how:\n20: 1. **Unified APIs:**\n21:    LLM providers (like OpenAI or Google Vertex AI) and embedding (vector) stores (such as Pinecone or Milvus)\n22:    use proprietary APIs. LangChain4j offers a unified API to avoid the need for learning and implementing specific APIs for each of them.\n23:    To experiment with different LLMs or embedding stores, you can easily switch between them without the need to rewrite your code.\n24:    LangChain4j currently supports [20+ popular LLM providers](https://docs.langchain4j.dev/integrations/language-models/)\n25:    and [30+ embedding stores](https://docs.langchain4j.dev/integrations/embedding-stores/).\n26: 2. **Comprehensive Toolbox:**\n27:    Since early 2023, the community has been building numerous LLM-powered applications,\n28:    identifying common abstractions, patterns, and techniques. LangChain4j has refined these into practical code.\n29:    Our toolbox includes tools ranging from low-level prompt templating, chat memory management, and function calling\n30:    to high-level patterns like Agents and RAG.\n31:    For each abstraction, we provide an interface along with multiple ready-to-use implementations based on common techniques.\n32:    Whether you're building a chatbot or developing a RAG with a complete pipeline from data ingestion to retrieval,\n33:    LangChain4j offers a wide variety of options.\n34: 3. **Numerous Examples:**\n35:    These [examples](https://github.com/langchain4j/langchain4j-examples) showcase how to begin creating various LLM-powered applications,\n36:    providing inspiration and enabling you to start building quickly.\n37: \n38: LangChain4j began development in early 2023 amid the ChatGPT hype.\n39: We noticed a lack of Java counterparts to the numerous Python and JavaScript LLM libraries and frameworks,\n40: and we had to fix that!\n41: \n42: **Despite the name, LangChain4j is not a Java port of LangChain (Python) — it is built for Java, not ported to it.**\n43: It is an idiomatic Java library designed from the ground up around Java conventions:\n44: type safety, POJOs, annotations, interfaces, dependency injection, fluent APIs, and first-class integrations with Quarkus, Spring Boot, Helidon, and Micronaut.\n45: Its API, internals, and release cycle are independent of the Python LangChain project.\n46: \n47: We actively monitor community developments, aiming to quickly incorporate new techniques and integrations,\n48: ensuring you stay up-to-date.\n49: The library is under active development. While some features are still being worked on,\n50: the core functionality is in place, allowing you to start building LLM-powered apps now!\n51: \n52: \n53: ## Documentation\n54: Documentation can be found [here](https://docs.langchain4j.dev).\n55: \n56: The documentation chatbot (experimental) can be found [here](https://chat.langchain4j.dev/).\n57: \n58: \n59: ## Getting Started\n60: Getting started guide can be found [here](https://docs.langchain4j.dev/get-started).\n61: \n62: \n63: ## Code Examples\n64: Please see examples of how LangChain4j can be used in [langchain4j-examples](https://github.com/langchain4j/langchain4j-examples) repo:\n65: - [Examples in plain Java](https://github.com/langchain4j/langchain4j-examples/tree/main/other-examples/src/main/java)\n66: - [Examples with Quarkus](https://github.com/quarkiverse/quarkus-langchain4j/tree/main/samples) (uses [quarkus-langchain4j](https://github.com/quarkiverse/quarkus-langchain4j) dependency)\n67: - [Example with Spring Boot](https://github.com/langchain4j/langchain4j-examples/tree/main/spring-boot-example/src/main/java/dev/langchain4j/example)\n68: - [Examples with Helidon](https://github.com/helidon-io/helidon-examples/tree/helidon-4.x/examples/integrations/langchain4j) (uses [io.helidon.integrations.langchain4j](https://mvnrepository.com/artifact/io.helidon.integrations.langchain4j) dependency)\n69: - [Examples with Micronaut](https://github.com/micronaut-projects/micronaut-langchain4j/tree/0.3.x/doc-examples/example-openai-java) (uses [micronaut-langchain4j](https://micronaut-projects.github.io/micronaut-langchain4j/latest/guide/) dependency)\n70: \n71: ## Useful Materials\n72: Useful materials can be found [here](https://docs.langchain4j.dev/useful-materials).\n73: \n74: \n75: ## Get Help\n76: Please use [Discord](https://discord.gg/JzTFvyjG6R) or [GitHub discussions](https://github.com/langchain4j/langchain4j/discussions)\n77: to get help.\n78: \n79: \n80: ## Request Features",
+      "truncated": true
+    },
+    {
+      "id": "ev-d178898a4c94",
+      "repository": null,
+      "kind": "search",
+      "url": "https://github.com/search?q=java+agent+llm+framework+stars%3A%3E1000&type=repositories",
+      "retrieved_at": "2026-11-12T16:01:29.312333+00:00",
+      "commit": null,
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": "java agent llm framework stars:>1000",
+      "summary": "GitHub 搜索，返回 3 个公开候选",
+      "content": "[{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"stargazers_count\": 13393, \"archived\": false, \"pushed_at\": \"2026-11-12T15:25:46Z\"}, {\"full_name\": \"JetBrains/koog\", \"description\": \"Koog is a JVM (Java and Kotlin) framework for building predictable, fault-tolerant and enterprise-ready AI agents across all platforms – from backend services to Android and iOS, JVM, and even in-browser environments. Koog is based on our AI products expertise and provides proven solutions for complex LLM and AI problems\", \"language\": \"Kotlin\", \"stargazers_count\": 4657, \"archived\": false, \"pushed_at\": \"2026-11-10T12:51:38Z\"}, {\"full_name\": \"agents-flex/agents-flex\", \"description\": \"Agents-flex is A lightweight Java AI agent development framework (positioned as a counterpart to Spring AI). It supports features such as RAG, MCP, Skills, Text2SQL , LLM Wiki, Sub-agents, Web Search, TTS (synchronous and streaming), and STT.\", \"language\": \"Java\", \"stargazers_count\": 1054, \"archived\": false, \"pushed_at\": \"2026-11-09T12:34:29Z\"}]",
+      "truncated": false
+    },
+    {
+      "id": "ev-e78f6b986a37",
+      "repository": "langchain4j/langchain4j",
+      "kind": "metadata",
+      "url": "https://github.com/langchain4j/langchain4j",
+      "retrieved_at": "2026-11-12T16:01:29.821870+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "仓库元数据快照，状态适用于读取时间",
+      "content": "{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"archived\": false, \"disabled\": false, \"license\": {\"key\": \"apache-2.0\", \"name\": \"Apache License 2.0\", \"spdx_id\": \"Apache-2.0\", \"url\": \"https://api.github.com/licenses/apache-2.0\", \"node_id\": \"MDc6TGljZW5zZTI=\"}, \"pushed_at\": \"2026-11-12T15:25:46Z\", \"updated_at\": \"2026-11-12T14:21:06Z\", \"stargazers_count\": 13393, \"default_branch\": \"main\", \"open_issues_count\": 1122}",
+      "truncated": false
+    }
+  ],
+  "errors": [],
+  "statistics": {
+    "model_calls": 6,
+    "input_tokens": 51110,
+    "output_tokens": 3531,
+    "estimated_cost_cny_upper_bound": 0.240648,
+    "global_reserved_and_spent_cny": 13.926723,
+    "unconfirmed_calls": 1,
+    "billing_blocked": false,
+    "usage_complete": true,
+    "run_unconfirmed_calls": 0,
+    "github_requests": 7,
+    "elapsed_seconds": 38.236,
+    "models": [
+      {
+        "model": "deepseek-flash",
+        "role": "research",
+        "calls": 4,
+        "cost_cny": 0.095676,
+        "input_tokens": 38866,
+        "output_tokens": 2243
+      },
+      {
+        "model": "deepseek-v4-pro",
+        "role": "review",
+        "calls": 2,
+        "cost_cny": 0.144972,
+        "input_tokens": 12244,
+        "output_tokens": 1288
+      }
+    ],
+    "retrieval": {}
+  },
+  "review": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "ce840c808f8c05fba2045635d6e3e347d0c2a01eb7564e387da27c465281561c",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "元数据证实 Java 语言、Apache-2.0、13393 stars、未归档；README 明确将 Agents 列为高层模式；源码存在 langchain4j-agentic 模块的 @Agent 方法级注解。固定 commit 与证据一致。",
+        "evidence_ids": [
+          "ev-e78f6b986a37",
+          "ev-c4f32a51f6a9",
+          "ev-83674fb763d3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "三项硬性条件均有证据：Java 语言且含 agentic 模块（@Agent 注解源码），最近提交 2026-11-12 与最近发布 2026-11-02 均在 180 天窗口内。",
+        "evidence_ids": [
+          "ev-e78f6b986a37",
+          "ev-04abc7d0a31b",
+          "ev-83674fb763d3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "元数据证据与表述一致：Java、apache-2.0、13393 stars、未归档未禁用、pushed_at 2026-11-12T15:25:46Z。",
+        "evidence_ids": [
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "提交记录显示 2026-11-12 的 #7097（Agentic 异步 agent 挂起通知）、#7087（watsonx.ai SDK 升级）、#7094（CI Maven 缓存）等，与表述一致。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "release 快照显示 1.19.5、1.5.4、1.19.4 均发布于 2026-11-02 且 prerelease 为 false，与表述一致。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "README 第 29-30 行明确将 Agents 与 RAG 列为高层模式，并提及 prompt 模板、chat memory、function calling，与表述一致。",
+        "evidence_ids": [
+          "ev-c4f32a51f6a9"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/4",
+        "verdict": "supported",
+        "reason": "Agent.java 源码显示 @Agent 为 @Target({METHOD}) 的方法级注解，含 name/value/description/outputKey/typedOutputKey 属性，与表述一致。",
+        "evidence_ids": [
+          "ev-83674fb763d3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "Java 语言由元数据证实，README 将 Agents 列为高层模式，且存在 langchain4j-agentic 模块的 @Agent 注解源码，满足 Java Agent 项目条件。",
+        "evidence_ids": [
+          "ev-c4f32a51f6a9",
+          "ev-83674fb763d3",
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "ev-e78f6b986a37 显示 pushed_at 为 2026-11-12，ev-04abc7d0a31b 的 recent_commits 最新提交 b7fe277 日期为 2026-11-12T13:43:40Z，均在 180 天窗口内，支持该表述。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b",
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "ev-04abc7d0a31b 的 recent_releases 显示 1.19.5 于 2026-11-02 发布且 prerelease 为 false，距运行时间约 10 天，在 180 天窗口内，支持该表述。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "提交与发布证据（ev-04abc7d0a31b、ev-e78f6b986a37）支持维护活跃的结论；Java Agent 定位由 README 声明（ev-c4f32a51f6a9）及 langchain4j-agentic 模块的 Agent 注解代码（ev-83674fb763d3）佐证。但结论中“含 Agentic 相关修复”仅能由提交信息推断，且“其余两个候选仅保留为未深入分析”属对未提供证据候选的表述，未超出证据范围。",
+        "evidence_ids": [
+          "ev-04abc7d0a31b",
+          "ev-83674fb763d3",
+          "ev-c4f32a51f6a9",
+          "ev-e78f6b986a37"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  }
+}

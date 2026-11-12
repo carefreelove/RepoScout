@@ -33,11 +33,29 @@ Pydantic 公开结构的 schema_version 为 1.0。Candidate 包含 Assessment、
 
 ## 持久化与故障
 
+### 仓库资料 RAG
+
+文件读取成功后，将完整 UTF-8 文本保存到 source_documents，并按最多 80 行、8 KB 分块写入 source_chunks 与 FTS5。索引范围由 repository、commit 和 path 确定。文件内容摘要用于检测同一 commit 的不一致响应，事务保证并发索引幂等。
+
+查询先使用 FTS5/BM25，再用参数化子串匹配补充短中文词和标识符片段，返回前 5 个命中且文本至多 16 KB。检索结果转换为当前任务 Evidence，保留原始行号与采集时间。旧证据按片段索引，完整文件存在时优先使用完整索引。
+
+目录工具按指定路径查询并支持文件名过滤和缓存结果的分页展示，保留 GitHub API 条目上限提示。get_evidence 按当前任务 ID 取回原文，压缩之后也能继续核查依据。
+
+### 双模型辅助核验
+
+Flash 生成 ReportDraft，规则校验后保存草稿。Pro 只接收原始需求、明确条件、候选判定和引用原文，独立审查 claims、条件、摘要、推荐理由与结论。每个输入条目必须返回一个对应结果，引用 ID 必须属于该条目。
+
+Pro 调用按证据去重分批，每批最多 8 个条目，序列化输入最多 96 KB。超大的单项退回缩小引用。核验结果只有全部有依据时才能完成任务。问题反馈给 Flash，最多进行两轮补证，草稿与证据都没有变化时停止。
+
+review、review_history、review_batches 和 review_calls 保存在 objects。草稿指纹绑定通过状态，成功批次和工具调用结果可在恢复时复用。进程锁与核验器锁防止同一任务重复执行或并行提交造成重复审查。新报告 schema 为 1.1，旧报告保持 1.0 的读取和展示语义。
+
 state.sqlite 保存 runs、objects、events 和 ledger。objects 保存仓库 pin、证据、查询与 HTTP 缓存。checkpoints.sqlite 由 LangGraph SqliteSaver 保存图状态。恢复时复用领域资料，并检查图是否还有待执行节点。
 
 同一任务通过 flock 拒绝重复执行。领域写入和预算使用 SQLite 事务。报告先写临时文件再替换，show 可重新导出。GitHub 网络失败与短期限流最多重试两次，长时间限流保留恢复信息。Ctrl+C 保存 cancelled，运行时间在恢复时累计。
 
 模型 API 自动重试与流式生成关闭，统一适配器处理 429 重试并计数。发送前以消息和工具定义的 UTF-8 大小估算输入 token 上界，再加协议余量和最大输出额度。使用高峰价格预留 micro-CNY，usage 完整时结算。未知用量保留预留并暂停新调用，压缩调用使用同一模型对象。
+
+账本增加 model、role、input_rate、output_rate 与 price_date，旧记录按原 Flash 费率迁移。Pro 使用单独费率，所有调用共用原来的全局预算和每任务 20 次调用限制。发生用量未知时，只有操作者明确接受完整预留额后，才能将该记录置为 reserved_unknown。预留费用持续计入上限，未知状态持续显示。新产生的未知用量继续冻结调用。
 
 ## 验证与边界
 

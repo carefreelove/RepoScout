@@ -1,0 +1,240 @@
+{
+  "current": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "81f9c7930981ca4ffc4ccb83b09bcd68e03424913419642e015ce52e0044b631",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "pom.xml 显示 Maven 多模块聚合工程（packaging pom），modules 列表含 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns；Agent.java 源码定义 @Agent 注解（@Target(METHOD)、@Retention(RUNTIME)），并含 async、optional、compensateOnError、summarizedContext 等属性，与表述一致。",
+        "evidence_ids": [
+          "ev-a1f7950a51e6",
+          "ev-63de4bc98e04",
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "元数据显示 Apache-2.0 许可证、language Java、未归档；pom.xml 为 Maven 工程且含 agentic 模块；Agent.java 提供 @Agent 注解；维护证据显示 2026-11-12 有提交、2026-11-02 有 1.19.5 发布，均在 180 天窗口内。三项条件均有依据。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08",
+          "ev-a1f7950a51e6",
+          "ev-63de4bc98e04",
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82",
+          "ev-2825329b8931"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "pom.xml 第 5-8 行明确 groupId dev.langchain4j、artifactId langchain4j-aggregator、version 1.24.0-beta34-SNAPSHOT、packaging pom，与表述一致。",
+        "evidence_ids": [
+          "ev-a1f7950a51e6"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "pom.xml 第 134-141 行 experimental 注释段后列出 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 四个模块，与表述一致。",
+        "evidence_ids": [
+          "ev-63de4bc98e04"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "Agent.java 源码显示 @Retention(RUNTIME)、@Target({METHOD})，并含 name、value、description、outputKey、typedOutputKey、async、optional、compensateOnError、summarizedContext 等属性，与表述一致。",
+        "evidence_ids": [
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "元数据显示 language Java、license apache-2.0、archived false、stargazers_count 13393、pushed_at 2026-11-12；维护证据 recent_releases 含 1.19.5（2026-11-02），与表述一致。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08",
+          "ev-2825329b8931"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "元数据 license 为 Apache License 2.0（spdx_id Apache-2.0），archived false、disabled false，满足开源许可证条件。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "元数据 language 为 Java；pom.xml 为 Maven 工程；Agent.java 为 Java 源码并定义 Java 注解，满足支持 Java 语言条件。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08",
+          "ev-a1f7950a51e6",
+          "ev-623b2d052ef1"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "pom.xml（ev-63de4bc98e04）确实列出 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 模块；Agent.java（ev-623b2d052ef1、ev-271fc4128e82）定义 @Agent 注解，文档说明被注解的 Java 方法即为可被其他 Agent 调用的 Agent，并含 async、optional、compensateOnError、summarizedContext 属性。表述与证据一致。",
+        "evidence_ids": [
+          "ev-63de4bc98e04",
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "结论中的依赖与源码依据均有对应证据：pom.xml 为 Maven 多模块工程并列出 agentic 相关模块（ev-63de4bc98e04、ev-a1f7950a51e6），Agent.java 定义 @Agent 注解及 async/optional/compensateOnError/summarizedContext（ev-623b2d052ef1、ev-271fc4128e82），元数据显示 Apache-2.0 许可证、Java 语言（ev-9d5a5e105e08）。关于 agents-flex 仅出现在搜索结果、未深入分析、不作结论的表述，与证据范围一致，未作无依据断言。",
+        "evidence_ids": [
+          "ev-271fc4128e82",
+          "ev-623b2d052ef1",
+          "ev-63de4bc98e04",
+          "ev-9d5a5e105e08",
+          "ev-a1f7950a51e6"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  },
+  "history": [
+    {
+      "status": "passed",
+      "model": "deepseek-v4-pro",
+      "rounds": 1,
+      "supplement_rounds": 0,
+      "draft_hash": "81f9c7930981ca4ffc4ccb83b09bcd68e03424913419642e015ce52e0044b631",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "supported",
+          "reason": "pom.xml 显示 Maven 多模块聚合工程（packaging pom），modules 列表含 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns；Agent.java 源码定义 @Agent 注解（@Target(METHOD)、@Retention(RUNTIME)），并含 async、optional、compensateOnError、summarizedContext 等属性，与表述一致。",
+          "evidence_ids": [
+            "ev-a1f7950a51e6",
+            "ev-63de4bc98e04",
+            "ev-623b2d052ef1",
+            "ev-271fc4128e82"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "supported",
+          "reason": "元数据显示 Apache-2.0 许可证、language Java、未归档；pom.xml 为 Maven 工程且含 agentic 模块；Agent.java 提供 @Agent 注解；维护证据显示 2026-11-12 有提交、2026-11-02 有 1.19.5 发布，均在 180 天窗口内。三项条件均有依据。",
+          "evidence_ids": [
+            "ev-9d5a5e105e08",
+            "ev-a1f7950a51e6",
+            "ev-63de4bc98e04",
+            "ev-623b2d052ef1",
+            "ev-271fc4128e82",
+            "ev-2825329b8931"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "supported",
+          "reason": "pom.xml 第 5-8 行明确 groupId dev.langchain4j、artifactId langchain4j-aggregator、version 1.24.0-beta34-SNAPSHOT、packaging pom，与表述一致。",
+          "evidence_ids": [
+            "ev-a1f7950a51e6"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/1",
+          "verdict": "supported",
+          "reason": "pom.xml 第 134-141 行 experimental 注释段后列出 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 四个模块，与表述一致。",
+          "evidence_ids": [
+            "ev-63de4bc98e04"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/2",
+          "verdict": "supported",
+          "reason": "Agent.java 源码显示 @Retention(RUNTIME)、@Target({METHOD})，并含 name、value、description、outputKey、typedOutputKey、async、optional、compensateOnError、summarizedContext 等属性，与表述一致。",
+          "evidence_ids": [
+            "ev-623b2d052ef1",
+            "ev-271fc4128e82"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/3",
+          "verdict": "supported",
+          "reason": "元数据显示 language Java、license apache-2.0、archived false、stargazers_count 13393、pushed_at 2026-11-12；维护证据 recent_releases 含 1.19.5（2026-11-02），与表述一致。",
+          "evidence_ids": [
+            "ev-9d5a5e105e08",
+            "ev-2825329b8931"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "supported",
+          "reason": "元数据 license 为 Apache License 2.0（spdx_id Apache-2.0），archived false、disabled false，满足开源许可证条件。",
+          "evidence_ids": [
+            "ev-9d5a5e105e08"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/1",
+          "verdict": "supported",
+          "reason": "元数据 language 为 Java；pom.xml 为 Maven 工程；Agent.java 为 Java 源码并定义 Java 注解，满足支持 Java 语言条件。",
+          "evidence_ids": [
+            "ev-9d5a5e105e08",
+            "ev-a1f7950a51e6",
+            "ev-623b2d052ef1"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/2",
+          "verdict": "supported",
+          "reason": "pom.xml（ev-63de4bc98e04）确实列出 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 模块；Agent.java（ev-623b2d052ef1、ev-271fc4128e82）定义 @Agent 注解，文档说明被注解的 Java 方法即为可被其他 Agent 调用的 Agent，并含 async、optional、compensateOnError、summarizedContext 属性。表述与证据一致。",
+          "evidence_ids": [
+            "ev-63de4bc98e04",
+            "ev-623b2d052ef1",
+            "ev-271fc4128e82"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "supported",
+          "reason": "结论中的依赖与源码依据均有对应证据：pom.xml 为 Maven 多模块工程并列出 agentic 相关模块（ev-63de4bc98e04、ev-a1f7950a51e6），Agent.java 定义 @Agent 注解及 async/optional/compensateOnError/summarizedContext（ev-623b2d052ef1、ev-271fc4128e82），元数据显示 Apache-2.0 许可证、Java 语言（ev-9d5a5e105e08）。关于 agents-flex 仅出现在搜索结果、未深入分析、不作结论的表述，与证据范围一致，未作无依据断言。",
+          "evidence_ids": [
+            "ev-271fc4128e82",
+            "ev-623b2d052ef1",
+            "ev-63de4bc98e04",
+            "ev-9d5a5e105e08",
+            "ev-a1f7950a51e6"
+          ],
+          "needed_query": ""
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    }
+  ]
+}

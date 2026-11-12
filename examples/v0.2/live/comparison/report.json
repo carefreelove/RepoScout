@@ -1,0 +1,576 @@
+{
+  "interpreted_request": "搜索 Java Agent 框架，重点比较 langchain4j/langchain4j 与 alibaba/spring-ai-alibaba 的技术栈与使用方式，并给出来源证据。",
+  "criteria": [
+    {
+      "name": "Java Agent 框架",
+      "required": true
+    },
+    {
+      "name": "技术栈",
+      "required": false
+    },
+    {
+      "name": "使用方式",
+      "required": false
+    }
+  ],
+  "maintenance_window_days": 180,
+  "candidates": [
+    {
+      "repository": "langchain4j/langchain4j",
+      "summary": "面向 JVM 的惯用 Java LLM 库，提供统一模型/向量库 API，工具箱覆盖 prompt 模板、chat memory、function calling 到 Agents 与 RAG；agentic 模块以 @Agent 注解声明式定义 agent。",
+      "claims": [
+        {
+          "text": "README 声明其目标是简化 LLM 集成，提供统一 API，支持 20+ LLM 提供商与 30+ embedding store。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-0680a6ede790"
+          ]
+        },
+        {
+          "text": "README 明确 LangChain4j 不是 Python LangChain 的移植，而是围绕 Java 惯例（类型安全、POJO、注解、接口、DI、流式 API）从零设计，并与 Quarkus、Spring Boot、Helidon、Micronaut 集成。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-0680a6ede790"
+          ]
+        },
+        {
+          "text": "源码中 @Agent 是标注在 Java 方法上的运行时注解，方法即 agent，可被其他 agent 调用，支持 name/description/outputKey/typedOutputKey 等属性。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-09465efc6ec0"
+          ]
+        },
+        {
+          "text": "元数据：Apache-2.0，约 13.4k stars，最近提交 2026-11-12，最近发布 1.19.5（2026-11-02）。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-40834a5858e0",
+            "ev-24d3cfe35c44"
+          ]
+        }
+      ],
+      "assessments": [
+        {
+          "criterion": "Java Agent 框架",
+          "verdict": "满足",
+          "reason": "README 将 Agents 列为工具箱中的高层模式，且存在 langchain4j-agentic 模块的 @Agent 注解源码。",
+          "evidence_ids": [
+            "ev-0680a6ede790",
+            "ev-09465efc6ec0"
+          ]
+        },
+        {
+          "criterion": "技术栈",
+          "verdict": "满足",
+          "reason": "Java 库，Maven 发布（dev.langchain4j），可独立使用或集成 Quarkus/Spring Boot/Helidon/Micronaut。",
+          "evidence_ids": [
+            "ev-0680a6ede790",
+            "ev-40834a5858e0"
+          ]
+        },
+        {
+          "criterion": "使用方式",
+          "verdict": "满足",
+          "reason": "以 Java 注解/接口声明 agent（@Agent 标注方法），并提供 plain Java、Quarkus、Spring Boot 等示例入口。",
+          "evidence_ids": [
+            "ev-09465efc6ec0",
+            "ev-0680a6ede790"
+          ]
+        }
+      ],
+      "decision": "推荐",
+      "decision_reason": "满足 Java Agent 框架定位，技术栈为纯 Java 库、框架无关，使用方式为注解式声明 agent；维护活跃（当日提交、近期发布）。",
+      "evidence_ids": [
+        "ev-0680a6ede790",
+        "ev-09465efc6ec0",
+        "ev-40834a5858e0",
+        "ev-24d3cfe35c44"
+      ],
+      "unknowns": [
+        "未实测 agent 编排性能与运行时行为",
+        "未读取 pom.xml 确认最低 JDK 版本"
+      ]
+    },
+    {
+      "repository": "alibaba/spring-ai-alibaba",
+      "summary": "基于 Spring AI 的 Agentic AI 框架，由 Agent Framework、Graph 运行时与 Admin 平台组成，内置多智能体编排模式、上下文工程、A2A 与 MCP 支持，通过 Spring Boot starter 与 YAML 配置使用。",
+      "claims": [
+        {
+          "text": "README 定位为构建 Agentic、Workflow 与多智能体应用的生产级框架，内置 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent 等编排模式。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ]
+        },
+        {
+          "text": "README 说明 Graph 是 Agent Framework 的底层运行时，提供持久化、工作流编排与流式能力；项目含 agent-framework、graph、admin、studio、spring-boot-starters 模块。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ]
+        },
+        {
+          "text": "使用方式为 Spring Boot：引入 spring-ai-alibaba-agent-framework 与 spring-ai-alibaba-starter-dashscope 依赖，要求 JDK 17+，示例通过 ./mvnw -pl examples/chatbot spring-boot:run 启动。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ]
+        },
+        {
+          "text": "示例 application.yml 通过 spring.ai.dashscope 配置 api-key 与 qwen-plus 模型，并配置 spring.ai.mcp.client（streamable-http/sse）及 spring.ai.alibaba.a2a.nacos 服务发现与注册。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-4580b0b5e647"
+          ]
+        },
+        {
+          "text": "元数据：Apache-2.0，约 11.1k stars，最近提交 2026-10-07，最近发布为预发布 v2.0.0-M1.1（2026-06-25），稳定版 v1.1.2.2（2026-03-10）。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-c6479813222f",
+            "ev-67f10d2c9fc3"
+          ]
+        }
+      ],
+      "assessments": [
+        {
+          "criterion": "Java Agent 框架",
+          "verdict": "满足",
+          "reason": "README 明确为 Agentic AI 框架，含 Agent Framework 与多智能体编排模式。",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ]
+        },
+        {
+          "criterion": "技术栈",
+          "verdict": "满足",
+          "reason": "Java + Spring Boot + Spring AI 生态，依赖 Maven 坐标 com.alibaba.cloud.ai，要求 JDK 17+。",
+          "evidence_ids": [
+            "ev-eee1a793e6be"
+          ]
+        },
+        {
+          "criterion": "使用方式",
+          "verdict": "满足",
+          "reason": "以 Spring Boot starter 依赖 + application.yml 配置（模型、MCP、A2A/Nacos）方式使用，另有 Admin 可视化平台。",
+          "evidence_ids": [
+            "ev-eee1a793e6be",
+            "ev-4580b0b5e647"
+          ]
+        }
+      ],
+      "decision": "推荐",
+      "decision_reason": "满足 Java Agent 框架定位，技术栈绑定 Spring AI/Spring Boot，使用方式为 starter + YAML 配置；维护窗口内仍有提交，但最近一次提交距今天约 36 天，最新发布为预发布版。",
+      "evidence_ids": [
+        "ev-eee1a793e6be",
+        "ev-4580b0b5e647",
+        "ev-c6479813222f",
+        "ev-67f10d2c9fc3"
+      ],
+      "unknowns": [
+        "未实测 Graph 运行时与多智能体编排性能",
+        "未读取 pom.xml 确认具体 Spring AI 版本依赖",
+        "Admin 平台独立部署效果未验证"
+      ]
+    }
+  ],
+  "conclusion": "两者均为 Java Agent 框架且维护在窗口内。langchain4j 是框架无关的纯 Java 库，以 @Agent 注解/接口声明 agent，可独立或嵌入 Quarkus/Spring Boot 等；spring-ai-alibaba 深度绑定 Spring AI/Spring Boot，以 starter 依赖 + YAML 配置驱动，并提供 Graph 运行时、多智能体编排模式、A2A/MCP 与 Admin 可视化平台。若项目已在 Spring Boot 且需要图编排与平台化能力，后者更贴合；若需轻量、框架无关的 Java 库，前者更合适。性能与运行效果均未实测。",
+  "unknowns": [
+    "未运行任何示例，性能与稳定性未实测",
+    "未核对两仓库最低 JDK 与依赖版本矩阵的完整细节"
+  ],
+  "schema_version": "1.1",
+  "run_id": "a88faa5403b4",
+  "original_request": "搜索 Java Agent 框架，比较 langchain4j/langchain4j 与 alibaba/spring-ai-alibaba 的技术栈与使用方式，给出来源。",
+  "generated_at": "2026-11-12T16:23:41.019981+00:00",
+  "status": "completed",
+  "execution_mode": "live",
+  "commits": {
+    "alibaba/spring-ai-alibaba": "17e26ff6fe951d605771c1845229ca3edb043634",
+    "langchain4j/langchain4j": "b7fe277c7437145617bcd49b77febfa5698c9ef4"
+  },
+  "evidence": [
+    {
+      "id": "ev-0680a6ede790",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/README.md#L1-L85",
+      "retrieved_at": "2026-11-12T16:03:13.852580+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 85,
+      "query": null,
+      "summary": "README.md 第 1 至 85 行，共 85 行",
+      "content": "1: # LangChain4j: idiomatic, open-source Java library for building LLM-powered applications on the JVM\n2: \n3: [![Build Status](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/main.yaml?branch=main&style=for-the-badge&label=CI%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/main.yaml)\n4: [![Nightly Build](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/nightly_jdk17.yaml?branch=main&style=for-the-badge&label=NIGHTLY%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/nightly_jdk17.yaml)\n5: [![CODACY](https://img.shields.io/badge/Codacy-Dashboard-blue?style=for-the-badge&logo=codacy)](https://app.codacy.com/gh/langchain4j/langchain4j/dashboard)\n6: \n7: [![Discord](https://img.shields.io/discord/1156626270772269217?logo=discord&style=for-the-badge)](https://discord.gg/JzTFvyjG6R)\n8: [![BlueSky](https://img.shields.io/badge/@langchain4j-follow-blue?logo=bluesky&style=for-the-badge)](https://bsky.app/profile/langchain4j.dev)\n9: [![X](https://img.shields.io/badge/@langchain4j-follow-blue?logo=x&style=for-the-badge)](https://x.com/langchain4j)\n10: [![Maven Version](https://img.shields.io/maven-central/v/dev.langchain4j/langchain4j?logo=apachemaven&style=for-the-badge)](https://search.maven.org/#search|gav|1|g:\"dev.langchain4j\"%20AND%20a:\"langchain4j\")\n11: \n12: \n13: ## Introduction\n14: \n15: Welcome!\n16: \n17: The goal of LangChain4j is to simplify integrating LLMs into Java applications.\n18: \n19: Here's how:\n20: 1. **Unified APIs:**\n21:    LLM providers (like OpenAI or Google Vertex AI) and embedding (vector) stores (such as Pinecone or Milvus)\n22:    use proprietary APIs. LangChain4j offers a unified API to avoid the need for learning and implementing specific APIs for each of them.\n23:    To experiment with different LLMs or embedding stores, you can easily switch between them without the need to rewrite your code.\n24:    LangChain4j currently supports [20+ popular LLM providers](https://docs.langchain4j.dev/integrations/language-models/)\n25:    and [30+ embedding stores](https://docs.langchain4j.dev/integrations/embedding-stores/).\n26: 2. **Comprehensive Toolbox:**\n27:    Since early 2023, the community has been building numerous LLM-powered applications,\n28:    identifying common abstractions, patterns, and techniques. LangChain4j has refined these into practical code.\n29:    Our toolbox includes tools ranging from low-level prompt templating, chat memory management, and function calling\n30:    to high-level patterns like Agents and RAG.\n31:    For each abstraction, we provide an interface along with multiple ready-to-use implementations based on common techniques.\n32:    Whether you're building a chatbot or developing a RAG with a complete pipeline from data ingestion to retrieval,\n33:    LangChain4j offers a wide variety of options.\n34: 3. **Numerous Examples:**\n35:    These [examples](https://github.com/langchain4j/langchain4j-examples) showcase how to begin creating various LLM-powered applications,\n36:    providing inspiration and enabling you to start building quickly.\n37: \n38: LangChain4j began development in early 2023 amid the ChatGPT hype.\n39: We noticed a lack of Java counterparts to the numerous Python and JavaScript LLM libraries and frameworks,\n40: and we had to fix that!\n41: \n42: **Despite the name, LangChain4j is not a Java port of LangChain (Python) — it is built for Java, not ported to it.**\n43: It is an idiomatic Java library designed from the ground up around Java conventions:\n44: type safety, POJOs, annotations, interfaces, dependency injection, fluent APIs, and first-class integrations with Quarkus, Spring Boot, Helidon, and Micronaut.\n45: Its API, internals, and release cycle are independent of the Python LangChain project.\n46: \n47: We actively monitor community developments, aiming to quickly incorporate new techniques and integrations,\n48: ensuring you stay up-to-date.\n49: The library is under active development. While some features are still being worked on,\n50: the core functionality is in place, allowing you to start building LLM-powered apps now!\n51: \n52: \n53: ## Documentation\n54: Documentation can be found [here](https://docs.langchain4j.dev).\n55: \n56: The documentation chatbot (experimental) can be found [here](https://chat.langchain4j.dev/).\n57: \n58: \n59: ## Getting Started\n60: Getting started guide can be found [here](https://docs.langchain4j.dev/get-started).\n61: \n62: \n63: ## Code Examples\n64: Please see examples of how LangChain4j can be used in [langchain4j-examples](https://github.com/langchain4j/langchain4j-examples) repo:\n65: - [Examples in plain Java](https://github.com/langchain4j/langchain4j-examples/tree/main/other-examples/src/main/java)\n66: - [Examples with Quarkus](https://github.com/quarkiverse/quarkus-langchain4j/tree/main/samples) (uses [quarkus-langchain4j](https://github.com/quarkiverse/quarkus-langchain4j) dependency)\n67: - [Example with Spring Boot](https://github.com/langchain4j/langchain4j-examples/tree/main/spring-boot-example/src/main/java/dev/langchain4j/example)\n68: - [Examples with Helidon](https://github.com/helidon-io/helidon-examples/tree/helidon-4.x/examples/integrations/langchain4j) (uses [io.helidon.integrations.langchain4j](https://mvnrepository.com/artifact/io.helidon.integrations.langchain4j) dependency)\n69: - [Examples with Micronaut](https://github.com/micronaut-projects/micronaut-langchain4j/tree/0.3.x/doc-examples/example-openai-java) (uses [micronaut-langchain4j](https://micronaut-projects.github.io/micronaut-langchain4j/latest/guide/) dependency)\n70: \n71: ## Useful Materials\n72: Useful materials can be found [here](https://docs.langchain4j.dev/useful-materials).\n73: \n74: \n75: ## Get Help\n76: Please use [Discord](https://discord.gg/JzTFvyjG6R) or [GitHub discussions](https://github.com/langchain4j/langchain4j/discussions)\n77: to get help.\n78: \n79: \n80: ## Request Features\n81: Please let us know what features you need by [opening an issue](https://github.com/langchain4j/langchain4j/issues/new/choose).\n82: \n83: \n84: ## Contribute\n85: Contribution guidelines can be found [here](https://github.com/langchain4j/langchain4j/blob/main/CONTRIBUTING.md).",
+      "truncated": false
+    },
+    {
+      "id": "ev-09465efc6ec0",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L1-L80",
+      "retrieved_at": "2026-11-12T16:03:13.236535+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 1 至 80 行，共 193 行",
+      "content": "1: package dev.langchain4j.agentic;\n2: \n3: import static java.lang.annotation.ElementType.METHOD;\n4: import static java.lang.annotation.RetentionPolicy.RUNTIME;\n5: \n6: import dev.langchain4j.agentic.declarative.TypedKey;\n7: import dev.langchain4j.agentic.observability.AgentListener;\n8: import java.lang.annotation.Retention;\n9: import java.lang.annotation.Target;\n10: \n11: /**\n12:  * Java methods annotated with {@code @Agent} are considered agents that other agents can invoke.\n13:  */\n14: @Retention(RUNTIME)\n15: @Target({METHOD})\n16: public @interface Agent {\n17: \n18:     /**\n19:      * Name of the agent. If not provided, method name will be used.\n20:      *\n21:      * @return name of the agent.\n22:      */\n23:     String name() default \"\";\n24: \n25:     /**\n26:      * Description of the agent. This is an alias of the {@code description} attribute, and it is possible to use either.\n27:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n28:      *\n29:      * @return description of the agent.\n30:      */\n31:     String value() default \"\";\n32: \n33:     /**\n34:      * Description of the agent. This is an alias of the {@code value} attribute, and it is possible to use either.\n35:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n36:      *\n37:      * @return description of the agent.\n38:      */\n39:     String description() default \"\";\n40: \n41:     /**\n42:      * Key of the output variable that will be used to store the result of the agent's invocation.\n43:      *\n44:      * @return name of the output variable.\n45:      */\n46:     String outputKey() default \"\";\n47: \n48:     /**\n49:      * Strongly typed key of the output variable that will be used to store\n50:      * the result of this agent's invocation in the {@link dev.langchain4j.agentic.scope.AgenticScope}.\n51:      * <p>\n52:      * This attribute provides a type-safe alternative to {@link #outputKey()}.\n53:      * Instead of identifying the output variable using a {@link String},\n54:      * the output is identified by a class implementing {@link TypedKey}.\n55:      * </p>\n56:      *\n57:      * <p>\n58:      * The generic type declared by the {@link TypedKey} represents the type\n59:      * of value associated with the output variable.\n60:      * </p>\n61:      *\n62:      * <p>\n63:      * For example:\n64:      * </p>\n65:      *\n66:      * <pre>{@code\n67:      * public class Category implements TypedKey<RequestCategory> {\n68:      * }\n69:      *\n70:      * @Agent(\n71:      *         name = \"categoryRouter\",\n72:      *         typedOutputKey = Category.class\n73:      * )\n74:      * RequestCategory classify(String request);\n75:      * }</pre>\n76:      *\n77:      * <p>\n78:      * When the agent completes successfully, its returned\n79:      * {@code RequestCategory} value is stored in the agentic scope using\n80:      * {@code Category.class} as the typed state key.",
+      "truncated": true
+    },
+    {
+      "id": "ev-24d3cfe35c44",
+      "repository": "langchain4j/langchain4j",
+      "kind": "maintenance",
+      "url": "https://github.com/langchain4j/langchain4j/commits/b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "retrieved_at": "2026-11-12T16:03:10.699305+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "近期提交及 release 快照，维护判断需结合时间窗口",
+      "content": "{\"recent_commits\": [{\"sha\": \"b7fe277c7437145617bcd49b77febfa5698c9ef4\", \"date\": \"2026-11-12T13:43:40Z\", \"message\": \"Agentic: notify the suspension of an async agent only once (#7097)\\n\\n## Change\\n\\n`DetachedAsyncAgentTest.a_later_agent_reading_the_result_of_a_suspending_async_agent_suspends_the_root_call`\\nis flaky ([failed job on\\n`main`](https://github.com/langchain4j/langchain4j/actions/runs/43182251869/job/1310608\"}, {\"sha\": \"f472bbb0784f95ef21cca9f16b348c04e89eabb3\", \"date\": \"2026-11-12T13:22:31Z\", \"message\": \"Update watsonx.ai sdk to version 0.50.0 (#7087)\\n\\n## Issue\\nCloses #6511\\nSupersedes #6517\\n\\n## Change\\nwatsonx.ai now returns a model's reasoning in the `reasoning` field\\ninstead of `reasoning_content`, so `AiMessage.thinking()` was `null` for\\nmodels such as `openai/gpt-oss-120b` (#6511). The watsonx.ai\"}, {\"sha\": \"14e9e8984b5d6718e9ca16e23a79adb9eaf6cb68\", \"date\": \"2026-11-12T13:20:59Z\", \"message\": \"CI: cache the Maven repository of the build jobs with restore keys (#7094)\\n\\n## Change\\nThe Maven cache of the Java CI build jobs did not contain the build\\nplugins, and it was empty after every `pom.xml` change:\\n- setup-java saves its Maven cache in whichever job finishes first. That\\nis the `complianc\"}, {\"sha\": \"fb6e252b7a67e0d0579957127cafea9202ba1019\", \"date\": \"2026-11-12T09:38:42Z\", \"message\": \"Update dependency io.quarkiverse.langchain4j:quarkus-langchain4j-core to v1.15.1 (#7081)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---|\\n|\\n[io.quark\"}, {\"sha\": \"0e0b57a8edce80c0c7efb54b62ef62c0e83e479c\", \"date\": \"2026-11-12T09:35:55Z\", \"message\": \"Renovate: keep Reactor in Cosmos NoSQL on the Azure SDK's line and gpu-llama3 on the 0.4 JDK 25 build (#7098)\\n\\n## Issue\\n\\nNo issue. Renovate opened #7077, #7078 and #7074, which should not or\\ncannot be merged, and it would propose the next versions again after\\nthey are closed.\\n\\n## Change\\n\\nTwo Renovat\"}], \"recent_releases\": [{\"tag\": \"1.19.5\", \"published_at\": \"2026-11-02T16:06:15Z\", \"prerelease\": false}, {\"tag\": \"1.5.4\", \"published_at\": \"2026-11-02T14:38:38Z\", \"prerelease\": false}, {\"tag\": \"1.19.4\", \"published_at\": \"2026-11-02T14:37:38Z\", \"prerelease\": false}]}",
+      "truncated": false
+    },
+    {
+      "id": "ev-356077d32795",
+      "repository": null,
+      "kind": "search",
+      "url": "https://github.com/search?q=java+agent+framework+language%3AJava+stars%3A%3E1000&type=repositories",
+      "retrieved_at": "2026-11-12T16:03:07.467184+00:00",
+      "commit": null,
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": "java agent framework language:Java stars:>1000",
+      "summary": "GitHub 搜索，返回 4 个公开候选",
+      "content": "[{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"stargazers_count\": 13393, \"archived\": false, \"pushed_at\": \"2026-11-12T15:25:46Z\"}, {\"full_name\": \"agents-flex/agents-flex\", \"description\": \"Agents-flex is A lightweight Java AI agent development framework (positioned as a counterpart to Spring AI). It supports features such as RAG, MCP, Skills, Text2SQL , LLM Wiki, Sub-agents, Web Search, TTS (synchronous and streaming), and STT.\", \"language\": \"Java\", \"stargazers_count\": 1054, \"archived\": false, \"pushed_at\": \"2026-11-09T12:34:29Z\"}, {\"full_name\": \"w8123/EnterpriseAgentFramework\", \"description\": \"ReachAI企业级智能体开发平台：快速、安全完成已有业务系统智能化改造，让 AI 在 OA、ERP、CRM 等原系统中查数据、填表单、办业务。ReachAI: Quickly and securely bring AI to existing enterprise systems, enabling AI to query data, fill out forms, and execute business tasks directly within OA, ERP, CRM, and other business applications.\", \"language\": \"Java\", \"stargazers_count\": 1049, \"archived\": false, \"pushed_at\": \"2026-11-08T13:50:19Z\"}, {\"full_name\": \"alibaba/spring-ai-alibaba\", \"description\": \"Agentic AI Framework for Java Developers\", \"language\": \"Java\", \"stargazers_count\": 11139, \"archived\": false, \"pushed_at\": \"2026-10-07T13:48:56Z\"}]",
+      "truncated": false
+    },
+    {
+      "id": "ev-40834a5858e0",
+      "repository": "langchain4j/langchain4j",
+      "kind": "metadata",
+      "url": "https://github.com/langchain4j/langchain4j",
+      "retrieved_at": "2026-11-12T16:03:09.551176+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "仓库元数据快照，状态适用于读取时间",
+      "content": "{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"archived\": false, \"disabled\": false, \"license\": {\"key\": \"apache-2.0\", \"name\": \"Apache License 2.0\", \"spdx_id\": \"Apache-2.0\", \"url\": \"https://api.github.com/licenses/apache-2.0\", \"node_id\": \"MDc6TGljZW5zZTI=\"}, \"pushed_at\": \"2026-11-12T15:25:46Z\", \"updated_at\": \"2026-11-12T14:21:06Z\", \"stargazers_count\": 13393, \"default_branch\": \"main\", \"open_issues_count\": 1122}",
+      "truncated": false
+    },
+    {
+      "id": "ev-4580b0b5e647",
+      "repository": "alibaba/spring-ai-alibaba",
+      "kind": "file",
+      "url": "https://github.com/alibaba/spring-ai-alibaba/blob/17e26ff6fe951d605771c1845229ca3edb043634/examples/documentation/src/main/resources/application.yml#L1-L59",
+      "retrieved_at": "2026-11-12T16:03:13.416375+00:00",
+      "commit": "17e26ff6fe951d605771c1845229ca3edb043634",
+      "path": "examples/documentation/src/main/resources/application.yml",
+      "start_line": 1,
+      "end_line": 59,
+      "query": null,
+      "summary": "examples/documentation/src/main/resources/application.yml 第 1 至 59 行，共 59 行",
+      "content": "1: server:\n2:   port: 8080\n3: spring:\n4:   application:\n5:     name: documentation-examples\n6:   ai:\n7:     # DashScope 配置（阿里云百炼）\n8:     dashscope:\n9:       api-key: ${DASHSCOPE_API_KEY:your-api-key}\n10:       chat:\n11:         options:\n12:           model: ${DASHSCOPE_MODEL:qwen-plus}\n13:     # A2A Nacos 配置\n14:     alibaba:\n15:       a2a:\n16:         nacos:\n17:           server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}\n18:           username: ${NACOS_USERNAME:nacos}\n19:           password: ${NACOS_PASSWORD:nacos}\n20:           discovery:\n21:             enabled: true # 启用 A2A 服务发现，用于发现远程智能体\n22:           registry:\n23:             enabled: true # 启用 Nacos Registry（需要 Nacos 3.x+）\n24:         server:\n25:           version: 1.0.0\n26:           card:\n27:             name: data_analysis_agent\n28:             description: 专门用于数据分析和统计计算的本地智能体\n29:             provider:\n30:               name: Spring AI Alibaba Documentation\n31:               organization: Spring AI Alibaba\n32:               url: https://sca.aliyun.com/ai/\n33:               contact:\n34:                 email: dev@alibabacloud.com\n35: \n36:     mcp: # 结合Spring AI使用MCP的必须配置\n37:       client: # 注入Spring AI MCP Client\n38:         enabled: true\n39:         name: saa-mcp-client\n40:         toolcallback:\n41:           enabled: true\n42:         type: async\n43:         streamable-http: # 定义streamableHttp的MCP工具\n44:           connections:\n45:             amap-maps:\n46:               url: ${MODEL_SCOPE_AMAP_BASE_URL} # 从魔搭社区获取调用url，移除尾部endpoint,例如: https://mcp.api-inference.modelscope.net/?????????/\n47:               endpoint: mcp\n48:         sse: # 定义基于sse的MCP工具\n49:           connections:\n50:             12306-mcp:\n51:               url: ${MODEL_SCOPE_12306_BASE_URL}  # 从魔搭社区获取调用url，移除尾部endpoint,例如: https://mcp.api-inference.modelscope.net/?????????/\n52:               sse-endpoint: sse\n53: \n54: # 日志配置\n55: logging:\n56:   level:\n57:     root: INFO\n58:     com.alibaba.cloud.ai: DEBUG\n59:     org.springframework.ai: DEBUG",
+      "truncated": false
+    },
+    {
+      "id": "ev-67f10d2c9fc3",
+      "repository": "alibaba/spring-ai-alibaba",
+      "kind": "maintenance",
+      "url": "https://github.com/alibaba/spring-ai-alibaba/commits/17e26ff6fe951d605771c1845229ca3edb043634",
+      "retrieved_at": "2026-11-12T16:03:09.458341+00:00",
+      "commit": "17e26ff6fe951d605771c1845229ca3edb043634",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "近期提交及 release 快照，维护判断需结合时间窗口",
+      "content": "{\"recent_commits\": [{\"sha\": \"17e26ff6fe951d605771c1845229ca3edb043634\", \"date\": \"2026-10-07T13:48:56Z\", \"message\": \"Merge pull request #4995 from zh-hanlabs/fix/readme-fullwidth-colon\\n\\ndocs: fix full-width colon in README\"}, {\"sha\": \"8a01843d804c0e5887909003716109c226dc2bdd\", \"date\": \"2026-10-03T05:47:23Z\", \"message\": \"docs: fix full-width colon in README\"}, {\"sha\": \"f82da0b50f35744c13968191be2b1cd2452ef550\", \"date\": \"2026-08-25T15:40:27Z\", \"message\": \"test(graph): pin List<byte[]> element types across serializer round-trip (#4926)\\n\\nCo-authored-by: shown <yuluo08290126@gmail.com>\"}, {\"sha\": \"e61cbc4ef1c2d5c9ae22476c43344803bc571329\", \"date\": \"2026-08-25T15:37:31Z\", \"message\": \"fix(graph): preserve streaming node id in error callbacks (#4925)\"}, {\"sha\": \"ccf81638c52c2e4342a53075f174045fe721a475\", \"date\": \"2026-08-24T15:25:53Z\", \"message\": \"chore: Avoid wildcard imports in admin server core utils (#4913)\"}], \"recent_releases\": [{\"tag\": \"v2.0.0-M1.1\", \"published_at\": \"2026-06-25T05:46:04Z\", \"prerelease\": true}, {\"tag\": \"v1.1.2.2\", \"published_at\": \"2026-03-10T09:32:13Z\", \"prerelease\": false}, {\"tag\": \"v1.1.2.1\", \"published_at\": \"2026-03-09T01:42:53Z\", \"prerelease\": false}]}",
+      "truncated": false
+    },
+    {
+      "id": "ev-c6479813222f",
+      "repository": "alibaba/spring-ai-alibaba",
+      "kind": "metadata",
+      "url": "https://github.com/alibaba/spring-ai-alibaba",
+      "retrieved_at": "2026-11-12T16:03:08.227363+00:00",
+      "commit": "17e26ff6fe951d605771c1845229ca3edb043634",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "仓库元数据快照，状态适用于读取时间",
+      "content": "{\"full_name\": \"alibaba/spring-ai-alibaba\", \"description\": \"Agentic AI Framework for Java Developers\", \"language\": \"Java\", \"archived\": false, \"disabled\": false, \"license\": {\"key\": \"apache-2.0\", \"name\": \"Apache License 2.0\", \"spdx_id\": \"Apache-2.0\", \"url\": \"https://api.github.com/licenses/apache-2.0\", \"node_id\": \"MDc6TGljZW5zZTI=\"}, \"pushed_at\": \"2026-10-07T13:48:56Z\", \"updated_at\": \"2026-11-12T15:50:42Z\", \"stargazers_count\": 11139, \"default_branch\": \"main\", \"open_issues_count\": 183}",
+      "truncated": false
+    },
+    {
+      "id": "ev-eee1a793e6be",
+      "repository": "alibaba/spring-ai-alibaba",
+      "kind": "file",
+      "url": "https://github.com/alibaba/spring-ai-alibaba/blob/17e26ff6fe951d605771c1845229ca3edb043634/README.md#L1-L140",
+      "retrieved_at": "2026-11-12T16:03:13.243525+00:00",
+      "commit": "17e26ff6fe951d605771c1845229ca3edb043634",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 140,
+      "query": null,
+      "summary": "README.md 第 1 至 140 行，共 168 行",
+      "content": "1: # [Spring AI Alibaba](https://java2ai.com)\n2: \n3: [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)\n4: [![CI Status](https://github.com/alibaba/spring-ai-alibaba/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/alibaba/spring-ai-alibaba/actions/workflows/build-and-test.yml)\n5: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/alibaba/spring-ai-alibaba)\n6: [![Maven Central](https://img.shields.io/badge/Maven%20Central-v1.1.2.2-blue)](https://central.sonatype.com/artifact/com.alibaba.cloud.ai/spring-ai-alibaba/1.1.2.2)\n7: [![gitleaks badge](https://img.shields.io/badge/protected%20by-gitleaks-blue)](https://github.com/gitleaks/gitleaks)\n8: \n9: <html>\n10:     <h3 align=\"center\">\n11:       A production-ready framework for building Agentic, Workflow, and Multi-agent applications.\n12:     </h3>\n13:     <h3 align=\"center\">\n14:       <a href=\"https://java2ai.com/docs/quick-start/\" target=\"_blank\">Agent Framework Docs</a>,\n15:       <a href=\"https://java2ai.com/docs/frameworks/graph-core/quick-start/\" target=\"_blank\">Graph Docs</a>,\n16:       <a href=\"https://java2ai.com/ecosystem/spring-ai/reference/concepts/\" target=\"_blank\">Spring AI</a>,\n17:       <a href=\"https://github.com/alibaba/spring-ai-alibaba/tree/main/examples\" target=\"_blank\">Examples</a>.\n18:     </h3>\n19: </html>\n20: \n21: ## Architecture\n22: \n23: <p align=\"center\">\n24:     <img src=\"./docs/imgs/architecture-new.png\" alt=\"architecture\" style=\"max-width: 740px; height: auto\" />\n25: </p>\n26: \n27: **Spring AI Alibaba Admin** is a one-stop Agent platform that supports visualized Agent development, observability, evaluation, and MCP management, etc. It also integrates with open-source low-code platforms like Dify, enabling rapid migration from DSL to Spring AI Alibaba project.\n28: \n29: **Spring AI Alibaba Agent Framework** is an agent development framework that can quickly develop agents with built-in **Context Engineering** and **Human In The Loop** support. For scenarios requiring more complex process control, Agent Framework offers built-in workflows like `SequentialAgent`, `ParallelAgent`, `RoutingAgent`, `LoopAgent`.\n30: \n31: **Spring AI Alibaba Graph** serves as the underlying runtime of the Agent Framework, providing essential capabilities such as persistence, workflow orchestration, and streaming required for long-running stateful agents. Compared to the Agent Framework, users can build more flexible multi-agent workflows based on the Graph API.\n32: \n33: ## Core Features\n34: \n35: * **[Multi-Agent Orchestration](https://github.com/alibaba/spring-ai-alibaba/tree/main/examples/multiagent-patterns)**: Compose multiple agents with built-in patterns including `SequentialAgent`, `ParallelAgent`, `RoutingAgent`, and `LoopAgent` for complex task execution.\n36: \n37: * **[Multimodal Support](https://github.com/alibaba/spring-ai-alibaba/tree/main/examples/multimodal)**: ReactAgent with text and media input (image understanding). ReactAgent with tool based image or audio generation.\n38: \n39: * **[Voice Agent](https://github.com/alibaba/spring-ai-alibaba/tree/main/examples/voice-agent)**: WebSocket-based real-time voice agent that supports streaming audio or text input and responds with generated audio.\n40: \n41: * **[Context Engineering](https://java2ai.com/docs/frameworks/agent-framework/tutorials/hooks)**: Built-in best practices for context engineering policies to improve agent reliability and performance, including human-in-the-loop, context compaction, context editing, model & tool call limit, tool retry, planning, dynamic tool selection.\n42: \n43: * **[Graph-based Workflow](https://java2ai.com/docs/frameworks/graph-core/quick-start)**: Graph based workflow runtime and api for conditional routing, nested graphs, parallel execution, and state management. Export workflows to PlantUML and Mermaid formats.\n44: \n45: * **[A2A Support](https://java2ai.com/docs/frameworks/agent-framework/advanced/a2a)**: Agent-to-Agent communication support with Nacos integration, enabling distributed agent coordination and collaboration across services.\n46: \n47: * **[Rich Model, Tool and MCP Support](https://java2ai.com/integration/chatmodels/dashScope)**: Leveraging core concepts of Spring AI, supports multiple LLM providers (DashScope, OpenAI, etc.), tool calling, and Model Context Protocol (MCP).\n48: \n49: * **[One-stop Agent Platform](https://java2ai.com/ecosystem/admin/quick-start)**: Build agent in a visualized way, deploy agent without code or export as a standalone java project.\n50: \n51: <p align=\"center\">\n52:     <img src=\"./docs/imgs/saa-admin.png\" alt=\"architecture\" style=\"max-width: 740px; height: auto\" />\n53: </p>\n54: \n55: ## Getting Started\n56: \n57: ### Prerequisites\n58: \n59: * Requires JDK 17+.\n60: * Choose your LLM provider and get the API-KEY.\n61: \n62: ### Quickly Run a ChatBot\n63: \n64: There's a ChatBot example provided by the community at [examples/chatbot](https://github.com/alibaba/spring-ai-alibaba/tree/main/examples/chatbot).\n65: \n66: 1. Download the code.\n67: \n68: \t```shell\n69: \tgit clone --depth=1 https://github.com/alibaba/spring-ai-alibaba.git\n70: \tcd spring-ai-alibaba\n71: \t```\n72: \n73: 2. Start the ChatBot.\n74: \n75: \tBefore starting, set API-KEY first (visit <a href=\"https://bailian.console.aliyun.com/?apiKey=1&tab=api#/api\" target=\"_blank\">Aliyun Bailian</a> to get API-KEY):\n76: \t```shell\n77: \t# this example uses 'spring-ai-alibaba-starter-dashscope', visit https://java2ai.com to learn how to use OpenAI/DeepSeek.\n78: \texport AI_DASHSCOPE_API_KEY=your-api-key\n79: \t```\n80: \t\n81: \t```shell\n82: \t# Maven installation is optional when using mvnw.\n83: \t./mvnw -pl examples/chatbot spring-boot:run\n84: \t```\n85: \n86: 3. Chat with ChatBot.\n87: \n88: \tOpen the browser and visit [http://localhost:8080/chatui/index.html](http://localhost:8080/chatui/index.html) to chat with the ChatBot.\n89: \t\n90: <p align=\"center\">\n91: \t<img src=\"./docs/imgs/chatbot-chat-ui.gif\" alt=\"chatbot-ui\" style=\"max-width: 740px; height: auto\" />\n92: </p>\n93: \n94: ## Chatbot Code Explained\n95: \n96: 1. Add dependencies\n97: \n98: \t```xml\n99: \t<dependencies>\n100: \t  <dependency>\n101: \t    <groupId>com.alibaba.cloud.ai</groupId>\n102: \t    <artifactId>spring-ai-alibaba-agent-framework</artifactId>\n103: \t    <version>1.1.2.0</version>\n104: \t  </dependency>\n105: \t  <!-- Assume you are going to use DashScope Model. Refer to docs for how to choose model.-->\n106: \t  <dependency>\n107: \t    <groupId>com.alibaba.cloud.ai</groupId>\n108: \t    <artifactId>spring-ai-alibaba-starter-dashscope</artifactId>\n109: \t    <version>1.1.2.1</version>\n110: \t  </dependency>\n111: \t</dependencies>\n112: \t```\n113: \n114: 2. Define Chatbot\n115:    \n116: \tFor more details of how to write a Chatbot, please check the [Quick Start](https://java2ai.com/docs/quick-start) on our official website.\n117: \n118: ## 📚 Documentation\n119: * [Overview](https://java2ai.com/docs/overview) - High level overview of the framework\n120: * [Quick Start](https://java2ai.com/docs/quick-start) - Get started with a simple agent\n121: * [Agent Framework Tutorials](https://java2ai.com/docs/frameworks/agent-framework/tutorials/agents) - Step by step tutorials\n122: * [Use Graph API to Build Complex Workflows](https://java2ai.com/docs/frameworks/agent-framework/advanced/context-engineering) - In-depth user guide for building multi-agent and workflows\n123: * [Spring AI Basics](https://java2ai.com/ecosystem/spring-ai/reference/concepts) - Ai Application basic concepts, including ChatModel, MCP, Tool, Messages, etc.\n124: * [Chat Memory](https://docs.spring.io/spring-ai/reference/api/chatclient.html#chat-memory) - Spring AI reference for chat memory repositories and usage\n125: \n126: ## Project Structure\n127: \n128: This project consists of several core components:\n129: \n130: * spring-ai-alibaba-agent-framework: A multi-agent framework designed for building intelligent agents with built-in context engineering best practices.\n131: * spring-ai-alibaba-graph: The underlying runtime for Agent Framework. We recommend developers to use Agent Framework but it's totally fine to use the Graph API directly.\n132: * spring-ai-alibaba-admin: A one-stop Agent platform that supports visualized Agent development, observability, evaluation, and MCP management, etc.\n133: * spring-ai-alibaba-studio: The embedded ui for quickly debugging agent in a visualized way.\n134: * spring-boot-starters: Starters integrating Agent Framework with Nacos to provide A2A and dynamic config features.\n135: \n136: ## Spring AI Alibaba Ecosystem\n137:  Repository | Description | ⭐\n138:   --- | --- | ---\n139: | [Spring AI Alibaba Graph](https://github.com/alibaba/spring-ai-alibaba/tree/main/spring-ai-alibaba-graph-core) | A low-level orchestration framework and runtime for building, managing, and deploying long-running, stateful agents. | ![GitHub Repo stars](https://img.shields.io/github/stars/alibaba/spring-ai-alibaba?style=for-the-badge&label=)\n140: | [Spring AI Alibaba Admin](https://github.com/spring-ai-alibaba/spring-ai-alibaba-admin) |  Local visualization toolkit for the development of agent applications, supporting project management, runtime visualization, tracing, and agent evaluation. | ![GitHub Repo stars](https://img.shields.io/github/stars/spring-ai-alibaba/spring-ai-alibaba-admin?style=for-the-badge&label=)",
+      "truncated": true
+    }
+  ],
+  "errors": [],
+  "statistics": {
+    "model_calls": 8,
+    "input_tokens": 80333,
+    "output_tokens": 5917,
+    "estimated_cost_cny_upper_bound": 0.445164,
+    "global_reserved_and_spent_cny": 13.926723,
+    "unconfirmed_calls": 1,
+    "billing_blocked": false,
+    "usage_complete": true,
+    "run_unconfirmed_calls": 0,
+    "github_requests": 13,
+    "elapsed_seconds": 48.972,
+    "models": [
+      {
+        "model": "deepseek-flash",
+        "role": "research",
+        "calls": 5,
+        "cost_cny": 0.134052,
+        "input_tokens": 52986,
+        "output_tokens": 3510
+      },
+      {
+        "model": "deepseek-v4-pro",
+        "role": "review",
+        "calls": 3,
+        "cost_cny": 0.311112,
+        "input_tokens": 27347,
+        "output_tokens": 2407
+      }
+    ],
+    "retrieval": {}
+  },
+  "review": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "948846e3e735d66134f9e535a68728bf6dd077bd9d64435dd0781b1b882c9724",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "README 明确其为 JVM 惯用 Java LLM 库，提供统一 API、工具箱含 Agents 与 RAG；@Agent 注解源码证实 agentic 模块以方法注解声明式定义 agent。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "Java Agent 框架定位、纯 Java 库且框架无关、注解式声明 agent 均有 README 与源码依据；维护活跃由当日提交与近期发布（1.19.5，2026-11-02）佐证，处于 180 天窗口内。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0",
+          "ev-40834a5858e0",
+          "ev-24d3cfe35c44"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 17、24-25 行明确声明简化 LLM 集成、统一 API，并支持 20+ LLM 提供商与 30+ embedding store，表述层级为文档声明，准确。",
+        "evidence_ids": [
+          "ev-0680a6ede790"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "README 第 42-44 行明确说明非 Python LangChain 移植，围绕 Java 惯例从零设计，并与 Quarkus、Spring Boot、Helidon、Micronaut 集成。",
+        "evidence_ids": [
+          "ev-0680a6ede790"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "@Agent 注解源码显示 @Target({METHOD})、@Retention(RUNTIME)，方法即 agent 可被其他 agent 调用，并含 name/description/outputKey/typedOutputKey 属性。",
+        "evidence_ids": [
+          "ev-09465efc6ec0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "元数据快照显示 Apache-2.0、13393 stars、pushed_at 2026-11-12；维护快照显示最近发布 1.19.5（2026-11-02），与表述一致。",
+        "evidence_ids": [
+          "ev-40834a5858e0",
+          "ev-24d3cfe35c44"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "README 将 Agents 列为高层模式，且存在 langchain4j-agentic 模块 @Agent 注解源码，满足 Java Agent 框架判定。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "README 说明其为 Java 库、可集成 Quarkus/Spring Boot/Helidon/Micronaut，元数据确认语言为 Java、Maven 坐标 dev.langchain4j，技术栈判定成立。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-40834a5858e0"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "ev-09465efc6ec0 显示 @Agent 注解标注 Java 方法（@Target({METHOD})），ev-0680a6ede790 的 README 明确列出 plain Java、Quarkus、Spring Boot、Helidon、Micronaut 示例入口，与表述一致。",
+        "evidence_ids": [
+          "ev-09465efc6ec0",
+          "ev-0680a6ede790"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/summary",
+        "verdict": "supported",
+        "reason": "README（ev-eee1a793e6be）说明由 Agent Framework、Graph 运行时与 Admin 平台组成，内置 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent 编排、Context Engineering、A2A 与 MCP 支持；使用方式为 Spring Boot starter + YAML 配置（ev-4580b0b5e647 的 application.yml 佐证）。表述与证据一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be",
+          "ev-4580b0b5e647",
+          "ev-c6479813222f",
+          "ev-67f10d2c9fc3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/decision_reason",
+        "verdict": "supported",
+        "reason": "定位、技术栈与使用方式均有 README 与元数据佐证；维护窗口（180 天）内最近提交 2026-10-07（ev-67f10d2c9fc3），距 2026-11-12 约 36 天，最新发布 v2.0.0-M1.1 为预发布版，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be",
+          "ev-4580b0b5e647",
+          "ev-c6479813222f",
+          "ev-67f10d2c9fc3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 11 行定位为 production-ready framework for building Agentic, Workflow, and Multi-agent applications，第 29 行列出 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/1",
+        "verdict": "supported",
+        "reason": "README 第 31 行说明 Graph 是 Agent Framework 的底层运行时，提供 persistence、workflow orchestration、streaming；第 126-134 行列出 agent-framework、graph、admin、studio、spring-boot-starters 模块，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/2",
+        "verdict": "supported",
+        "reason": "README 第 59 行要求 JDK 17+，第 98-112 行给出 spring-ai-alibaba-agent-framework 与 spring-ai-alibaba-starter-dashscope 依赖，第 83 行给出 ./mvnw -pl examples/chatbot spring-boot:run 启动命令，与表述一致。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/3",
+        "verdict": "supported",
+        "reason": "ev-4580b0b5e647 的 application.yml 实际包含 spring.ai.dashscope 的 api-key 与 qwen-plus 模型配置、spring.ai.mcp.client（streamable-http/sse）以及 spring.ai.alibaba.a2a.nacos 的 discovery/registry 配置，与表述一致。",
+        "evidence_ids": [
+          "ev-4580b0b5e647"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/claims/4",
+        "verdict": "supported",
+        "reason": "ev-c6479813222f 显示 Apache-2.0、约 11139 stars、pushed_at 2026-10-07；ev-67f10d2c9fc3 显示 v2.0.0-M1.1（2026-06-25，prerelease）与 v1.1.2.2（2026-03-10，非预发布），与表述一致。",
+        "evidence_ids": [
+          "ev-c6479813222f",
+          "ev-67f10d2c9fc3"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/assessments/0",
+        "verdict": "supported",
+        "reason": "README 明确声明为 Agentic AI 框架，含 Agent Framework 与多智能体编排模式（SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent），证据支持该表述。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/assessments/1",
+        "verdict": "supported",
+        "reason": "README 显示 Maven 坐标 com.alibaba.cloud.ai 及 JDK 17+ 要求，项目为 Java + Spring Boot/Spring AI 生态，证据支持。",
+        "evidence_ids": [
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/1/assessments/2",
+        "verdict": "supported",
+        "reason": "README 展示 starter 依赖方式，application.yml 展示模型、MCP、A2A/Nacos 配置，README 提及 Admin 可视化平台，证据支持。",
+        "evidence_ids": [
+          "ev-eee1a793e6be",
+          "ev-4580b0b5e647"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "结论对两框架的技术栈与使用方式描述均有对应证据：langchain4j 为框架无关 Java 库（README 声明非 LangChain 移植、支持 Quarkus/Spring Boot 等），@Agent 注解有实际代码依据；spring-ai-alibaba 深度绑定 Spring AI/Spring Boot、starter+YAML 配置、Graph 运行时、多智能体编排、A2A/MCP 与 Admin 平台均有 README 依据。维护窗口内均有近期提交。性能未实测已明确声明。",
+        "evidence_ids": [
+          "ev-0680a6ede790",
+          "ev-09465efc6ec0",
+          "ev-24d3cfe35c44",
+          "ev-40834a5858e0",
+          "ev-4580b0b5e647",
+          "ev-67f10d2c9fc3",
+          "ev-c6479813222f",
+          "ev-eee1a793e6be"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  }
+}

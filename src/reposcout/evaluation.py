@@ -12,7 +12,7 @@ from langchain_core.outputs import ChatGeneration, ChatResult
 from pydantic import PrivateAttr
 
 from reposcout.agent import execute
-from reposcout.domain import ReportDraft, now
+from reposcout.domain import ReportDraft, ReviewBatch, now
 from reposcout.model import create_model
 from reposcout.reporting import atomic_write
 from reposcout.storage import Deadline, Store
@@ -94,6 +94,9 @@ class ScriptedModel(BaseChatModel):
             ("search_repositories", {"query": "agent language:Java"}),
             ("inspect_repository", {"repository": FIXTURE_REPO}),
             ("read_repository_file", {"repository": FIXTURE_REPO, "path": "missing.md" if self._case["id"] == "insufficient" else "README.md"}),
+            ("search_repository_content", {"repository": FIXTURE_REPO, "query": "Java deployment"}),
+            ("get_evidence", {"evidence_id": next((e["id"] for e in self._store.objects(self._run_id, "evidence") if e["kind"] == "file"),
+                                                  next(iter(self._store.objects(self._run_id, "evidence")), {}).get("id", "missing"))}),
         ]
         if self._step < len(steps):
             name, args = steps[self._step]
@@ -107,6 +110,19 @@ class ScriptedModel(BaseChatModel):
         return ChatResult(generations=[ChatGeneration(message=message)])
 
 
+class ScriptedReviewer:
+    """Accept explicit synthetic facts to exercise the review protocol offline."""
+    model_name = "scripted-reviewer"
+
+    def with_structured_output(self, schema):
+        return self
+
+    def invoke(self, messages):
+        payload = json.loads(messages[-1]["content"])
+        return ReviewBatch(findings=[{"target": item["target"], "verdict": "supported",
+            "reason": "合成数据协议回放", "evidence_ids": item["evidence_ids"][:1]} for item in payload["items"]])
+
+
 def evaluate(store: Store, live: bool = False) -> Path:
     results = []
     for case in SUITE:
@@ -117,10 +133,12 @@ def evaluate(store: Store, live: bool = False) -> Path:
         run_id = case_store.create(case["request"], "live" if live else "offline")
         model = None if live else ScriptedModel().attach(case_store, run_id, case)
         transport = None if live else httpx.MockTransport(fixture_response)
-        path = execute(case_store, run_id, model=model, transport=transport)
+        path = execute(case_store, run_id, model=model, transport=transport,
+                       reviewer=None if live else ScriptedReviewer())
         report = json.loads((path / "report.json").read_text())
         checks = {
             "valid_report": report["status"] == "completed",
+            "review_passed": report.get("review", {}).get("status") == "passed",
             "source_coverage": coverage(report),
             "fact_correctness": None, "condition_correctness": None,
         }
@@ -132,7 +150,7 @@ def evaluate(store: Store, live: bool = False) -> Path:
             record["baseline"] = baseline(store, case["request"])
         results.append(record)
         print(f"{case['id']} {record['mode']} {report['status']}", flush=True)
-        if live and store.statistics(run_id)["unconfirmed_calls"]:
+        if live and store.statistics(run_id)["billing_blocked"]:
             break
     path = store.settings.home / ("evaluation-live.json" if live else "evaluation-offline.json")
     atomic_write(path, json.dumps({"suite": "smoke", "generated_at": now(),

@@ -1,0 +1,216 @@
+{
+  "current": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "16ecdd895a8c83f96cef1243c747b640017bb651dc273db0c24e98b01963e8dc",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "README 明确列出统一 API、工具箱（含 Agents 与 RAG）及 Quarkus/Spring Boot 集成；Agent.java 源码证实存在 langchain4j-agentic 模块与 @Agent 注解（@Target(METHOD)、@Retention(RUNTIME)），表述与证据一致。",
+        "evidence_ids": [
+          "ev-8aeb40efc65e",
+          "ev-611ceaa78eb4"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "三项条件均有对应证据：agentic 模块与 @Agent 注解源码支持 Java Agent 能力；维护快照显示 2026-11-12 当日提交及 2026-11-02 的 1.19.5 等正式发布，均在 180 天窗口内。",
+        "evidence_ids": [
+          "ev-8aeb40efc65e",
+          "ev-611ceaa78eb4",
+          "ev-bfa2e95a14c2"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 26-30 行明确说明工具箱涵盖 prompt templating、chat memory、function calling 到 Agents 与 RAG，表述为文档声明，层级恰当。",
+        "evidence_ids": [
+          "ev-8aeb40efc65e"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "Agent.java 源码第 14-15 行显示 @Retention(RUNTIME)、@Target({METHOD})，第 12 行注释说明被标注方法视为可被其他 agent 调用的 agent，与表述一致。",
+        "evidence_ids": [
+          "ev-611ceaa78eb4"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "维护快照 recent_commits 显示 2026-11-12 多条提交（含 #7097、#7087），recent_releases 显示 2026-11-02 的 1.19.5、1.5.4、1.19.4 且 prerelease 均为 false，与表述一致。",
+        "evidence_ids": [
+          "ev-bfa2e95a14c2"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "元数据快照显示 apache-2.0、archived=false、default_branch=main、stargazers_count=13393、open_issues_count=1122、pushed_at=2026-11-12，与表述一致。",
+        "evidence_ids": [
+          "ev-dcdc5d7c4010"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "README 将 Agents 列为工具箱能力，且 Agent.java 源码证实存在 agentic 模块与 @Agent 注解，满足 Java Agent 项目条件。",
+        "evidence_ids": [
+          "ev-8aeb40efc65e",
+          "ev-611ceaa78eb4"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "维护快照 recent_commits 最近提交日期为 2026-11-12，距 run_started_at 0 天，远在 180 天窗口内，满足提交活动条件。",
+        "evidence_ids": [
+          "ev-bfa2e95a14c2"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "证据 ev-bfa2e95a14c2 的 recent_releases 显示 tag 1.19.5 于 2026-11-02 发布且 prerelease=false，距 run_started_at（2026-11-12）约 10 天，在 180 天窗口内，表述准确。",
+        "evidence_ids": [
+          "ev-bfa2e95a14c2"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "Java Agent 能力由 ev-611ceaa78eb4 的 @Agent 注解源码证实；提交活动由 ev-bfa2e95a14c2 显示 2026-11-12 当日多次提交（b7fe277 等）证实；正式发布 1.19.5（2026-11-02，非预发布）在 180 天窗口内。结论中'其余 5 个候选仅保留为未深入分析'的表述与证据范围一致，未新增无依据事实。",
+        "evidence_ids": [
+          "ev-611ceaa78eb4",
+          "ev-bfa2e95a14c2",
+          "ev-dcdc5d7c4010"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  },
+  "history": [
+    {
+      "status": "passed",
+      "model": "deepseek-v4-pro",
+      "rounds": 1,
+      "supplement_rounds": 0,
+      "draft_hash": "16ecdd895a8c83f96cef1243c747b640017bb651dc273db0c24e98b01963e8dc",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "supported",
+          "reason": "README 明确列出统一 API、工具箱（含 Agents 与 RAG）及 Quarkus/Spring Boot 集成；Agent.java 源码证实存在 langchain4j-agentic 模块与 @Agent 注解（@Target(METHOD)、@Retention(RUNTIME)），表述与证据一致。",
+          "evidence_ids": [
+            "ev-8aeb40efc65e",
+            "ev-611ceaa78eb4"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "supported",
+          "reason": "三项条件均有对应证据：agentic 模块与 @Agent 注解源码支持 Java Agent 能力；维护快照显示 2026-11-12 当日提交及 2026-11-02 的 1.19.5 等正式发布，均在 180 天窗口内。",
+          "evidence_ids": [
+            "ev-8aeb40efc65e",
+            "ev-611ceaa78eb4",
+            "ev-bfa2e95a14c2"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "supported",
+          "reason": "README 第 26-30 行明确说明工具箱涵盖 prompt templating、chat memory、function calling 到 Agents 与 RAG，表述为文档声明，层级恰当。",
+          "evidence_ids": [
+            "ev-8aeb40efc65e"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/1",
+          "verdict": "supported",
+          "reason": "Agent.java 源码第 14-15 行显示 @Retention(RUNTIME)、@Target({METHOD})，第 12 行注释说明被标注方法视为可被其他 agent 调用的 agent，与表述一致。",
+          "evidence_ids": [
+            "ev-611ceaa78eb4"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/2",
+          "verdict": "supported",
+          "reason": "维护快照 recent_commits 显示 2026-11-12 多条提交（含 #7097、#7087），recent_releases 显示 2026-11-02 的 1.19.5、1.5.4、1.19.4 且 prerelease 均为 false，与表述一致。",
+          "evidence_ids": [
+            "ev-bfa2e95a14c2"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/3",
+          "verdict": "supported",
+          "reason": "元数据快照显示 apache-2.0、archived=false、default_branch=main、stargazers_count=13393、open_issues_count=1122、pushed_at=2026-11-12，与表述一致。",
+          "evidence_ids": [
+            "ev-dcdc5d7c4010"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "supported",
+          "reason": "README 将 Agents 列为工具箱能力，且 Agent.java 源码证实存在 agentic 模块与 @Agent 注解，满足 Java Agent 项目条件。",
+          "evidence_ids": [
+            "ev-8aeb40efc65e",
+            "ev-611ceaa78eb4"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/1",
+          "verdict": "supported",
+          "reason": "维护快照 recent_commits 最近提交日期为 2026-11-12，距 run_started_at 0 天，远在 180 天窗口内，满足提交活动条件。",
+          "evidence_ids": [
+            "ev-bfa2e95a14c2"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/2",
+          "verdict": "supported",
+          "reason": "证据 ev-bfa2e95a14c2 的 recent_releases 显示 tag 1.19.5 于 2026-11-02 发布且 prerelease=false，距 run_started_at（2026-11-12）约 10 天，在 180 天窗口内，表述准确。",
+          "evidence_ids": [
+            "ev-bfa2e95a14c2"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "supported",
+          "reason": "Java Agent 能力由 ev-611ceaa78eb4 的 @Agent 注解源码证实；提交活动由 ev-bfa2e95a14c2 显示 2026-11-12 当日多次提交（b7fe277 等）证实；正式发布 1.19.5（2026-11-02，非预发布）在 180 天窗口内。结论中'其余 5 个候选仅保留为未深入分析'的表述与证据范围一致，未新增无依据事实。",
+          "evidence_ids": [
+            "ev-611ceaa78eb4",
+            "ev-bfa2e95a14c2",
+            "ev-dcdc5d7c4010"
+          ],
+          "needed_query": ""
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    }
+  ]
+}

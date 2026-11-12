@@ -1,0 +1,42 @@
+{
+  "run_id": "227e4890ac02",
+  "mode": "live_models_live_github_controlled_error",
+  "injected_error": "Java 8 assertion with README-only citation",
+  "status": "completed",
+  "statistics": {
+    "model_calls": 8,
+    "input_tokens": 80970,
+    "output_tokens": 3360,
+    "estimated_cost_cny_upper_bound": 0.339831,
+    "global_reserved_and_spent_cny": 13.868277,
+    "unconfirmed_calls": 1,
+    "billing_blocked": false,
+    "usage_complete": true,
+    "run_unconfirmed_calls": 0,
+    "github_requests": 7,
+    "elapsed_seconds": 31.471,
+    "models": [
+      {
+        "model": "deepseek-flash",
+        "role": "research",
+        "calls": 5,
+        "cost_cny": 0.141714,
+        "input_tokens": 63577,
+        "output_tokens": 1820
+      },
+      {
+        "model": "deepseek-v4-pro",
+        "role": "review",
+        "calls": 3,
+        "cost_cny": 0.198117,
+        "input_tokens": 17393,
+        "output_tokens": 1540
+      }
+    ],
+    "retrieval": {
+      "queries": 1,
+      "returned_bytes": 12689,
+      "seconds": 0.012281
+    }
+  }
+}

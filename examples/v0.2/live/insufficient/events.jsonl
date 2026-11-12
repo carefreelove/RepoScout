@@ -1,0 +1,24 @@
+{"at": "2026-11-12T16:04:06.188748+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:04:09.602743+00:00", "code": "stage", "detail": "inspect 完成"}
+{"at": "2026-11-12T16:04:10.785779+00:00", "code": "invalid_query", "detail": "检索词长度应为 1 至 256，返回条数应为 1 至 5"}
+{"at": "2026-11-12T16:04:10.785829+00:00", "code": "invalid_query", "detail": "检索词长度应为 1 至 256，返回条数应为 1 至 5"}
+{"at": "2026-11-12T16:04:11.823438+00:00", "code": "retrieval", "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"benchmark\", \"hits\": 0, \"bytes\": 0}"}
+{"at": "2026-11-12T16:04:11.824155+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:04:11.826970+00:00", "code": "retrieval", "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"QPS\", \"hits\": 0, \"bytes\": 0}"}
+{"at": "2026-11-12T16:04:11.827764+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:04:13.664922+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T16:04:13.872783+00:00", "code": "stage", "detail": "directory 完成"}
+{"at": "2026-11-12T16:04:15.243150+00:00", "code": "stage", "detail": "directory 完成"}
+{"at": "2026-11-12T16:04:15.248450+00:00", "code": "retrieval", "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"throughput\", \"hits\": 0, \"bytes\": 0}"}
+{"at": "2026-11-12T16:04:15.249413+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:04:16.283044+00:00", "code": "stage", "detail": "directory 完成"}
+{"at": "2026-11-12T16:04:18.014269+00:00", "code": "retrieval", "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"performance\", \"hits\": 0, \"bytes\": 0}"}
+{"at": "2026-11-12T16:04:18.016624+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:04:18.030412+00:00", "code": "retrieval", "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"Agent\", \"hits\": 4, \"bytes\": 12847}"}
+{"at": "2026-11-12T16:04:18.031049+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T16:04:28.359738+00:00", "code": "validation_error", "detail": "候选必须经过 inspect_repository"}
+{"at": "2026-11-12T16:04:29.696314+00:00", "code": "analysis_limit", "detail": "深入分析的仓库数量达到上限"}
+{"at": "2026-11-12T16:04:29.696482+00:00", "code": "analysis_limit", "detail": "深入分析的仓库数量达到上限"}
+{"at": "2026-11-12T16:04:29.696540+00:00", "code": "analysis_limit", "detail": "深入分析的仓库数量达到上限"}
+{"at": "2026-11-12T16:04:34.197000+00:00", "code": "stage", "detail": "Pro 核验第 1 轮"}
+{"at": "2026-11-12T16:04:50.020184+00:00", "code": "submitted", "detail": "结构与 Pro 辅助核验通过"}

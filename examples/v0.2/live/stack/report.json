@@ -1,0 +1,429 @@
+{
+  "interpreted_request": "搜索支持 Java 的开源 LLM Agent 框架，重点调研 langchain4j/langchain4j，并给出依赖（Maven 模块/pom）或源码层面的依据。",
+  "criteria": [
+    {
+      "name": "开源（有开源许可证）",
+      "required": true
+    },
+    {
+      "name": "支持 Java 语言",
+      "required": true
+    },
+    {
+      "name": "提供 LLM Agent 能力",
+      "required": true
+    }
+  ],
+  "maintenance_window_days": 180,
+  "candidates": [
+    {
+      "repository": "langchain4j/langchain4j",
+      "summary": "LangChain4j 是面向 JVM 的 Java LLM 应用库，仓库以 Maven 多模块聚合工程组织，包含 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 等 Agent 相关模块；Agent.java 定义了 @Agent 注解，支持异步、可选、补偿与上下文摘要等 Agent 语义。",
+      "claims": [
+        {
+          "text": "根 pom.xml 声明 groupId dev.langchain4j、artifactId langchain4j-aggregator、packaging pom，版本 1.24.0-beta34-SNAPSHOT，是 Maven 多模块工程。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-a1f7950a51e6"
+          ]
+        },
+        {
+          "text": "pom.xml 的 modules 列表包含 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns（位于 experimental 注释段之后）。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-63de4bc98e04"
+          ]
+        },
+        {
+          "text": "Agent.java 定义 @Agent 注解（@Target(METHOD)、@Retention(RUNTIME)），含 name/description/outputKey/typedOutputKey/async/optional/compensateOnError/summarizedContext 等属性。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-623b2d052ef1",
+            "ev-271fc4128e82"
+          ]
+        },
+        {
+          "text": "仓库元数据：语言 Java，Apache-2.0 许可证，未归档，stars 13393，最近提交 2026-11-12，最近发布 1.19.5（2026-11-02）。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-9d5a5e105e08",
+            "ev-2825329b8931"
+          ]
+        }
+      ],
+      "assessments": [
+        {
+          "criterion": "开源（有开源许可证）",
+          "verdict": "满足",
+          "reason": "仓库元数据显示 license 为 Apache License 2.0，且未归档、未禁用。",
+          "evidence_ids": [
+            "ev-9d5a5e105e08"
+          ]
+        },
+        {
+          "criterion": "支持 Java 语言",
+          "verdict": "满足",
+          "reason": "元数据 language 为 Java；根 pom.xml 为 Maven 工程，Agent.java 为 Java 源码并定义 Java 注解。",
+          "evidence_ids": [
+            "ev-9d5a5e105e08",
+            "ev-a1f7950a51e6",
+            "ev-623b2d052ef1"
+          ]
+        },
+        {
+          "criterion": "提供 LLM Agent 能力",
+          "verdict": "满足",
+          "reason": "pom.xml 列出 langchain4j-agentic 等 Agent 模块；Agent.java 的 @Agent 注解文档说明被注解的 Java 方法即为可被其他 Agent 调用的 Agent，并支持 async、optional、compensateOnError、summarizedContext。",
+          "evidence_ids": [
+            "ev-63de4bc98e04",
+            "ev-623b2d052ef1",
+            "ev-271fc4128e82"
+          ]
+        }
+      ],
+      "decision": "推荐",
+      "decision_reason": "三项条件均有源码/元数据证据支持：Apache-2.0 开源、Java 语言与 Maven 模块化依赖、langchain4j-agentic 模块及 @Agent 注解提供 Agent 能力；维护活跃（2026-11-12 有提交，2026-11-02 有发布）。",
+      "evidence_ids": [
+        "ev-9d5a5e105e08",
+        "ev-a1f7950a51e6",
+        "ev-63de4bc98e04",
+        "ev-623b2d052ef1",
+        "ev-271fc4128e82",
+        "ev-2825329b8931"
+      ],
+      "unknowns": [
+        "未读取 langchain4j-agentic 模块自身的 pom.xml，其具体 artifactId 与依赖坐标未确认。",
+        "未运行框架，实际 Agent 编排效果与性能无实测证据。",
+        "Agent 模块在 pom 中位于 experimental 注释段之后，其稳定性/API 兼容性承诺未确认。"
+      ]
+    }
+  ],
+  "conclusion": "在本次搜索（java llm agent framework language:java stars:>1000）返回的 2 个候选中，langchain4j/langchain4j 经源码与元数据核验满足“开源、支持 Java、提供 LLM Agent 能力”三项条件，推荐作为 Java 技术栈的 LLM Agent 框架候选。依赖依据：根 pom.xml 为 Maven 多模块工程并列出 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 模块；源码依据：langchain4j-agentic 中 Agent.java 定义 @Agent 注解及 async/optional/compensateOnError/summarizedContext 等 Agent 语义。另一候选 agents-flex/agents-flex 仅出现在搜索结果中，未深入分析，不作结论。",
+  "unknowns": [
+    "langchain4j-agentic 模块的具体 Maven 坐标（artifactId/依赖声明）未读取确认。",
+    "未进行实际部署与性能测试。",
+    "agents-flex/agents-flex 未深入分析。"
+  ],
+  "schema_version": "1.1",
+  "run_id": "9609c46d1b2b",
+  "original_request": "搜索支持 Java 的开源 LLM Agent 框架，重点调研 langchain4j/langchain4j，给出依赖或源码依据。",
+  "generated_at": "2026-11-12T16:23:41.003550+00:00",
+  "status": "completed",
+  "execution_mode": "live",
+  "commits": {
+    "langchain4j/langchain4j": "b7fe277c7437145617bcd49b77febfa5698c9ef4"
+  },
+  "evidence": [
+    {
+      "id": "ev-210a2b6d0109",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L1-L80",
+      "retrieved_at": "2026-11-12T15:50:59.131625+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 1,
+      "end_line": 80,
+      "query": "agentic",
+      "summary": "全文检索命中 langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 1 至 80 行",
+      "content": "1: package dev.langchain4j.agentic;\n2: \n3: import static java.lang.annotation.ElementType.METHOD;\n4: import static java.lang.annotation.RetentionPolicy.RUNTIME;\n5: \n6: import dev.langchain4j.agentic.declarative.TypedKey;\n7: import dev.langchain4j.agentic.observability.AgentListener;\n8: import java.lang.annotation.Retention;\n9: import java.lang.annotation.Target;\n10: \n11: /**\n12:  * Java methods annotated with {@code @Agent} are considered agents that other agents can invoke.\n13:  */\n14: @Retention(RUNTIME)\n15: @Target({METHOD})\n16: public @interface Agent {\n17: \n18:     /**\n19:      * Name of the agent. If not provided, method name will be used.\n20:      *\n21:      * @return name of the agent.\n22:      */\n23:     String name() default \"\";\n24: \n25:     /**\n26:      * Description of the agent. This is an alias of the {@code description} attribute, and it is possible to use either.\n27:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n28:      *\n29:      * @return description of the agent.\n30:      */\n31:     String value() default \"\";\n32: \n33:     /**\n34:      * Description of the agent. This is an alias of the {@code value} attribute, and it is possible to use either.\n35:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n36:      *\n37:      * @return description of the agent.\n38:      */\n39:     String description() default \"\";\n40: \n41:     /**\n42:      * Key of the output variable that will be used to store the result of the agent's invocation.\n43:      *\n44:      * @return name of the output variable.\n45:      */\n46:     String outputKey() default \"\";\n47: \n48:     /**\n49:      * Strongly typed key of the output variable that will be used to store\n50:      * the result of this agent's invocation in the {@link dev.langchain4j.agentic.scope.AgenticScope}.\n51:      * <p>\n52:      * This attribute provides a type-safe alternative to {@link #outputKey()}.\n53:      * Instead of identifying the output variable using a {@link String},\n54:      * the output is identified by a class implementing {@link TypedKey}.\n55:      * </p>\n56:      *\n57:      * <p>\n58:      * The generic type declared by the {@link TypedKey} represents the type\n59:      * of value associated with the output variable.\n60:      * </p>\n61:      *\n62:      * <p>\n63:      * For example:\n64:      * </p>\n65:      *\n66:      * <pre>{@code\n67:      * public class Category implements TypedKey<RequestCategory> {\n68:      * }\n69:      *\n70:      * @Agent(\n71:      *         name = \"categoryRouter\",\n72:      *         typedOutputKey = Category.class\n73:      * )\n74:      * RequestCategory classify(String request);\n75:      * }</pre>\n76:      *\n77:      * <p>\n78:      * When the agent completes successfully, its returned\n79:      * {@code RequestCategory} value is stored in the agentic scope using\n80:      * {@code Category.class} as the typed state key.",
+      "truncated": false
+    },
+    {
+      "id": "ev-271fc4128e82",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L141-L193",
+      "retrieved_at": "2026-11-12T15:50:59.131625+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 141,
+      "end_line": 193,
+      "query": "agentic",
+      "summary": "全文检索命中 langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 141 至 193 行",
+      "content": "141:      * </ul>\n142:      *\n143:      *\n144:      * @return the {@link TypedKey} class identifying the strongly typed\n145:      *         output variable where the result of this agent invocation\n146:      *         will be stored\n147:      *\n148:      * @see TypedKey\n149:      * @see #outputKey()\n150:      */\n151:     Class<? extends TypedKey<?>> typedOutputKey() default NoTypedKey.class;\n152: \n153:     /**\n154:      * If true, the agent will be invoked in an asynchronous manner, allowing the workflow to continue without waiting for the agent's result.\n155:      * The result is awaited only where it is read: by another agent taking it as an argument, or by the output\n156:      * function or output key of the agentic system.\n157:      * <p>\n158:      * When nothing reads the result, the call to the agentic system returns while the agent is still running, and\n159:      * the result or the failure of the agent is then reported only to its {@link AgentListener}. The next call on\n160:      * the same memory id waits for these agents to complete before it starts.\n161:      *\n162:      * @return true if the agent should be invoked in an asynchronous manner, false otherwise.\n163:      */\n164:     boolean async() default false;\n165: \n166:     /**\n167:      * If true, the agent's execution will be silently skipped when any of its arguments is missing in the agentic scope,\n168:      * instead of making the agentic system's execution fail.\n169:      *\n170:      * @return true if the agent is optional, false otherwise.\n171:      */\n172:     boolean optional() default false;\n173: \n174:     /**\n175:      * If true, all previously successful tool invocations with {@code @CompensateFor} actions will be\n176:      * compensated in reverse order when any tool in this agent fails.\n177:      *\n178:      * @return true if cross-agent compensation should be enabled, false otherwise.\n179:      */\n180:     boolean compensateOnError() default false;\n181: \n182:     /**\n183:      * Names of other agents participating in the definition of the context of this agent.\n184:      * Their outputs are summarized by an additional, blocking call to this agent's model, made before the agent's\n185:      * own request. If the agent uses a {@code StreamingChatModel}, the summary is fully generated before the agent\n186:      * starts streaming its response.\n187:      *\n188:      * @return array of names of other agents participating in the definition of the context of this agent.\n189:      */\n190:     String[] summarizedContext() default {};\n191: \n192:     class NoTypedKey implements TypedKey<Void> {}\n193: }",
+      "truncated": false
+    },
+    {
+      "id": "ev-2825329b8931",
+      "repository": "langchain4j/langchain4j",
+      "kind": "maintenance",
+      "url": "https://github.com/langchain4j/langchain4j/commits/b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "retrieved_at": "2026-11-12T16:00:37.160747+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "近期提交及 release 快照，维护判断需结合时间窗口",
+      "content": "{\"recent_commits\": [{\"sha\": \"b7fe277c7437145617bcd49b77febfa5698c9ef4\", \"date\": \"2026-11-12T13:43:40Z\", \"message\": \"Agentic: notify the suspension of an async agent only once (#7097)\\n\\n## Change\\n\\n`DetachedAsyncAgentTest.a_later_agent_reading_the_result_of_a_suspending_async_agent_suspends_the_root_call`\\nis flaky ([failed job on\\n`main`](https://github.com/langchain4j/langchain4j/actions/runs/43182251869/job/1310608\"}, {\"sha\": \"f472bbb0784f95ef21cca9f16b348c04e89eabb3\", \"date\": \"2026-11-12T13:22:31Z\", \"message\": \"Update watsonx.ai sdk to version 0.50.0 (#7087)\\n\\n## Issue\\nCloses #6511\\nSupersedes #6517\\n\\n## Change\\nwatsonx.ai now returns a model's reasoning in the `reasoning` field\\ninstead of `reasoning_content`, so `AiMessage.thinking()` was `null` for\\nmodels such as `openai/gpt-oss-120b` (#6511). The watsonx.ai\"}, {\"sha\": \"14e9e8984b5d6718e9ca16e23a79adb9eaf6cb68\", \"date\": \"2026-11-12T13:20:59Z\", \"message\": \"CI: cache the Maven repository of the build jobs with restore keys (#7094)\\n\\n## Change\\nThe Maven cache of the Java CI build jobs did not contain the build\\nplugins, and it was empty after every `pom.xml` change:\\n- setup-java saves its Maven cache in whichever job finishes first. That\\nis the `complianc\"}, {\"sha\": \"fb6e252b7a67e0d0579957127cafea9202ba1019\", \"date\": \"2026-11-12T09:38:42Z\", \"message\": \"Update dependency io.quarkiverse.langchain4j:quarkus-langchain4j-core to v1.15.1 (#7081)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---|\\n|\\n[io.quark\"}, {\"sha\": \"0e0b57a8edce80c0c7efb54b62ef62c0e83e479c\", \"date\": \"2026-11-12T09:35:55Z\", \"message\": \"Renovate: keep Reactor in Cosmos NoSQL on the Azure SDK's line and gpu-llama3 on the 0.4 JDK 25 build (#7098)\\n\\n## Issue\\n\\nNo issue. Renovate opened #7077, #7078 and #7074, which should not or\\ncannot be merged, and it would propose the next versions again after\\nthey are closed.\\n\\n## Change\\n\\nTwo Renovat\"}], \"recent_releases\": [{\"tag\": \"1.19.5\", \"published_at\": \"2026-11-02T16:06:15Z\", \"prerelease\": false}, {\"tag\": \"1.5.4\", \"published_at\": \"2026-11-02T14:38:38Z\", \"prerelease\": false}, {\"tag\": \"1.19.4\", \"published_at\": \"2026-11-02T14:37:38Z\", \"prerelease\": false}]}",
+      "truncated": false
+    },
+    {
+      "id": "ev-362c2f99bf2e",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/pom.xml#L240-L321",
+      "retrieved_at": "2026-11-12T16:00:41.154456+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "pom.xml",
+      "start_line": 240,
+      "end_line": 321,
+      "query": null,
+      "summary": "pom.xml 第 240 至 321 行，共 321 行",
+      "content": "240:                     </reportSet>\n241:                 </reportSets>\n242:             </plugin>\n243:         </plugins>\n244:     </reporting>\n245: \n246:     <profiles>\n247: \n248:         <profile>\n249:             <id>jdk21</id>\n250:             <activation>\n251:                 <jdk>[21,)</jdk>\n252:             </activation>\n253:             <modules>\n254:                 <module>langchain4j-jlama</module>\n255:                 <module>langchain4j-jitllm</module>\n256:             </modules>\n257:         </profile>\n258: \n259:         <profile>\n260:             <id>jdk25</id>\n261:             <activation>\n262:                 <jdk>25</jdk>\n263:             </activation>\n264:             <modules>\n265:                 <module>langchain4j-gpu-llama3</module>\n266:             </modules>\n267:         </profile>\n268: \n269:         <profile>\n270:             <id>openrewrite</id>\n271:             <!-- `mvn -Popenrewrite -Dspotless.check.skip=true org.openrewrite.maven:rewrite-maven-plugin:run` -->\n272:             <build>\n273:                 <plugins>\n274:                     <plugin>\n275:                         <groupId>org.openrewrite.maven</groupId>\n276:                         <artifactId>rewrite-maven-plugin</artifactId>\n277:                         <version>5.47.3</version>\n278:                         <configuration>\n279:                             <activeRecipes>\n280:                                 <recipe>org.openrewrite.java.testing.cleanup.TestsShouldNotBePublic</recipe>\n281:                                 <recipe>org.openrewrite.java.testing.cleanup.RemoveTestPrefix</recipe>\n282:                                 <recipe>org.openrewrite.java.testing.assertj.Assertj</recipe>\n283:                             </activeRecipes>\n284:                             <failOnDryRunResults>true</failOnDryRunResults>\n285:                         </configuration>\n286:                         <dependencies>\n287:                             <dependency>\n288:                                 <groupId>org.openrewrite.recipe</groupId>\n289:                                 <artifactId>rewrite-testing-frameworks</artifactId>\n290:                                 <version>2.20.1</version>\n291:                             </dependency>\n292:                         </dependencies>\n293:                     </plugin>\n294:                 </plugins>\n295:             </build>\n296:         </profile>\n297: \n298:         <profile>\n299:             <id>spotless</id>\n300:             <build>\n301:                 <plugins>\n302:                     <plugin>\n303:                         <groupId>com.diffplug.spotless</groupId>\n304:                         <artifactId>spotless-maven-plugin</artifactId>\n305:                         <version>2.46.1</version>\n306:                         <configuration>\n307:                             <ratchetFrom>origin/main</ratchetFrom>\n308:                             <pom>\n309:                                 <sortPom>\n310:                                     <nrOfIndentSpace>4</nrOfIndentSpace>\n311:                                 </sortPom>\n312:                             </pom>\n313:                         </configuration>\n314:                     </plugin>\n315:                 </plugins>\n316:             </build>\n317:         </profile>\n318: \n319:     </profiles>\n320: \n321: </project>",
+      "truncated": true
+    },
+    {
+      "id": "ev-623b2d052ef1",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L1-L80",
+      "retrieved_at": "2026-11-12T16:00:39.473968+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 1 至 80 行，共 193 行",
+      "content": "1: package dev.langchain4j.agentic;\n2: \n3: import static java.lang.annotation.ElementType.METHOD;\n4: import static java.lang.annotation.RetentionPolicy.RUNTIME;\n5: \n6: import dev.langchain4j.agentic.declarative.TypedKey;\n7: import dev.langchain4j.agentic.observability.AgentListener;\n8: import java.lang.annotation.Retention;\n9: import java.lang.annotation.Target;\n10: \n11: /**\n12:  * Java methods annotated with {@code @Agent} are considered agents that other agents can invoke.\n13:  */\n14: @Retention(RUNTIME)\n15: @Target({METHOD})\n16: public @interface Agent {\n17: \n18:     /**\n19:      * Name of the agent. If not provided, method name will be used.\n20:      *\n21:      * @return name of the agent.\n22:      */\n23:     String name() default \"\";\n24: \n25:     /**\n26:      * Description of the agent. This is an alias of the {@code description} attribute, and it is possible to use either.\n27:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n28:      *\n29:      * @return description of the agent.\n30:      */\n31:     String value() default \"\";\n32: \n33:     /**\n34:      * Description of the agent. This is an alias of the {@code value} attribute, and it is possible to use either.\n35:      * It should be clear and descriptive to allow language model to understand the agent's purpose and its intended use.\n36:      *\n37:      * @return description of the agent.\n38:      */\n39:     String description() default \"\";\n40: \n41:     /**\n42:      * Key of the output variable that will be used to store the result of the agent's invocation.\n43:      *\n44:      * @return name of the output variable.\n45:      */\n46:     String outputKey() default \"\";\n47: \n48:     /**\n49:      * Strongly typed key of the output variable that will be used to store\n50:      * the result of this agent's invocation in the {@link dev.langchain4j.agentic.scope.AgenticScope}.\n51:      * <p>\n52:      * This attribute provides a type-safe alternative to {@link #outputKey()}.\n53:      * Instead of identifying the output variable using a {@link String},\n54:      * the output is identified by a class implementing {@link TypedKey}.\n55:      * </p>\n56:      *\n57:      * <p>\n58:      * The generic type declared by the {@link TypedKey} represents the type\n59:      * of value associated with the output variable.\n60:      * </p>\n61:      *\n62:      * <p>\n63:      * For example:\n64:      * </p>\n65:      *\n66:      * <pre>{@code\n67:      * public class Category implements TypedKey<RequestCategory> {\n68:      * }\n69:      *\n70:      * @Agent(\n71:      *         name = \"categoryRouter\",\n72:      *         typedOutputKey = Category.class\n73:      * )\n74:      * RequestCategory classify(String request);\n75:      * }</pre>\n76:      *\n77:      * <p>\n78:      * When the agent completes successfully, its returned\n79:      * {@code RequestCategory} value is stored in the agentic scope using\n80:      * {@code Category.class} as the typed state key.",
+      "truncated": true
+    },
+    {
+      "id": "ev-63de4bc98e04",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/pom.xml#L71-L150",
+      "retrieved_at": "2026-11-12T15:48:12.394333+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "pom.xml",
+      "start_line": 71,
+      "end_line": 150,
+      "query": "agentic",
+      "summary": "全文检索命中 pom.xml 第 71 至 150 行",
+      "content": "71: \n72:         <!-- embedding / chat memory stores -->\n73:         <module>langchain4j-azure-ai-search</module>\n74:         <module>langchain4j-azure-cosmos-mongo-vcore</module>\n75:         <module>langchain4j-azure-cosmos-nosql</module>\n76:         <module>langchain4j-azure-documentdb</module>\n77:         <module>langchain4j-cassandra</module>\n78:         <module>langchain4j-chroma</module>\n79:         <module>langchain4j-coherence</module>\n80:         <module>langchain4j-couchbase</module>\n81:         <module>langchain4j-elasticsearch</module>\n82:         <module>langchain4j-hibernate</module>\n83:         <module>langchain4j-hibernate-milvus</module>\n84:         <module>langchain4j-infinispan</module>\n85:         <module>langchain4j-mariadb</module>\n86:         <module>langchain4j-milvus</module>\n87:         <module>langchain4j-milvus-v2</module>\n88:         <module>langchain4j-mongodb-atlas</module>\n89:         <module>langchain4j-oracle</module>\n90:         <module>langchain4j-opensearch</module>\n91:         <module>langchain4j-pgvector</module>\n92:         <module>langchain4j-pinecone</module>\n93:         <module>langchain4j-qdrant</module>\n94:         <module>langchain4j-tablestore</module>\n95:         <module>langchain4j-vespa</module>\n96:         <module>langchain4j-weaviate</module>\n97: \n98:         <!-- document loaders -->\n99:         <module>document-loaders/langchain4j-document-loader-amazon-s3</module>\n100:         <module>document-loaders/langchain4j-document-loader-azure-storage-blob</module>\n101:         <module>document-loaders/langchain4j-document-loader-github</module>\n102:         <module>document-loaders/langchain4j-document-loader-selenium</module>\n103:         <module>document-loaders/langchain4j-document-loader-playwright</module>\n104:         <module>document-loaders/langchain4j-document-loader-tencent-cos</module>\n105:         <module>document-loaders/langchain4j-document-loader-google-cloud-storage</module>\n106: \n107:         <!-- document parsers -->\n108:         <module>document-parsers/langchain4j-document-parser-apache-pdfbox</module>\n109:         <module>document-parsers/langchain4j-document-parser-apache-poi</module>\n110:         <module>document-parsers/langchain4j-document-parser-apache-tika</module>\n111:         <module>document-parsers/langchain4j-document-parser-docling</module>\n112:         <module>document-parsers/langchain4j-document-parser-markdown</module>\n113:         <module>document-parsers/langchain4j-document-parser-yaml</module>\n114: \n115:         <!-- document transformers -->\n116:         <module>document-transformers/langchain4j-document-transformer-jsoup</module>\n117: \n118:         <!-- code execution engines -->\n119:         <module>code-execution-engines/langchain4j-code-execution-engine-graalvm-polyglot</module>\n120:         <module>code-execution-engines/langchain4j-code-execution-engine-judge0</module>\n121:         <module>code-execution-engines/langchain4j-code-execution-engine-azure-acads</module>\n122: \n123:         <!-- web search engines -->\n124:         <module>web-search-engines/langchain4j-web-search-engine-google-custom</module>\n125:         <module>web-search-engines/langchain4j-web-search-engine-tavily</module>\n126:         <module>web-search-engines/langchain4j-web-search-engine-searchapi</module>\n127: \n128:         <!-- embedding store filter parsers -->\n129:         <module>embedding-store-filter-parsers/langchain4j-embedding-store-filter-parser-sql</module>\n130: \n131:         <!-- guardrails -->\n132:         <module>langchain4j-guardrails</module>\n133: \n134:         <!-- experimental -->\n135:         <module>experimental/langchain4j-experimental-sql</module>\n136:         <module>experimental/langchain4j-experimental-hibernate</module>\n137:         <module>experimental/langchain4j-experimental-skills-shell</module>\n138:         <module>langchain4j-agentic</module>\n139:         <module>langchain4j-agentic-a2a</module>\n140:         <module>langchain4j-agentic-mcp</module>\n141:         <module>langchain4j-agentic-patterns</module>\n142:         <module>langchain4j-skills</module>\n143: \n144:         <!-- observability -->\n145:         <module>langchain4j-micrometer-metrics</module>\n146:         <module>langchain4j-observation</module>\n147: \n148:         <!-- integration tests -->\n149:         <module>integration-tests</module>",
+      "truncated": false
+    },
+    {
+      "id": "ev-7d1bd8147f82",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java#L71-L150",
+      "retrieved_at": "2026-11-12T15:50:59.131625+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java",
+      "start_line": 71,
+      "end_line": 150,
+      "query": "agentic",
+      "summary": "全文检索命中 langchain4j-agentic/src/main/java/dev/langchain4j/agentic/Agent.java 第 71 至 150 行",
+      "content": "71:      *         name = \"categoryRouter\",\n72:      *         typedOutputKey = Category.class\n73:      * )\n74:      * RequestCategory classify(String request);\n75:      * }</pre>\n76:      *\n77:      * <p>\n78:      * When the agent completes successfully, its returned\n79:      * {@code RequestCategory} value is stored in the agentic scope using\n80:      * {@code Category.class} as the typed state key.\n81:      * </p>\n82:      *\n83:      * <p>\n84:      * The value can later be retrieved without using a string key and\n85:      * without requiring an explicit type cast:\n86:      * </p>\n87:      *\n88:      * <pre>{@code\n89:      * RequestCategory category =\n90:      *         scope.readState(Category.class);\n91:      * }</pre>\n92:      *\n93:      * <p>\n94:      * This is particularly useful in multi-agent workflows where the output\n95:      * of one agent becomes the input of another agent. The typed key acts as\n96:      * both:\n97:      * </p>\n98:      *\n99:      * <ul>\n100:      *     <li>the identity of the state variable, and</li>\n101:      *     <li>the declaration of the Java type associated with that variable.</li>\n102:      * </ul>\n103:      *\n104:      * <p>\n105:      * Multiple typed keys may use the same Java value type while still\n106:      * representing different state variables. For example:\n107:      * </p>\n108:      *\n109:      * <pre>{@code\n110:      * public class InitialCategory\n111:      *         implements TypedKey<RequestCategory> {\n112:      * }\n113:      *\n114:      * public class ValidatedCategory\n115:      *         implements TypedKey<RequestCategory> {\n116:      * }\n117:      * }</pre>\n118:      *\n119:      * <p>\n120:      * Even though both keys contain {@code RequestCategory} values,\n121:      * {@code InitialCategory.class} and {@code ValidatedCategory.class}\n122:      * identify two independent variables in the agentic scope.\n123:      * </p>\n124:      *\n125:      * <p>\n126:      * {@code typedOutputKey} and {@link #outputKey()} are alternative ways\n127:      * of defining the output variable. Only one of them should be configured\n128:      * for an agent:\n129:      * </p>\n130:      *\n131:      * <ul>\n132:      *     <li>\n133:      *         {@link #outputKey()} identifies the output using a\n134:      *         {@link String}.\n135:      *     </li>\n136:      *     <li>\n137:      *         {@code typedOutputKey} identifies the output using a\n138:      *         {@link TypedKey} implementation and preserves its associated\n139:      *         Java type.\n140:      *     </li>\n141:      * </ul>\n142:      *\n143:      *\n144:      * @return the {@link TypedKey} class identifying the strongly typed\n145:      *         output variable where the result of this agent invocation\n146:      *         will be stored\n147:      *\n148:      * @see TypedKey\n149:      * @see #outputKey()\n150:      */",
+      "truncated": false
+    },
+    {
+      "id": "ev-90edf9e59097",
+      "repository": null,
+      "kind": "search",
+      "url": "https://github.com/search?q=java+llm+agent+framework+language%3Ajava+stars%3A%3E1000&type=repositories",
+      "retrieved_at": "2026-11-12T16:00:34.714465+00:00",
+      "commit": null,
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": "java llm agent framework language:java stars:>1000",
+      "summary": "GitHub 搜索，返回 2 个公开候选",
+      "content": "[{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"stargazers_count\": 13393, \"archived\": false, \"pushed_at\": \"2026-11-12T15:25:46Z\"}, {\"full_name\": \"agents-flex/agents-flex\", \"description\": \"Agents-flex is A lightweight Java AI agent development framework (positioned as a counterpart to Spring AI). It supports features such as RAG, MCP, Skills, Text2SQL , LLM Wiki, Sub-agents, Web Search, TTS (synchronous and streaming), and STT.\", \"language\": \"Java\", \"stargazers_count\": 1054, \"archived\": false, \"pushed_at\": \"2026-11-09T12:34:29Z\"}]",
+      "truncated": false
+    },
+    {
+      "id": "ev-9d5a5e105e08",
+      "repository": "langchain4j/langchain4j",
+      "kind": "metadata",
+      "url": "https://github.com/langchain4j/langchain4j",
+      "retrieved_at": "2026-11-12T16:00:35.912610+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "仓库元数据快照，状态适用于读取时间",
+      "content": "{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"archived\": false, \"disabled\": false, \"license\": {\"key\": \"apache-2.0\", \"name\": \"Apache License 2.0\", \"spdx_id\": \"Apache-2.0\", \"url\": \"https://api.github.com/licenses/apache-2.0\", \"node_id\": \"MDc6TGljZW5zZTI=\"}, \"pushed_at\": \"2026-11-12T15:25:46Z\", \"updated_at\": \"2026-11-12T14:21:06Z\", \"stargazers_count\": 13393, \"default_branch\": \"main\", \"open_issues_count\": 1122}",
+      "truncated": false
+    },
+    {
+      "id": "ev-a1f7950a51e6",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/pom.xml#L1-L80",
+      "retrieved_at": "2026-11-12T16:00:39.465099+00:00",
+      "commit": "b7fe277c7437145617bcd49b77febfa5698c9ef4",
+      "path": "pom.xml",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "pom.xml 第 1 至 80 行，共 321 行",
+      "content": "1: <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n2: <project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n3:     <modelVersion>4.0.0</modelVersion>\n4: \n5:     <groupId>dev.langchain4j</groupId>\n6:     <artifactId>langchain4j-aggregator</artifactId>\n7:     <version>1.24.0-beta34-SNAPSHOT</version>\n8:     <packaging>pom</packaging>\n9:     <name>LangChain4j :: Aggregator</name>\n10: \n11:     <modules>\n12: \n13:         <module>langchain4j-parent</module>\n14:         <module>langchain4j-bom</module>\n15: \n16:         <module>langchain4j-core</module>\n17:         <module>langchain4j-core-jackson3</module>\n18:         <module>langchain4j-jackson3</module>\n19:         <module>langchain4j-reactive-streaming</module>\n20:         <module>langchain4j-test</module>\n21:         <module>langchain4j</module>\n22:         <module>langchain4j-kotlin</module>\n23: \n24:         <module>langchain4j-easy-rag</module>\n25:         <module>langchain4j-mcp</module>\n26:         <module>langchain4j-mcp-docker</module>\n27: \n28:         <!-- http clients -->\n29:         <module>langchain4j-http-client</module>\n30:         <module>http-clients/langchain4j-http-client-jdk</module>\n31:         <module>http-clients/langchain4j-http-client-apache</module>\n32:         <module>http-clients/langchain4j-http-client-okhttp</module>\n33: \n34:         <!-- model providers -->\n35:         <module>langchain4j-anthropic</module>\n36:         <module>langchain4j-azure-open-ai</module>\n37:         <module>langchain4j-bedrock</module>\n38:         <module>langchain4j-cohere</module>\n39:         <module>langchain4j-hugging-face</module>\n40:         <module>langchain4j-jina</module>\n41:         <module>langchain4j-local-ai</module>\n42:         <module>langchain4j-mistral-ai</module>\n43:         <module>langchain4j-nomic</module>\n44:         <module>langchain4j-ollama</module>\n45:         <module>langchain4j-onnx-scoring</module>\n46:         <module>langchain4j-ovh-ai</module>\n47:         <module>langchain4j-open-ai</module>\n48:         <module>langchain4j-open-ai-official</module>\n49:         <module>langchain4j-google-ai-gemini</module>\n50:         <module>langchain4j-google-genai</module>\n51:         <module>langchain4j-typesafe</module>\n52:         <module>langchain4j-vertex-ai</module>\n53:         <module>langchain4j-vertex-ai-gemini</module>\n54:         <module>langchain4j-vertex-ai-anthropic</module>\n55:         <module>langchain4j-workers-ai</module>\n56:         <module>langchain4j-voyage-ai</module>\n57:         <module>langchain4j-watsonx</module>\n58: \n59:         <!-- in-process embeddings -->\n60:         <module>embeddings/langchain4j-embeddings</module>\n61:         <module>embeddings/langchain4j-embeddings-all-minilm-l6-v2</module>\n62:         <module>embeddings/langchain4j-embeddings-all-minilm-l6-v2-q</module>\n63:         <module>embeddings/langchain4j-embeddings-bge-small-en</module>\n64:         <module>embeddings/langchain4j-embeddings-bge-small-en-q</module>\n65:         <module>embeddings/langchain4j-embeddings-bge-small-en-v15</module>\n66:         <module>embeddings/langchain4j-embeddings-bge-small-en-v15-q</module>\n67:         <module>embeddings/langchain4j-embeddings-bge-small-zh-v15</module>\n68:         <module>embeddings/langchain4j-embeddings-bge-small-zh-v15-q</module>\n69:         <module>embeddings/langchain4j-embeddings-e5-small-v2</module>\n70:         <module>embeddings/langchain4j-embeddings-e5-small-v2-q</module>\n71: \n72:         <!-- embedding / chat memory stores -->\n73:         <module>langchain4j-azure-ai-search</module>\n74:         <module>langchain4j-azure-cosmos-mongo-vcore</module>\n75:         <module>langchain4j-azure-cosmos-nosql</module>\n76:         <module>langchain4j-azure-documentdb</module>\n77:         <module>langchain4j-cassandra</module>\n78:         <module>langchain4j-chroma</module>\n79:         <module>langchain4j-coherence</module>\n80:         <module>langchain4j-couchbase</module>",
+      "truncated": true
+    }
+  ],
+  "errors": [
+    {
+      "at": "2026-11-12T16:00:41.170928+00:00",
+      "code": "retrieval",
+      "detail": "{\"repository\": \"langchain4j/langchain4j\", \"query\": \"agentic\", \"hits\": 4, \"bytes\": 12847}"
+    }
+  ],
+  "statistics": {
+    "model_calls": 8,
+    "input_tokens": 77283,
+    "output_tokens": 4019,
+    "estimated_cost_cny_upper_bound": 0.330654,
+    "global_reserved_and_spent_cny": 13.926723,
+    "unconfirmed_calls": 1,
+    "billing_blocked": false,
+    "usage_complete": true,
+    "run_unconfirmed_calls": 0,
+    "github_requests": 7,
+    "elapsed_seconds": 43.588,
+    "models": [
+      {
+        "model": "deepseek-flash",
+        "role": "research",
+        "calls": 6,
+        "cost_cny": 0.14187,
+        "input_tokens": 60651,
+        "output_tokens": 2571
+      },
+      {
+        "model": "deepseek-v4-pro",
+        "role": "review",
+        "calls": 2,
+        "cost_cny": 0.188784,
+        "input_tokens": 16632,
+        "output_tokens": 1448
+      }
+    ],
+    "retrieval": {
+      "queries": 1,
+      "returned_bytes": 12847,
+      "seconds": 0.017395
+    }
+  },
+  "review": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "81f9c7930981ca4ffc4ccb83b09bcd68e03424913419642e015ce52e0044b631",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "pom.xml 显示 Maven 多模块聚合工程（packaging pom），modules 列表含 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns；Agent.java 源码定义 @Agent 注解（@Target(METHOD)、@Retention(RUNTIME)），并含 async、optional、compensateOnError、summarizedContext 等属性，与表述一致。",
+        "evidence_ids": [
+          "ev-a1f7950a51e6",
+          "ev-63de4bc98e04",
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "元数据显示 Apache-2.0 许可证、language Java、未归档；pom.xml 为 Maven 工程且含 agentic 模块；Agent.java 提供 @Agent 注解；维护证据显示 2026-11-12 有提交、2026-11-02 有 1.19.5 发布，均在 180 天窗口内。三项条件均有依据。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08",
+          "ev-a1f7950a51e6",
+          "ev-63de4bc98e04",
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82",
+          "ev-2825329b8931"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "pom.xml 第 5-8 行明确 groupId dev.langchain4j、artifactId langchain4j-aggregator、version 1.24.0-beta34-SNAPSHOT、packaging pom，与表述一致。",
+        "evidence_ids": [
+          "ev-a1f7950a51e6"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "pom.xml 第 134-141 行 experimental 注释段后列出 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 四个模块，与表述一致。",
+        "evidence_ids": [
+          "ev-63de4bc98e04"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "Agent.java 源码显示 @Retention(RUNTIME)、@Target({METHOD})，并含 name、value、description、outputKey、typedOutputKey、async、optional、compensateOnError、summarizedContext 等属性，与表述一致。",
+        "evidence_ids": [
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/3",
+        "verdict": "supported",
+        "reason": "元数据显示 language Java、license apache-2.0、archived false、stargazers_count 13393、pushed_at 2026-11-12；维护证据 recent_releases 含 1.19.5（2026-11-02），与表述一致。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08",
+          "ev-2825329b8931"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "元数据 license 为 Apache License 2.0（spdx_id Apache-2.0），archived false、disabled false，满足开源许可证条件。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "元数据 language 为 Java；pom.xml 为 Maven 工程；Agent.java 为 Java 源码并定义 Java 注解，满足支持 Java 语言条件。",
+        "evidence_ids": [
+          "ev-9d5a5e105e08",
+          "ev-a1f7950a51e6",
+          "ev-623b2d052ef1"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "pom.xml（ev-63de4bc98e04）确实列出 langchain4j-agentic、langchain4j-agentic-a2a、langchain4j-agentic-mcp、langchain4j-agentic-patterns 模块；Agent.java（ev-623b2d052ef1、ev-271fc4128e82）定义 @Agent 注解，文档说明被注解的 Java 方法即为可被其他 Agent 调用的 Agent，并含 async、optional、compensateOnError、summarizedContext 属性。表述与证据一致。",
+        "evidence_ids": [
+          "ev-63de4bc98e04",
+          "ev-623b2d052ef1",
+          "ev-271fc4128e82"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "结论中的依赖与源码依据均有对应证据：pom.xml 为 Maven 多模块工程并列出 agentic 相关模块（ev-63de4bc98e04、ev-a1f7950a51e6），Agent.java 定义 @Agent 注解及 async/optional/compensateOnError/summarizedContext（ev-623b2d052ef1、ev-271fc4128e82），元数据显示 Apache-2.0 许可证、Java 语言（ev-9d5a5e105e08）。关于 agents-flex 仅出现在搜索结果、未深入分析、不作结论的表述，与证据范围一致，未作无依据断言。",
+        "evidence_ids": [
+          "ev-271fc4128e82",
+          "ev-623b2d052ef1",
+          "ev-63de4bc98e04",
+          "ev-9d5a5e105e08",
+          "ev-a1f7950a51e6"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "suite": "evidence",
+  "generated_at": "2026-11-12T16:08:38.285956+00:00",
+  "retrieval_mode": "offline_synthetic_documents",
+  "retrieval": [
+    {
+      "query": "SqliteSaver",
+      "expected_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "actual_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.00138
+    },
+    {
+      "query": "checkpoint",
+      "expected_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "actual_paths": [
+        "src/SqliteSaver.java"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.000721
+    },
+    {
+      "query": "断点恢复",
+      "expected_paths": [
+        "docs/recovery.md"
+      ],
+      "actual_paths": [
+        "docs/recovery.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.001148
+    },
+    {
+      "query": "失败重试",
+      "expected_paths": [
+        "docs/recovery.md"
+      ],
+      "actual_paths": [
+        "docs/recovery.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 45,
+      "seconds": 0.00058
+    },
+    {
+      "query": "Docker",
+      "expected_paths": [
+        "docs/deploy.md"
+      ],
+      "actual_paths": [
+        "docs/deploy.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 62,
+      "seconds": 0.001383
+    },
+    {
+      "query": "JAVA_HOME",
+      "expected_paths": [
+        "docs/deploy.md"
+      ],
+      "actual_paths": [
+        "docs/deploy.md"
+      ],
+      "recall_at_5": 1.0,
+      "empty_result_correct": null,
+      "returned_bytes": 62,
+      "seconds": 0.000834
+    },
+    {
+      "query": "only_old_commit",
+      "expected_paths": [],
+      "actual_paths": [],
+      "recall_at_5": null,
+      "empty_result_correct": true,
+      "returned_bytes": 0,
+      "seconds": 0.000565
+    },
+    {
+      "query": "not_present_anywhere",
+      "expected_paths": [],
+      "actual_paths": [],
+      "recall_at_5": null,
+      "empty_result_correct": true,
+      "returned_bytes": 0,
+      "seconds": 0.000721
+    }
+  ],
+  "reviews": [
+    {
+      "id": "unrelated_citation",
+      "text": "该框架支持断点恢复。",
+      "basis": "source",
+      "content": "public String greet() { return \"Hello\"; }",
+      "expected": "insufficient",
+      "actual": "insufficient",
+      "reason": "提供的合成证据仅包含一个返回 \"Hello\" 的 greet() 方法，与断点恢复功能无关，无法支持该表述。",
+      "matches_expected": true,
+      "mode": "live_model_synthetic_evidence",
+      "run_id": "3b52a2da18e0",
+      "statistics": {
+        "model_calls": 1,
+        "input_tokens": 744,
+        "output_tokens": 118,
+        "estimated_cost_cny_upper_bound": 0.009882,
+        "global_reserved_and_spent_cny": 13.878159,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 2.45,
+        "models": [
+          {
+            "model": "deepseek-v4-pro",
+            "role": "review",
+            "calls": 1,
+            "cost_cny": 0.009882,
+            "input_tokens": 744,
+            "output_tokens": 118
+          }
+        ],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "documentation_as_test",
+      "text": "已经实际部署并验证支持 Docker。",
+      "basis": "documentation",
+      "content": "README: We provide a Dockerfile for deployment. This document contains no execution logs.",
+      "expected": "insufficient",
+      "actual": "insufficient",
+      "reason": "证据仅表明 README 声明提供了 Dockerfile，且明确说明文档不含执行日志，无法支持“已经实际部署并验证”这一表述。",
+      "matches_expected": true,
+      "mode": "live_model_synthetic_evidence",
+      "run_id": "fa690bdb000b",
+      "statistics": {
+        "model_calls": 1,
+        "input_tokens": 751,
+        "output_tokens": 116,
+        "estimated_cost_cny_upper_bound": 0.009891,
+        "global_reserved_and_spent_cny": 13.88805,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 2.118,
+        "models": [
+          {
+            "model": "deepseek-v4-pro",
+            "role": "review",
+            "calls": 1,
+            "cost_cny": 0.009891,
+            "input_tokens": 751,
+            "output_tokens": 116
+          }
+        ],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "version_conflict",
+      "text": "此 POM 中 java.version 等于 8。",
+      "basis": "source",
+      "content": "<properties><java.version>17</java.version></properties>",
+      "expected": "contradicted",
+      "actual": "contradicted",
+      "reason": "证据中 java.version 为 17，与表述的 8 不符。",
+      "matches_expected": true,
+      "mode": "live_model_synthetic_evidence",
+      "run_id": "3abb180df23e",
+      "statistics": {
+        "model_calls": 1,
+        "input_tokens": 749,
+        "output_tokens": 92,
+        "estimated_cost_cny_upper_bound": 0.009225,
+        "global_reserved_and_spent_cny": 13.897275,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 1.639,
+        "models": [
+          {
+            "model": "deepseek-v4-pro",
+            "role": "review",
+            "calls": 1,
+            "cost_cny": 0.009225,
+            "input_tokens": 749,
+            "output_tokens": 92
+          }
+        ],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "outdated_maintenance",
+      "text": "2026-11-12之前180天内有提交。",
+      "basis": "metadata",
+      "content": "{\"recent_commits\":[{\"date\":\"2020-01-01T00:00:00Z\"}],\"complete_for_requested_window\":true}",
+      "expected": "contradicted",
+      "actual": "contradicted",
+      "reason": "证据中最近的提交日期为 2020-01-01，早于 2026-11-12 之前 180 天的窗口，无法支持该时间段内有提交的表述。",
+      "matches_expected": true,
+      "mode": "live_model_synthetic_evidence",
+      "run_id": "88b712bab292",
+      "statistics": {
+        "model_calls": 1,
+        "input_tokens": 776,
+        "output_tokens": 115,
+        "estimated_cost_cny_upper_bound": 0.010089,
+        "global_reserved_and_spent_cny": 13.907364,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 1.749,
+        "models": [
+          {
+            "model": "deepseek-v4-pro",
+            "role": "review",
+            "calls": 1,
+            "cost_cny": 0.010089,
+            "input_tokens": 776,
+            "output_tokens": 115
+          }
+        ],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "unsupported_performance",
+      "text": "已独立实测单机达到10000 QPS。",
+      "basis": "source",
+      "content": "class Agent { void run() {} } // No benchmark results are provided.",
+      "expected": "insufficient",
+      "actual": "insufficient",
+      "reason": "证据仅包含一个空的 run() 方法，并明确说明未提供任何基准测试结果，无法支持“已独立实测单机达到10000 QPS”的表述。",
+      "matches_expected": true,
+      "mode": "live_model_synthetic_evidence",
+      "run_id": "4312171fb2f2",
+      "statistics": {
+        "model_calls": 1,
+        "input_tokens": 751,
+        "output_tokens": 125,
+        "estimated_cost_cny_upper_bound": 0.010134,
+        "global_reserved_and_spent_cny": 13.917498,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 2.075,
+        "models": [
+          {
+            "model": "deepseek-v4-pro",
+            "role": "review",
+            "calls": 1,
+            "cost_cny": 0.010134,
+            "input_tokens": 751,
+            "output_tokens": 125
+          }
+        ],
+        "retrieval": {}
+      }
+    },
+    {
+      "id": "supported_version",
+      "text": "此 POM 声明 java.version 为 17。",
+      "basis": "source",
+      "content": "<properties><java.version>17</java.version></properties>",
+      "expected": "supported",
+      "actual": "supported",
+      "reason": "合成证据中 properties 块明确声明 java.version 为 17，与表述一致。",
+      "matches_expected": true,
+      "mode": "live_model_synthetic_evidence",
+      "run_id": "dc50df140438",
+      "statistics": {
+        "model_calls": 1,
+        "input_tokens": 749,
+        "output_tokens": 92,
+        "estimated_cost_cny_upper_bound": 0.009225,
+        "global_reserved_and_spent_cny": 13.926723,
+        "unconfirmed_calls": 1,
+        "billing_blocked": false,
+        "usage_complete": true,
+        "run_unconfirmed_calls": 0,
+        "github_requests": 0,
+        "elapsed_seconds": 1.6,
+        "models": [
+          {
+            "model": "deepseek-v4-pro",
+            "role": "review",
+            "calls": 1,
+            "cost_cny": 0.009225,
+            "input_tokens": 749,
+            "output_tokens": 92
+          }
+        ],
+        "retrieval": {}
+      }
+    }
+  ],
+  "note": "检索采用固定合成语料；离线审查采用预置标签。--live 使用真实Pro审查合成证据，不代表真实仓库的整体正确率。",
+  "passed": true
+}

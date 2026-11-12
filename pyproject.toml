@@ -1,6 +1,6 @@
 [project]
 name = "reposcout-agent"
-version = "0.1.0"
+version = "0.2.0"
 description = "Evidence-grounded GitHub research agent powered by Deep Agents"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"

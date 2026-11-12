@@ -1,5 +1,7 @@
 # 运行示例与评测数据
 
+最新检索与双模型核验记录见 [v0.2.0 示例](v0.2/README.md)。下列为 v0.1.0 历史记录。
+
 下列目录保存 2026-11-12 的真实模型与 GitHub 调研结果。每个目录包含 report.md、report.json、events.jsonl 和同模型单次回答 baseline.md。
 
 - [技术栈调研](live/stack/report.md)

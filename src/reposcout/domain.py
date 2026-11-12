@@ -68,8 +68,30 @@ class ReportDraft(Record):
     unknowns: list[str] = Field(default_factory=list)
 
 
+class Finding(Record):
+    target: str
+    verdict: Literal["supported", "insufficient", "contradicted"]
+    reason: str
+    evidence_ids: list[str]
+    needed_query: str = ""
+
+
+class ReviewBatch(Record):
+    findings: list[Finding]
+
+
+class ReviewSummary(Record):
+    status: Literal["not_reviewed", "pending", "passed", "needs_evidence", "failed", "stopped"] = "not_reviewed"
+    model: str = ""
+    rounds: int = 0
+    supplement_rounds: int = 0
+    draft_hash: str = ""
+    findings: list[Finding] = Field(default_factory=list)
+    note: str = "模型辅助审查，事实语义需结合引用原文复核"
+
+
 class Report(ReportDraft):
-    schema_version: Literal["1.0"] = "1.0"
+    schema_version: Literal["1.0", "1.1"] = "1.1"
     run_id: str
     original_request: str
     generated_at: str = Field(default_factory=now)
@@ -79,6 +101,7 @@ class Report(ReportDraft):
     evidence: list[Evidence]
     errors: list[dict]
     statistics: dict
+    review: ReviewSummary = Field(default_factory=ReviewSummary)
 
 
 class ResearchError(Exception):

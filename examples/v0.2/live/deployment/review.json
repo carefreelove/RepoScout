@@ -1,0 +1,210 @@
+{
+  "current": {
+    "status": "passed",
+    "model": "deepseek-v4-pro",
+    "rounds": 1,
+    "supplement_rounds": 0,
+    "draft_hash": "a2d8965ff2e3162c543f5b4eb0d27eb5174c9143711ee894b94563e3bcfdb0fe",
+    "findings": [
+      {
+        "target": "/candidates/0/summary",
+        "verdict": "supported",
+        "reason": "README 明确描述 Agent Framework、Graph 运行时、Admin 平台与 Spring Boot Starters，并给出 JDK 17+、Maven 依赖坐标与 ChatBot 启动命令；examples 目录存在且含配置样例（application.yml）。表述为文档声明层级，未声称实测。",
+        "evidence_ids": [
+          "ev-166e4c71cd94",
+          "ev-7b16e513218a",
+          "ev-2f1773ba4f3f",
+          "ev-afcb7d65f33e"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/decision_reason",
+        "verdict": "supported",
+        "reason": "Java 语言、Agent 编排能力与文档/示例均有证据支撑；最近提交 2026-10-07 在 180 天窗口内（相对 2026-11-12）。已注明实际运行效果未实测，表述恰当。",
+        "evidence_ids": [
+          "ev-166e4c71cd94",
+          "ev-7b16e513218a",
+          "ev-2f1773ba4f3f",
+          "ev-afcb7d65f33e"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/0",
+        "verdict": "supported",
+        "reason": "README 第 59 行要求 JDK 17+，第 83 行给出 ./mvnw -pl examples/chatbot spring-boot:run，第 88 行访问 localhost:8080/chatui/index.html。注意原文路径含 /index.html，但表述为文档声明，可接受。",
+        "evidence_ids": [
+          "ev-7b16e513218a"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/1",
+        "verdict": "supported",
+        "reason": "application.yml 第 8-12 行配置 DASHSCOPE_API_KEY 与 qwen-plus，第 14-23 行配置 A2A Nacos（注释注明需 Nacos 3.x+），第 36-52 行配置 MCP streamable-http 与 SSE 连接，均有实际代码依据。",
+        "evidence_ids": [
+          "ev-2f1773ba4f3f"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/claims/2",
+        "verdict": "supported",
+        "reason": "元数据快照显示 Apache-2.0、11139 stars、pushed_at 2026-10-07；maintenance 快照显示 v1.1.2.2（2026-03-10，非预发布）与 v2.0.0-M1.1（2026-06-25，预发布），与表述一致。",
+        "evidence_ids": [
+          "ev-166e4c71cd94",
+          "ev-afcb7d65f33e"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/0",
+        "verdict": "supported",
+        "reason": "元数据显示语言为 Java，README 要求 JDK 17+，依赖坐标 com.alibaba.cloud.ai 与 spring-boot:run 启动方式均有依据。",
+        "evidence_ids": [
+          "ev-166e4c71cd94",
+          "ev-7b16e513218a"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/1",
+        "verdict": "supported",
+        "reason": "README 第 29 行明确列出 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent，第 31 行说明 Graph 提供持久化、编排与流式能力。属文档声明层级，表述未超出。",
+        "evidence_ids": [
+          "ev-7b16e513218a"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/candidates/0/assessments/2",
+        "verdict": "supported",
+        "reason": "README 提供快速开始、依赖片段与官方文档链接；application.yml 展示 DashScope、A2A Nacos、MCP 客户端配置项，均有依据。",
+        "evidence_ids": [
+          "ev-7b16e513218a",
+          "ev-2f1773ba4f3f"
+        ],
+        "needed_query": ""
+      },
+      {
+        "target": "/conclusion",
+        "verdict": "supported",
+        "reason": "结论中关于 alibaba/spring-ai-alibaba 的 Java 语言、JDK 17+、Maven 依赖与 spring-boot:run 启动步骤、DashScope/A2A Nacos/MCP 配置样例、维护活跃等表述均有对应证据支持（ev-166e4c71cd94 元数据、ev-7b16e513218a README、ev-2f1773ba4f3f 配置、ev-afcb7d65f33e 维护快照）。结论同时明确区分了文档/源码声明与未实测，并说明其他候选未深入核验、结论待确认，未将已读范围外推为不存在，也未把局部能力推广为整个项目已验证。'唯一取得文件原文证据'的表述与所提供证据范围一致，未发现无依据的新增事实。",
+        "evidence_ids": [
+          "ev-166e4c71cd94",
+          "ev-2f1773ba4f3f",
+          "ev-7b16e513218a",
+          "ev-afcb7d65f33e"
+        ],
+        "needed_query": ""
+      }
+    ],
+    "note": "模型辅助审查，事实语义需结合引用原文复核"
+  },
+  "history": [
+    {
+      "status": "passed",
+      "model": "deepseek-v4-pro",
+      "rounds": 1,
+      "supplement_rounds": 0,
+      "draft_hash": "a2d8965ff2e3162c543f5b4eb0d27eb5174c9143711ee894b94563e3bcfdb0fe",
+      "findings": [
+        {
+          "target": "/candidates/0/summary",
+          "verdict": "supported",
+          "reason": "README 明确描述 Agent Framework、Graph 运行时、Admin 平台与 Spring Boot Starters，并给出 JDK 17+、Maven 依赖坐标与 ChatBot 启动命令；examples 目录存在且含配置样例（application.yml）。表述为文档声明层级，未声称实测。",
+          "evidence_ids": [
+            "ev-166e4c71cd94",
+            "ev-7b16e513218a",
+            "ev-2f1773ba4f3f",
+            "ev-afcb7d65f33e"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/decision_reason",
+          "verdict": "supported",
+          "reason": "Java 语言、Agent 编排能力与文档/示例均有证据支撑；最近提交 2026-10-07 在 180 天窗口内（相对 2026-11-12）。已注明实际运行效果未实测，表述恰当。",
+          "evidence_ids": [
+            "ev-166e4c71cd94",
+            "ev-7b16e513218a",
+            "ev-2f1773ba4f3f",
+            "ev-afcb7d65f33e"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/0",
+          "verdict": "supported",
+          "reason": "README 第 59 行要求 JDK 17+，第 83 行给出 ./mvnw -pl examples/chatbot spring-boot:run，第 88 行访问 localhost:8080/chatui/index.html。注意原文路径含 /index.html，但表述为文档声明，可接受。",
+          "evidence_ids": [
+            "ev-7b16e513218a"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/1",
+          "verdict": "supported",
+          "reason": "application.yml 第 8-12 行配置 DASHSCOPE_API_KEY 与 qwen-plus，第 14-23 行配置 A2A Nacos（注释注明需 Nacos 3.x+），第 36-52 行配置 MCP streamable-http 与 SSE 连接，均有实际代码依据。",
+          "evidence_ids": [
+            "ev-2f1773ba4f3f"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/claims/2",
+          "verdict": "supported",
+          "reason": "元数据快照显示 Apache-2.0、11139 stars、pushed_at 2026-10-07；maintenance 快照显示 v1.1.2.2（2026-03-10，非预发布）与 v2.0.0-M1.1（2026-06-25，预发布），与表述一致。",
+          "evidence_ids": [
+            "ev-166e4c71cd94",
+            "ev-afcb7d65f33e"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/0",
+          "verdict": "supported",
+          "reason": "元数据显示语言为 Java，README 要求 JDK 17+，依赖坐标 com.alibaba.cloud.ai 与 spring-boot:run 启动方式均有依据。",
+          "evidence_ids": [
+            "ev-166e4c71cd94",
+            "ev-7b16e513218a"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/1",
+          "verdict": "supported",
+          "reason": "README 第 29 行明确列出 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent，第 31 行说明 Graph 提供持久化、编排与流式能力。属文档声明层级，表述未超出。",
+          "evidence_ids": [
+            "ev-7b16e513218a"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/candidates/0/assessments/2",
+          "verdict": "supported",
+          "reason": "README 提供快速开始、依赖片段与官方文档链接；application.yml 展示 DashScope、A2A Nacos、MCP 客户端配置项，均有依据。",
+          "evidence_ids": [
+            "ev-7b16e513218a",
+            "ev-2f1773ba4f3f"
+          ],
+          "needed_query": ""
+        },
+        {
+          "target": "/conclusion",
+          "verdict": "supported",
+          "reason": "结论中关于 alibaba/spring-ai-alibaba 的 Java 语言、JDK 17+、Maven 依赖与 spring-boot:run 启动步骤、DashScope/A2A Nacos/MCP 配置样例、维护活跃等表述均有对应证据支持（ev-166e4c71cd94 元数据、ev-7b16e513218a README、ev-2f1773ba4f3f 配置、ev-afcb7d65f33e 维护快照）。结论同时明确区分了文档/源码声明与未实测，并说明其他候选未深入核验、结论待确认，未将已读范围外推为不存在，也未把局部能力推广为整个项目已验证。'唯一取得文件原文证据'的表述与所提供证据范围一致，未发现无依据的新增事实。",
+          "evidence_ids": [
+            "ev-166e4c71cd94",
+            "ev-2f1773ba4f3f",
+            "ev-7b16e513218a",
+            "ev-afcb7d65f33e"
+          ],
+          "needed_query": ""
+        }
+      ],
+      "note": "模型辅助审查，事实语义需结合引用原文复核"
+    }
+  ]
+}

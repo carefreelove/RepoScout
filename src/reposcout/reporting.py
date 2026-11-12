@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 
-from reposcout.domain import Evidence, Report, ReportDraft
+from reposcout.domain import Evidence, Report, ReportDraft, ReviewSummary
 from reposcout.storage import Store
 
 
@@ -66,6 +66,8 @@ def build_report(store: Store, run_id: str) -> Report:
                             unknowns=["候选条件判定尚未完成"])
     errors = [e for e in store.events(run_id) if e["code"] not in ("stage", "submitted")]
     return Report(**draft.model_dump(), run_id=run_id, original_request=run["request"],
+                  schema_version=store.get(run_id, "format", "schema_version") or "1.0",
+                  review=ReviewSummary.model_validate(store.get(run_id, "review", "current") or {}),
                   status=run["status"], execution_mode=run["mode"],
                   commits={r["repository"]: r["commit"] for r in store.objects(run_id, "repository")},
                   evidence=store.objects(run_id, "evidence"), errors=errors,
@@ -93,6 +95,11 @@ def markdown(report: Report) -> str:
         lines += [f"- 未确认项 — {item}" for item in candidate.unknowns]
     lines += ["", "## 结论", "", report.conclusion, "", "## 未确认项", ""]
     lines += [f"- {item}" for item in report.unknowns] or ["无额外未确认项。"]
+    if report.schema_version == "1.1":
+        lines += ["", "## 模型辅助核验", "",
+                  f"状态 `{report.review.status}` · 模型 `{report.review.model}` · 核验 {report.review.rounds} 轮 · 补证 {report.review.supplement_rounds} 轮", "",
+                  report.review.note, ""]
+        lines += [f"- `{item.target}` · `{item.verdict}` · {item.reason}" for item in report.review.findings if item.verdict != "supported"]
     lines += ["", "## 证据索引", ""]
     for item in report.evidence:
         lines += [f"- {links[item.id]} · {item.summary} · 读取时间 `{item.retrieved_at}`"
@@ -117,4 +124,7 @@ def export(store: Store, run_id: str) -> Path:
     atomic_write(directory / "report.json", report.model_dump_json(indent=2))
     atomic_write(directory / "report.md", markdown(report))
     atomic_write(directory / "events.jsonl", "".join(json.dumps(e, ensure_ascii=False) + "\n" for e in store.events(run_id)))
+    if report.schema_version == "1.1":
+        atomic_write(directory / "review.json", json.dumps({"current": report.review.model_dump(),
+                     "history": store.objects(run_id, "review_history")}, ensure_ascii=False, indent=2))
     return directory

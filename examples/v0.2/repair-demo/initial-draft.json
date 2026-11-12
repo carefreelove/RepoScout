@@ -1,0 +1,43 @@
+{
+  "interpreted_request": "确认 langchain4j/langchain4j 的 Java 构建目标。请使用全文检索工具检索 java.version，补齐源码依据，再修正草稿并提交。",
+  "criteria": [
+    {
+      "name": "确认 Java 构建目标",
+      "required": true
+    }
+  ],
+  "maintenance_window_days": 180,
+  "candidates": [
+    {
+      "repository": "langchain4j/langchain4j",
+      "summary": "已定位公开 Java Agent 仓库。",
+      "claims": [
+        {
+          "text": "该项目的 Java 构建目标为 8。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-58122da7b2eb"
+          ]
+        }
+      ],
+      "assessments": [
+        {
+          "criterion": "确认 Java 构建目标",
+          "verdict": "满足",
+          "reason": "已确认构建目标为 Java 8。",
+          "evidence_ids": [
+            "ev-58122da7b2eb"
+          ]
+        }
+      ],
+      "decision": "推荐",
+      "decision_reason": "构建版本已获得源码依据。",
+      "evidence_ids": [
+        "ev-58122da7b2eb"
+      ],
+      "unknowns": []
+    }
+  ],
+  "conclusion": "该项目的 Java 构建目标为 8。",
+  "unknowns": []
+}

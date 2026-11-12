@@ -1,0 +1,52 @@
+{
+  "status": "needs_evidence",
+  "remaining_supplement_rounds": 2,
+  "issues": [
+    {
+      "target": "/candidates/0/summary",
+      "verdict": "insufficient",
+      "reason": "摘要仅称\"已定位公开 Java Agent 仓库\"，未提及 Java 构建目标，且证据为 README 内容，未包含 java.version 源码依据。",
+      "evidence_ids": [
+        "ev-58122da7b2eb"
+      ],
+      "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+    },
+    {
+      "target": "/candidates/0/decision_reason",
+      "verdict": "insufficient",
+      "reason": "声称\"构建版本已获得源码依据\"，但提供的证据仅为 README 文档，未包含任何 java.version 源码依据。",
+      "evidence_ids": [
+        "ev-58122da7b2eb"
+      ],
+      "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+    },
+    {
+      "target": "/candidates/0/claims/0",
+      "verdict": "insufficient",
+      "reason": "声称 Java 构建目标为 8，但证据 README 中未出现 java.version 或 Java 8 相关内容，无源码依据。",
+      "evidence_ids": [
+        "ev-58122da7b2eb"
+      ],
+      "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+    },
+    {
+      "target": "/candidates/0/assessments/0",
+      "verdict": "insufficient",
+      "reason": "评估称\"已确认构建目标为 Java 8\"，但证据 README 中无 java.version 或 Java 8 相关内容，无法确认。",
+      "evidence_ids": [
+        "ev-58122da7b2eb"
+      ],
+      "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+    },
+    {
+      "target": "/conclusion",
+      "verdict": "insufficient",
+      "reason": "结论称 Java 构建目标为 8，但证据 README 中无 java.version 或 Java 8 相关内容，无源码依据。",
+      "evidence_ids": [
+        "ev-58122da7b2eb"
+      ],
+      "needed_query": "java.version 在 pom.xml 或构建配置中的取值"
+    }
+  ],
+  "instruction": "只补充问题所需证据或修正草稿；资料不足可改为未确认并删除无依据断言"
+}
