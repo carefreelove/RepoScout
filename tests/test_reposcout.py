@@ -315,12 +315,12 @@ def test_context_compression_is_metered(context, monkeypatch):
     monkeypatch.setattr(ChatAnthropic, "_generate", reply)
     history = []
     for _ in range(6):
-        history.extend([HumanMessage(content="x" * 8000), AIMessage(content="ack")])
+        history.extend([HumanMessage(content="x" * 16000), AIMessage(content="ack")])
     with sqlite3.connect(":memory:", check_same_thread=False) as db:
         graph = build_agent(metered(context), create_tools(github, store, run_id), SqliteSaver(db), store, run_id)
         graph.invoke({"messages": history}, {"configurable": {"thread_id": run_id}})
     assert summaries
-    assert store.statistics(run_id)["model_calls"] >= 6
+    assert store.statistics(run_id)["model_calls"] == 6
     assert store.run(run_id)["draft"]
 
 

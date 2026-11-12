@@ -23,9 +23,9 @@ SUITE = [
     {"id": "maintenance", "criterion": "近 180 天维护", "verdict": "满足",
      "request": "搜索 Java Agent 项目，重点检查 langchain4j/langchain4j 最近 180 天的维护情况，说明提交与发布证据。"},
     {"id": "deployment", "criterion": "部署文档", "verdict": "满足",
-     "request": "搜索可用于 Java 后端的 Agent 项目，重点调研 spring-ai-alibaba/spring-ai-alibaba 的使用与部署资料，区分文档和实测。"},
+     "request": "搜索可用于 Java 后端的 Agent 项目，重点调研 alibaba/spring-ai-alibaba 的使用与部署资料，区分文档和实测。"},
     {"id": "comparison", "criterion": "Java 技术栈", "verdict": "满足",
-     "request": "搜索 Java Agent 框架，比较 langchain4j/langchain4j 与 spring-ai-alibaba/spring-ai-alibaba 的技术栈与使用方式，给出来源。"},
+     "request": "搜索 Java Agent 框架，比较 langchain4j/langchain4j 与 alibaba/spring-ai-alibaba 的技术栈与使用方式，给出来源。"},
     {"id": "insufficient", "criterion": "性能经过独立验证", "verdict": "未确认",
      "request": "搜索 Java Agent 框架，检查 langchain4j/langchain4j 是否有可证明单机 1 万 QPS 的独立基准，资料不足时明确未确认。"},
 ]

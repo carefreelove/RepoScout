@@ -24,7 +24,7 @@ cp .env.example .env
 在本地 `.env` 填写 `DEEPSEEK_API_KEY`，可选填写 `GITHUB_TOKEN` 以提高 GitHub API 配额。`.env` 已被 Git 忽略。
 
 ```bash
-uv run reposcout research "搜索 Java Agent 框架，比较 langchain4j/langchain4j 与 spring-ai-alibaba/spring-ai-alibaba，给出技术栈和使用方式的证据。"
+uv run reposcout research "搜索 Java Agent 框架，比较 langchain4j/langchain4j 与 alibaba/spring-ai-alibaba，给出技术栈和使用方式的证据。"
 uv run reposcout show <run-id>
 uv run reposcout resume <run-id>
 ```
