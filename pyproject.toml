@@ -1,0 +1,41 @@
+[project]
+name = "reposcout-agent"
+version = "0.1.0"
+description = "Evidence-grounded GitHub research agent powered by Deep Agents"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = "MIT"
+dependencies = [
+  "deepagents==0.7.35",
+  "langchain-anthropic>=1.7.10,<2",
+  "langgraph-checkpoint-sqlite>=3,<4",
+  "httpx>=0.28,<1",
+  "pydantic>=2.12,<3",
+  "typer>=0.20,<1",
+  "rich>=14,<16",
+  "python-dotenv>=1.1,<2",
+]
+
+[project.scripts]
+reposcout = "reposcout.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.14,<1"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/reposcout"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
