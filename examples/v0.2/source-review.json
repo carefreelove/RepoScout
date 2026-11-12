@@ -1,0 +1,131 @@
+{
+  "checked_at": "2026-11-12T16:39:45.709614+00:00",
+  "reviewer": "development_assistant",
+  "method": "逐项阅读已保存原文，文件片段另向固定 commit 的 GitHub API 核对；维护日期按固定 commit 与 release tag 复核。",
+  "scope": "五条真实任务，每个候选第一条 claim，共六条；另抽查维护时间窗与证据不足判定两项。",
+  "limitations": [
+    "用户尚未独立复核。",
+    "样本外事实与全部条件未做整体人工评分。",
+    "目标框架运行、部署及性能仍未实测。"
+  ],
+  "checks": [
+    {
+      "case": "comparison",
+      "report_sha256": "6b3850c5b1db68c0e47e3826c4518a8ee20ee5cab4d4ae04a0fb592a04b424c4",
+      "target": "candidates[0].claims[0]",
+      "claim": "README 声明其目标是简化 LLM 集成，提供统一 API，支持 20+ LLM 提供商与 30+ embedding store。",
+      "result": "supported_in_sample",
+      "reason": "README 第 17–30 行逐项声明统一 API、20+ LLM providers 与 30+ embedding stores，条目以文档声明表述。",
+      "references": [
+        {
+          "evidence_id": "ev-0680a6ede790",
+          "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/README.md#L1-L85",
+          "snapshot_sha256": "e33aec8746f3ba86d30e9128a25114fa83f7014cb8fabf0ccbf423da1d5a17b9",
+          "live_commit_content_match": true
+        }
+      ]
+    },
+    {
+      "case": "comparison",
+      "report_sha256": "6b3850c5b1db68c0e47e3826c4518a8ee20ee5cab4d4ae04a0fb592a04b424c4",
+      "target": "candidates[1].claims[0]",
+      "claim": "README 定位为构建 Agentic、Workflow 与多智能体应用的生产级框架，内置 SequentialAgent/ParallelAgent/RoutingAgent/LoopAgent 等编排模式。",
+      "result": "supported_in_sample",
+      "reason": "README 第 11、29、35 行包含框架定位与四类 Agent 模式，条目保留 README 声明限定。",
+      "references": [
+        {
+          "evidence_id": "ev-eee1a793e6be",
+          "url": "https://github.com/alibaba/spring-ai-alibaba/blob/17e26ff6fe951d605771c1845229ca3edb043634/README.md#L1-L140",
+          "snapshot_sha256": "df9c627bfce86b25a252e067de87ffbb5ab9de4f22b754bb723d6e0a1587b718",
+          "live_commit_content_match": true
+        }
+      ]
+    },
+    {
+      "case": "deployment",
+      "report_sha256": "93745e2cfdb8ffb333629a61f4bf89347b7575a3e2e619129cb5388773c30e96",
+      "target": "candidates[0].claims[0]",
+      "claim": "README 声明需 JDK 17+，ChatBot 示例通过 ./mvnw -pl examples/chatbot spring-boot:run 启动并访问 localhost:8080/chatui。",
+      "result": "supported_in_sample",
+      "reason": "README 第 59、75–88 行包含 JDK 17+、环境变量、mvnw 启动命令及访问地址，条目保留文档声明限定。",
+      "references": [
+        {
+          "evidence_id": "ev-7b16e513218a",
+          "url": "https://github.com/alibaba/spring-ai-alibaba/blob/17e26ff6fe951d605771c1845229ca3edb043634/README.md#L1-L140",
+          "snapshot_sha256": "df9c627bfce86b25a252e067de87ffbb5ab9de4f22b754bb723d6e0a1587b718",
+          "live_commit_content_match": true
+        }
+      ]
+    },
+    {
+      "case": "insufficient",
+      "report_sha256": "61ab1af731f9a739f1a30013b675da99bf6f3b7bfdf3586a2481713dde6893a2",
+      "target": "candidates[0].claims[0]",
+      "claim": "仓库定位为 JVM 上的 LLM 应用库，工具箱包含 Agents 与 RAG 等高层模式。",
+      "result": "supported_in_sample",
+      "reason": "README 第 1、17、29–30 行支持 JVM LLM 库及 Agents/RAG 工具箱的定位。",
+      "references": [
+        {
+          "evidence_id": "ev-82bceb1d4b2b",
+          "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/README.md#L1-L80",
+          "snapshot_sha256": "0026e8116f1876b9af71553df304a4d9a8646df5612614b79c479f4a37b856f0",
+          "live_commit_content_match": true
+        }
+      ]
+    },
+    {
+      "case": "maintenance",
+      "report_sha256": "f7d3987c3656b45acfb24aba454b4d463520a56c4ae04850e774e0b0f9eb4003",
+      "target": "candidates[0].claims[0]",
+      "claim": "仓库元数据：Java 语言、Apache-2.0、13393 stars、未归档未禁用，pushed_at 为 2026-11-12T15:25:46Z。",
+      "result": "supported_in_sample",
+      "reason": "采集时元数据逐项包含 Java、Apache-2.0、13393 stars、archived=false、disabled=false 与 pushed_at；可变字段只按当时快照核对。",
+      "references": [
+        {
+          "evidence_id": "ev-e78f6b986a37",
+          "url": "https://github.com/langchain4j/langchain4j",
+          "snapshot_sha256": "675a583b9fb76cc310b3e5e76e22f72b0404aabb0398e050c66bd71bad12be76"
+        }
+      ]
+    },
+    {
+      "case": "stack",
+      "report_sha256": "8f20966b1826addb20b8d141f481ed6932a8616429456ab1e03fbf6b34272f20",
+      "target": "candidates[0].claims[0]",
+      "claim": "根 pom.xml 声明 groupId dev.langchain4j、artifactId langchain4j-aggregator、packaging pom，版本 1.24.0-beta34-SNAPSHOT，是 Maven 多模块工程。",
+      "result": "supported_in_sample",
+      "reason": "固定 commit 的 pom.xml 第 5–11 行包含 groupId、artifactId、版本、packaging 与 modules。",
+      "references": [
+        {
+          "evidence_id": "ev-a1f7950a51e6",
+          "url": "https://github.com/langchain4j/langchain4j/blob/b7fe277c7437145617bcd49b77febfa5698c9ef4/pom.xml#L1-L80",
+          "snapshot_sha256": "33568498f6f2f535231da92544ae9454c42e534e5f4a3c9f58f0098e0aa99667",
+          "live_commit_content_match": true
+        }
+      ]
+    },
+    {
+      "case": "maintenance",
+      "target": "candidates[0].assessments[1:3]",
+      "result": "supported_in_sample",
+      "reason": "固定 commit 与 release tag 的公开 API 日期与快照相同，均在任务采集时间向前 180 天内。",
+      "evidence_ids": [
+        "ev-04abc7d0a31b"
+      ],
+      "urls": [
+        "https://github.com/langchain4j/langchain4j/commit/b7fe277c7437145617bcd49b77febfa5698c9ef4",
+        "https://github.com/langchain4j/langchain4j/releases/tag/1.19.5"
+      ]
+    },
+    {
+      "case": "insufficient",
+      "target": "candidates[0].assessments[1]",
+      "result": "appropriately_unconfirmed",
+      "reason": "bench/perf 目录筛选快照为空，事件记录的 performance、QPS、throughput、benchmark 均零命中；条件保留未确认，并限定已采集范围。",
+      "evidence_ids": [
+        "ev-742942de347b",
+        "ev-9a359596b22c"
+      ]
+    }
+  ]
+}

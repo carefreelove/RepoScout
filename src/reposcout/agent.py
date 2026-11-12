@@ -208,6 +208,8 @@ def execute(store: Store, run_id: str, resume: bool = False, model=None, transpo
         legacy = store.get(run_id, "format", "schema_version") is None
         if run["status"] == "completed" and (legacy or Verifier(store, run_id, Deadline(1), reviewer).passed()):
             return export(store, run_id)
+        if legacy:
+            store.put(run_id, "format", "schema_version", "1.1")
         store.update(run_id, status="running")
         remaining = store.settings.timeout_seconds - run["elapsed"]
         deadline = Deadline(remaining)

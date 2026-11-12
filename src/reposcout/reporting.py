@@ -121,7 +121,8 @@ def export(store: Store, run_id: str) -> Path:
     report = build_report(store, run_id)
     directory = store.settings.home / "runs" / run_id
     directory.mkdir(parents=True, exist_ok=True, mode=0o700)
-    atomic_write(directory / "report.json", report.model_dump_json(indent=2))
+    excluded = {"review"} if report.schema_version == "1.0" else set()
+    atomic_write(directory / "report.json", report.model_dump_json(indent=2, exclude=excluded))
     atomic_write(directory / "report.md", markdown(report))
     atomic_write(directory / "events.jsonl", "".join(json.dumps(e, ensure_ascii=False) + "\n" for e in store.events(run_id)))
     if report.schema_version == "1.1":

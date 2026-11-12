@@ -359,3 +359,26 @@ def test_acknowledgment_preserves_upper_bound_and_unknown_usage(research):
     assert store.statistics(run_id)["global_reserved_and_spent_cny"] == 0.50001
     with pytest.raises(ResearchError):
         store.acknowledge_uncertain(ticket)
+
+
+def test_legacy_completed_export_keeps_original_wire_shape(research):
+    store, run_id, _ = research
+    store.update(run_id, draft=fixture_draft(store, run_id, SUITE[0]).model_dump_json(), status="completed")
+    with store.connect() as db:
+        db.execute("DELETE FROM objects WHERE run_id=? AND kind='format'", (run_id,))
+    path = execute(store, run_id)
+    report = json.loads((path / "report.json").read_text())
+    assert report["schema_version"] == "1.0" and "review" not in report
+    assert store.statistics(run_id)["model_calls"] == 0
+
+
+def test_resumed_legacy_task_upgrades_to_reviewed_schema(research):
+    store, run_id, _ = research
+    with store.connect() as db:
+        db.execute("DELETE FROM objects WHERE run_id=? AND kind='format'", (run_id,))
+    store.update(run_id, status="cancelled")
+    path = execute(store, run_id, resume=True, model=ScriptedModel().attach(store, run_id, SUITE[0]),
+        transport=httpx.MockTransport(fixture_response), reviewer=ScriptedReviewer())
+    report = json.loads((path / "report.json").read_text())
+    assert report["schema_version"] == "1.1"
+    assert report["status"] == "completed" and report["review"]["status"] == "passed"
