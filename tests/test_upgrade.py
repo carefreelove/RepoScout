@@ -287,6 +287,15 @@ def test_multiple_legacy_fragments_and_full_document(research):
     assert index.search(run_id, FIXTURE_REPO, "full_document_term")["hits"][0]["start_line"] == 1
 
 
+def test_legacy_fragment_starting_at_first_line_remains_bounded(research):
+    store, run_id, _ = research
+    store.evidence(run_id, repository=FIXTURE_REPO, kind="file", commit=FIXTURE_SHA,
+        path="legacy-first.md", start_line=1, end_line=1, url="https://example.invalid",
+        summary="旧片段", content="1: legacy_first_line_keyword", truncated=True)
+    hit = RepositoryIndex(store).search(run_id, FIXTURE_REPO, "legacy_first_line_keyword")["hits"][0]
+    assert hit["start_line"] == 1 and hit["truncated"]
+
+
 def test_review_cancellation_is_persistent(research):
     store, run_id, _ = research
 

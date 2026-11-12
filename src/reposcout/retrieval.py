@@ -84,7 +84,7 @@ class RepositoryIndex:
         if not terms:
             raise ResearchError("invalid_query", "检索词至少包含一个文字或标识符")
         match = " OR ".join('"' + term.replace('"', '""') + '"' for term in terms)
-        base = "SELECT c.*,d.path,d.retrieved_at,d.content AS source_content FROM source_chunks c JOIN source_documents d ON d.id=c.document_id "
+        base = "SELECT c.*,d.path,d.retrieved_at,d.is_fragment,d.content AS source_content FROM source_chunks c JOIN source_documents d ON d.id=c.document_id "
         scope = "d.repository=? AND d.commit_sha=? AND (d.is_fragment=0 OR NOT EXISTS (SELECT 1 FROM source_documents complete WHERE complete.repository=d.repository AND complete.commit_sha=d.commit_sha AND complete.path=d.path AND complete.is_fragment=0))"
         with self.store.connect() as db:
             rows = list(db.execute(base + f"JOIN source_fts ON source_fts.rowid=c.id WHERE source_fts MATCH ? AND {scope} ORDER BY bm25(source_fts),c.id LIMIT ?",
@@ -115,7 +115,7 @@ class RepositoryIndex:
                     retrieved_at=row["retrieved_at"], query=query,
                     url=f"https://github.com/{repository}/blob/{commit}/{quote(path, safe='/')}#L{row['start_line']}-L{row['end_line']}",
                     summary=f"全文检索命中 {path} 第 {row['start_line']} 至 {row['end_line']} 行",
-                    content=content, truncated=bool(row["truncated"]) or row["start_line"] > 1 or row["end_line"] < len(row["source_content"].splitlines()))
+                    content=content, truncated=bool(row["truncated"]) or bool(row["is_fragment"]) or row["start_line"] > 1 or row["end_line"] < len(row["source_content"].splitlines()))
                 self.store.put(run_id, "retrieval_evidence", key, item)
             results.append(item)
         elapsed = time.monotonic() - started
