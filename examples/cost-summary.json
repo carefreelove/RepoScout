@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-11-12T10:14:48.896313+00:00",
+  "price_snapshot_date": "2026-11-12",
+  "price_source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+  "currency": "CNY",
+  "method": "所有输入按高峰未命中缓存2元/百万tokens，输出8元/百万tokens保守估算",
+  "development": {
+    "model_calls": 343,
+    "estimated_cost_upper_bound": 9.896026,
+    "input_tokens": 3781377,
+    "output_tokens": 291659
+  },
+  "final_suite": {
+    "completed_cases": 5,
+    "agent_cost": 1.06855,
+    "baseline_cost": 0.054764
+  }
+}

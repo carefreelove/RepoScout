@@ -1,0 +1,316 @@
+{
+  "interpreted_request": "搜索支持 Java 的开源 LLM Agent 框架，重点调研 langchain4j/langchain4j，并给出依赖或源码依据。",
+  "criteria": [
+    {
+      "name": "开源",
+      "required": true
+    },
+    {
+      "name": "支持 Java",
+      "required": true
+    },
+    {
+      "name": "提供 LLM Agent 框架能力",
+      "required": true
+    }
+  ],
+  "maintenance_window_days": 180,
+  "candidates": [
+    {
+      "repository": "langchain4j/langchain4j",
+      "summary": "LangChain4j 是面向 JVM 的 Java LLM 应用库，提供统一 LLM/向量库 API、工具调用、Agent 与 RAG 能力，并含独立的 langchain4j-agentic 模块。",
+      "claims": [
+        {
+          "text": "README 自述为开源、惯用 Java 的 LLM 应用库，工具箱覆盖 prompt 模板、chat memory、function calling 到 Agents 与 RAG 等高层模式。",
+          "basis": "documentation",
+          "evidence_ids": [
+            "ev-d9fe9054c5ae"
+          ]
+        },
+        {
+          "text": "父 POM 声明 Apache-2.0 许可证，java.version=17 并作为 maven.compiler.release，说明构建目标为 Java 17。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-0fc601b726be"
+          ]
+        },
+        {
+          "text": "langchain4j-agentic/pom.xml 定义 artifactId 为 langchain4j-agentic、name 为 Agentic Framework，依赖 dev.langchain4j:langchain4j。",
+          "basis": "source",
+          "evidence_ids": [
+            "ev-491dd5ad0f7a"
+          ]
+        },
+        {
+          "text": "仓库元数据：语言 Java，Apache-2.0，未归档，约 13.4k stars；最近提交 2026-11-12，最近发布 1.19.5（2026-11-02）。",
+          "basis": "metadata",
+          "evidence_ids": [
+            "ev-d7c87b468e9b",
+            "ev-399964490e05"
+          ]
+        }
+      ],
+      "assessments": [
+        {
+          "criterion": "开源",
+          "verdict": "满足",
+          "reason": "父 POM 声明 Apache-2.0 许可证，元数据 license 为 Apache-2.0，仓库未归档。",
+          "evidence_ids": [
+            "ev-0fc601b726be",
+            "ev-d7c87b468e9b"
+          ]
+        },
+        {
+          "criterion": "支持 Java",
+          "verdict": "满足",
+          "reason": "元数据语言为 Java；父 POM 设置 java.version=17 与 maven.compiler.release，核心模块 langchain4j 为 Maven 构件。",
+          "evidence_ids": [
+            "ev-d7c87b468e9b",
+            "ev-0fc601b726be",
+            "ev-08e28ea40660"
+          ]
+        },
+        {
+          "criterion": "提供 LLM Agent 框架能力",
+          "verdict": "满足",
+          "reason": "README 列出 Agents 高层模式；仓库含 langchain4j-agentic 模块（Agentic Framework），依赖核心 langchain4j。",
+          "evidence_ids": [
+            "ev-d9fe9054c5ae",
+            "ev-491dd5ad0f7a"
+          ]
+        }
+      ],
+      "decision": "推荐",
+      "decision_reason": "三项硬性条件均有依赖/源码或文档证据支持，且维护活跃（近期提交与发布均在 180 天窗口内）。",
+      "evidence_ids": [
+        "ev-d9fe9054c5ae",
+        "ev-0fc601b726be",
+        "ev-491dd5ad0f7a",
+        "ev-d7c87b468e9b",
+        "ev-399964490e05"
+      ],
+      "unknowns": [
+        "未运行目标代码，Agent 编排的实际性能与稳定性缺乏实测",
+        "langchain4j-agentic 模块的 API 细节未逐文件阅读"
+      ]
+    }
+  ],
+  "conclusion": "langchain4j/langchain4j 满足开源、Java、LLM Agent 框架三项条件，可作为首选候选；其 Agent 能力由核心库 Agents 模式与 langchain4j-agentic 模块共同提供，构建基线为 Java 17。搜索到的其他候选未深入分析，不构成排除结论。",
+  "unknowns": [
+    "其他搜索结果候选未做证据级分析",
+    "未进行基准测试，性能与部署效果未确认"
+  ],
+  "schema_version": "1.0",
+  "run_id": "a0127c7f112a",
+  "original_request": "搜索支持 Java 的开源 LLM Agent 框架，重点调研 langchain4j/langchain4j，给出依赖或源码依据。",
+  "generated_at": "2026-11-12T10:10:09.970996+00:00",
+  "status": "completed",
+  "execution_mode": "live",
+  "commits": {
+    "langchain4j/langchain4j": "fb6e252b7a67e0d0579957127cafea9202ba1019"
+  },
+  "evidence": [
+    {
+      "id": "ev-08e28ea40660",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/langchain4j/pom.xml#L1-L80",
+      "retrieved_at": "2026-11-12T10:10:01.874391+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "langchain4j/pom.xml",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "langchain4j/pom.xml 第 1 至 80 行，共 227 行",
+      "content": "1: <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n2: <project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n3:     <modelVersion>4.0.0</modelVersion>\n4: \n5:     <parent>\n6:         <groupId>dev.langchain4j</groupId>\n7:         <artifactId>langchain4j-parent</artifactId>\n8:         <version>1.24.0-beta34-SNAPSHOT</version>\n9:         <relativePath>../langchain4j-parent/pom.xml</relativePath>\n10:     </parent>\n11: \n12:     <artifactId>langchain4j</artifactId>\n13:     <version>1.24.0-SNAPSHOT</version>\n14:     <name>LangChain4j</name>\n15:     <description>Build LLM-powered applications in Java: chatbots, agents, RAG, and much more</description>\n16: \n17:     <properties>\n18:         <opennlp-tools.version>2.5.12</opennlp-tools.version>\n19:     </properties>\n20: \n21:     <dependencies>\n22: \n23:         <dependency>\n24:             <groupId>dev.langchain4j</groupId>\n25:             <artifactId>langchain4j-core</artifactId>\n26:             <version>1.24.0-SNAPSHOT</version>\n27:         </dependency>\n28: \n29:         <dependency>\n30:             <groupId>com.fasterxml.jackson.core</groupId>\n31:             <artifactId>jackson-annotations</artifactId>\n32:         </dependency>\n33: \n34:         <dependency>\n35:             <groupId>com.fasterxml.jackson.core</groupId>\n36:             <artifactId>jackson-core</artifactId>\n37:         </dependency>\n38: \n39:         <dependency>\n40:             <groupId>com.fasterxml.jackson.core</groupId>\n41:             <artifactId>jackson-databind</artifactId>\n42:         </dependency>\n43: \n44:         <dependency>\n45:             <groupId>org.apache.opennlp</groupId>\n46:             <artifactId>opennlp-tools</artifactId>\n47:             <version>${opennlp-tools.version}</version>\n48:         </dependency>\n49: \n50:         <dependency>\n51:             <groupId>org.slf4j</groupId>\n52:             <artifactId>slf4j-api</artifactId>\n53:         </dependency>\n54: \n55:         <dependency>\n56:             <groupId>io.smallrye.reactive</groupId>\n57:             <artifactId>mutiny-zero</artifactId>\n58:         </dependency>\n59: \n60:         <!-- test dependencies -->\n61: \n62:         <dependency>\n63:             <groupId>dev.langchain4j</groupId>\n64:             <artifactId>langchain4j-open-ai</artifactId>\n65:             <version>1.24.0-SNAPSHOT</version>\n66:             <scope>test</scope>\n67:         </dependency>\n68: \n69:         <dependency>\n70:             <groupId>dev.langchain4j</groupId>\n71:             <artifactId>langchain4j-core</artifactId>\n72:             <version>1.24.0-SNAPSHOT</version>\n73:             <classifier>tests</classifier>\n74:             <type>test-jar</type>\n75:             <scope>test</scope>\n76:         </dependency>\n77: \n78:         <dependency>\n79:             <groupId>dev.langchain4j</groupId>\n80:             <artifactId>langchain4j-http-client</artifactId>",
+      "truncated": true
+    },
+    {
+      "id": "ev-0fc601b726be",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/langchain4j-parent/pom.xml#L1-L60",
+      "retrieved_at": "2026-11-12T10:10:00.385237+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "langchain4j-parent/pom.xml",
+      "start_line": 1,
+      "end_line": 60,
+      "query": null,
+      "summary": "langchain4j-parent/pom.xml 第 1 至 60 行，共 1090 行",
+      "content": "1: <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n2: <project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n3:     <modelVersion>4.0.0</modelVersion>\n4: \n5:     <groupId>dev.langchain4j</groupId>\n6:     <artifactId>langchain4j-parent</artifactId>\n7:     <version>1.24.0-beta34-SNAPSHOT</version>\n8:     <packaging>pom</packaging>\n9: \n10:     <name>LangChain4j :: Parent POM</name>\n11:     <description>${project.name}</description>\n12:     <url>https://github.com/langchain4j/langchain4j/tree/main</url>\n13: \n14:     <licenses>\n15:         <license>\n16:             <name>The Apache Software License, Version 2.0</name>\n17:             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>\n18:             <distribution>repo</distribution>\n19:         </license>\n20:     </licenses>\n21: \n22:     <developers>\n23:         <developer>\n24:             <id>dliubarskyi</id>\n25:             <name>Dmytro Liubarskyi</name>\n26:             <email>info@langchain4j.dev</email>\n27:             <url>https://github.com/dliubarskyi</url>\n28:         </developer>\n29:     </developers>\n30: \n31:     <scm>\n32:         <connection>scm:git:git://github.com/langchain4j/langchain4j.git</connection>\n33:         <developerConnection>scm:git:git@github.com:langchain4j/langchain4j.git</developerConnection>\n34:         <url>https://github.com/langchain4j/langchain4j/tree/main</url>\n35:     </scm>\n36: \n37:     <properties>\n38:         <langchain4j.beta.version>1.24.0-beta34-SNAPSHOT</langchain4j.beta.version>\n39:         <java.version>17</java.version>\n40:         <maven.compiler.release>${java.version}</maven.compiler.release>\n41:         <kotlin.code.style>official</kotlin.code.style>\n42:         <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>\n43:         <kotlin.compiler.languageVersion>1.9</kotlin.compiler.languageVersion>\n44:         <kotlin.compiler.apiVersion>1.9</kotlin.compiler.apiVersion>\n45:         <kotlin-compiler.version>2.1.21</kotlin-compiler.version>\n46:         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n47:         <project.build.outputTimestamp>1793205960</project.build.outputTimestamp>\n48:         <argLine></argLine>\n49:         <!-- Dependency Versions -->\n50:         <dokka.version>2.1.0-Beta</dokka.version>\n51:         <ai-mocks.version>0.4.6</ai-mocks.version>\n52:         <archunit.version>1.5.1</archunit.version>\n53:         <assertj.version>4.0.0-M1</assertj.version>\n54:         <assertk.version>0.28.1</assertk.version>\n55:         <awaitility.version>4.3.0</awaitility.version>\n56:         <aws.java.sdk.version>2.57.12</aws.java.sdk.version>\n57:         <azure-sdk.version>1.3.9</azure-sdk.version>\n58:         <blockhound.version>1.0.18.RELEASE</blockhound.version>\n59:         <jackson.version>2.23.0</jackson.version>\n60:         <jackson3.version>3.3.0</jackson3.version>",
+      "truncated": true
+    },
+    {
+      "id": "ev-399964490e05",
+      "repository": "langchain4j/langchain4j",
+      "kind": "maintenance",
+      "url": "https://github.com/langchain4j/langchain4j/commits/fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "retrieved_at": "2026-11-12T10:09:50.986901+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "近期提交及 release 快照，维护判断需结合时间窗口",
+      "content": "{\"recent_commits\": [{\"sha\": \"fb6e252b7a67e0d0579957127cafea9202ba1019\", \"date\": \"2026-11-12T09:38:42Z\", \"message\": \"Update dependency io.quarkiverse.langchain4j:quarkus-langchain4j-core to v1.15.1 (#7081)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---|\\n|\\n[io.quark\"}, {\"sha\": \"0e0b57a8edce80c0c7efb54b62ef62c0e83e479c\", \"date\": \"2026-11-12T09:35:55Z\", \"message\": \"Renovate: keep Reactor in Cosmos NoSQL on the Azure SDK's line and gpu-llama3 on the 0.4 JDK 25 build (#7098)\\n\\n## Issue\\n\\nNo issue. Renovate opened #7077, #7078 and #7074, which should not or\\ncannot be merged, and it would propose the next versions again after\\nthey are closed.\\n\\n## Change\\n\\nTwo Renovat\"}, {\"sha\": \"3a039a8ac211242b7f610095fc5d13f16b954495\", \"date\": \"2026-11-12T08:50:00Z\", \"message\": \"Update dependency io.qdrant:client to v1.20.0 (#7079)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---|\\n| [io.qdrant:client](https://redirect.github.c\"}, {\"sha\": \"480093f347a5689d7d34954ac6ce87935e14cee9\", \"date\": \"2026-11-12T08:34:47Z\", \"message\": \"Update dependency io.github.gitflow-incremental-builder:gitflow-incremental-builder to v4.8.1 (#7075)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---\"}, {\"sha\": \"62765e0100132acfeee241e4b8c9eddd89377544\", \"date\": \"2026-11-12T08:34:37Z\", \"message\": \"Update dependency com.couchbase.client:java-client to v3.13.1 (#7071)\\n\\nThis PR contains the following updates:\\n\\n| Package | Change |\\n[Age](https://docs.renovatebot.com/merge-confidence/) |\\n[Confidence](https://docs.renovatebot.com/merge-confidence/) |\\n|---|---|---|---|\\n| [com.couchbase.client:java-c\"}], \"recent_releases\": [{\"tag\": \"1.19.5\", \"published_at\": \"2026-11-02T16:06:15Z\", \"prerelease\": false}, {\"tag\": \"1.5.4\", \"published_at\": \"2026-11-02T14:38:38Z\", \"prerelease\": false}, {\"tag\": \"1.19.4\", \"published_at\": \"2026-11-02T14:37:38Z\", \"prerelease\": false}]}",
+      "truncated": false
+    },
+    {
+      "id": "ev-491dd5ad0f7a",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/langchain4j-agentic/pom.xml#L1-L60",
+      "retrieved_at": "2026-11-12T10:10:00.269304+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "langchain4j-agentic/pom.xml",
+      "start_line": 1,
+      "end_line": 60,
+      "query": null,
+      "summary": "langchain4j-agentic/pom.xml 第 1 至 60 行，共 169 行",
+      "content": "1: <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n2: <project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n3:     <modelVersion>4.0.0</modelVersion>\n4:     <parent>\n5:         <groupId>dev.langchain4j</groupId>\n6:         <artifactId>langchain4j-parent</artifactId>\n7:         <version>1.24.0-beta34-SNAPSHOT</version>\n8:         <relativePath>../langchain4j-parent/pom.xml</relativePath>\n9:     </parent>\n10: \n11:     <artifactId>langchain4j-agentic</artifactId>\n12:     <name>LangChain4j :: Agentic Framework</name>\n13: \n14:     <developers>\n15:         <developer>\n16:             <id>mariofusco</id>\n17:             <email>mario.fusco@gmail.com</email>\n18:             <url>https://github.com/mariofusco</url>\n19:         </developer>\n20:     </developers>\n21: \n22:     <dependencies>\n23:         <dependency>\n24:             <groupId>dev.langchain4j</groupId>\n25:             <artifactId>langchain4j</artifactId>\n26:             <version>1.24.0-SNAPSHOT</version>\n27:         </dependency>\n28: \n29:         <dependency>\n30:             <groupId>dev.langchain4j</groupId>\n31:             <artifactId>langchain4j-ollama</artifactId>\n32:             <version>1.24.0-SNAPSHOT</version>\n33:             <scope>test</scope>\n34:         </dependency>\n35:         <dependency>\n36:             <groupId>dev.langchain4j</groupId>\n37:             <artifactId>langchain4j-open-ai</artifactId>\n38:             <version>1.24.0-SNAPSHOT</version>\n39:             <scope>test</scope>\n40:         </dependency>\n41:         <dependency>\n42:             <groupId>dev.langchain4j</groupId>\n43:             <artifactId>langchain4j-google-ai-gemini</artifactId>\n44:             <version>1.24.0-SNAPSHOT</version>\n45:             <scope>test</scope>\n46:         </dependency>\n47:         <dependency>\n48:             <groupId>dev.langchain4j</groupId>\n49:             <artifactId>langchain4j-typesafe</artifactId>\n50:             <version>1.24.0-beta34-SNAPSHOT</version>\n51:             <scope>test</scope>\n52:         </dependency>\n53:         <dependency>\n54:             <groupId>dev.langchain4j</groupId>\n55:             <artifactId>langchain4j-core</artifactId>\n56:             <version>1.24.0-SNAPSHOT</version>\n57:             <classifier>tests</classifier>\n58:             <type>test-jar</type>\n59:             <scope>test</scope>\n60:         </dependency>",
+      "truncated": true
+    },
+    {
+      "id": "ev-4b227ac6966b",
+      "repository": null,
+      "kind": "search",
+      "url": "https://github.com/search?q=java+llm+agent+framework+language%3AJava+stars%3A%3E1000&type=repositories",
+      "retrieved_at": "2026-11-12T10:09:48.049038+00:00",
+      "commit": null,
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": "java llm agent framework language:Java stars:>1000",
+      "summary": "GitHub 搜索，返回 2 个公开候选",
+      "content": "[{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"stargazers_count\": 13394, \"archived\": false, \"pushed_at\": \"2026-11-12T09:52:36Z\"}, {\"full_name\": \"agents-flex/agents-flex\", \"description\": \"Agents-flex is A lightweight Java AI agent development framework (positioned as a counterpart to Spring AI). It supports features such as RAG, MCP, Skills, Text2SQL , LLM Wiki, Sub-agents, Web Search, TTS (synchronous and streaming), and STT.\", \"language\": \"Java\", \"stargazers_count\": 1054, \"archived\": false, \"pushed_at\": \"2026-11-09T12:34:29Z\"}]",
+      "truncated": false
+    },
+    {
+      "id": "ev-974cbc59fb0a",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/pom.xml#L121-L200",
+      "retrieved_at": "2026-11-12T10:09:57.892852+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "pom.xml",
+      "start_line": 121,
+      "end_line": 200,
+      "query": null,
+      "summary": "pom.xml 第 121 至 200 行，共 321 行",
+      "content": "121:         <module>code-execution-engines/langchain4j-code-execution-engine-azure-acads</module>\n122: \n123:         <!-- web search engines -->\n124:         <module>web-search-engines/langchain4j-web-search-engine-google-custom</module>\n125:         <module>web-search-engines/langchain4j-web-search-engine-tavily</module>\n126:         <module>web-search-engines/langchain4j-web-search-engine-searchapi</module>\n127: \n128:         <!-- embedding store filter parsers -->\n129:         <module>embedding-store-filter-parsers/langchain4j-embedding-store-filter-parser-sql</module>\n130: \n131:         <!-- guardrails -->\n132:         <module>langchain4j-guardrails</module>\n133: \n134:         <!-- experimental -->\n135:         <module>experimental/langchain4j-experimental-sql</module>\n136:         <module>experimental/langchain4j-experimental-hibernate</module>\n137:         <module>experimental/langchain4j-experimental-skills-shell</module>\n138:         <module>langchain4j-agentic</module>\n139:         <module>langchain4j-agentic-a2a</module>\n140:         <module>langchain4j-agentic-mcp</module>\n141:         <module>langchain4j-agentic-patterns</module>\n142:         <module>langchain4j-skills</module>\n143: \n144:         <!-- observability -->\n145:         <module>langchain4j-micrometer-metrics</module>\n146:         <module>langchain4j-observation</module>\n147: \n148:         <!-- integration tests -->\n149:         <module>integration-tests</module>\n150: \n151:         <!-- internal -->\n152:         <module>internal/langchain4j-internal-test-retry</module>\n153:         <module>internal/langchain4j-docu-chatbot-updater</module>\n154:     </modules>\n155: \n156:     <properties>\n157:         <langchain4j.stable.version>1.24.0-SNAPSHOT</langchain4j.stable.version>\n158:         <langchain4j.beta.version>1.24.0-beta34-SNAPSHOT</langchain4j.beta.version>\n159:         <gib.disable>true</gib.disable>\n160:     </properties>\n161: \n162:     <build>\n163:         <plugins>\n164:             <plugin>\n165:                 <groupId>org.apache.maven.plugins</groupId>\n166:                 <artifactId>maven-deploy-plugin</artifactId>\n167:                 <version>3.1.4</version>\n168:                 <configuration>\n169:                     <!-- do not deploy langchain4j-aggregator's pom.xml (this file) -->\n170:                     <skip>true</skip>\n171:                 </configuration>\n172:             </plugin>\n173:             <plugin>\n174:                 <groupId>org.apache.maven.plugins</groupId>\n175:                 <artifactId>maven-javadoc-plugin</artifactId>\n176:                 <version>3.12.0</version>\n177:                 <executions>\n178:                     <execution>\n179:                         <id>attach-javadocs</id>\n180:                         <goals>\n181:                             <goal>jar</goal>\n182:                         </goals>\n183:                     </execution>\n184:                     <execution>\n185:                         <id>aggregate</id>\n186:                         <goals>\n187:                             <goal>aggregate</goal>\n188:                         </goals>\n189:                         <phase>site</phase>\n190:                     </execution>\n191:                 </executions>\n192:             </plugin>\n193:             <plugin>\n194:                 <groupId>com.simpligility.maven.plugins</groupId>\n195:                 <artifactId>android-maven-plugin</artifactId>\n196:                 <version>4.6.0</version>\n197:                 <extensions>true</extensions>\n198:                 <executions>\n199:                     <execution>\n200:                         <id>lint</id>",
+      "truncated": true
+    },
+    {
+      "id": "ev-9b183c60fc25",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/pom.xml#L1-L120",
+      "retrieved_at": "2026-11-12T10:09:54.875106+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "pom.xml",
+      "start_line": 1,
+      "end_line": 120,
+      "query": null,
+      "summary": "pom.xml 第 1 至 120 行，共 321 行",
+      "content": "1: <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n2: <project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n3:     <modelVersion>4.0.0</modelVersion>\n4: \n5:     <groupId>dev.langchain4j</groupId>\n6:     <artifactId>langchain4j-aggregator</artifactId>\n7:     <version>1.24.0-beta34-SNAPSHOT</version>\n8:     <packaging>pom</packaging>\n9:     <name>LangChain4j :: Aggregator</name>\n10: \n11:     <modules>\n12: \n13:         <module>langchain4j-parent</module>\n14:         <module>langchain4j-bom</module>\n15: \n16:         <module>langchain4j-core</module>\n17:         <module>langchain4j-core-jackson3</module>\n18:         <module>langchain4j-jackson3</module>\n19:         <module>langchain4j-reactive-streaming</module>\n20:         <module>langchain4j-test</module>\n21:         <module>langchain4j</module>\n22:         <module>langchain4j-kotlin</module>\n23: \n24:         <module>langchain4j-easy-rag</module>\n25:         <module>langchain4j-mcp</module>\n26:         <module>langchain4j-mcp-docker</module>\n27: \n28:         <!-- http clients -->\n29:         <module>langchain4j-http-client</module>\n30:         <module>http-clients/langchain4j-http-client-jdk</module>\n31:         <module>http-clients/langchain4j-http-client-apache</module>\n32:         <module>http-clients/langchain4j-http-client-okhttp</module>\n33: \n34:         <!-- model providers -->\n35:         <module>langchain4j-anthropic</module>\n36:         <module>langchain4j-azure-open-ai</module>\n37:         <module>langchain4j-bedrock</module>\n38:         <module>langchain4j-cohere</module>\n39:         <module>langchain4j-hugging-face</module>\n40:         <module>langchain4j-jina</module>\n41:         <module>langchain4j-local-ai</module>\n42:         <module>langchain4j-mistral-ai</module>\n43:         <module>langchain4j-nomic</module>\n44:         <module>langchain4j-ollama</module>\n45:         <module>langchain4j-onnx-scoring</module>\n46:         <module>langchain4j-ovh-ai</module>\n47:         <module>langchain4j-open-ai</module>\n48:         <module>langchain4j-open-ai-official</module>\n49:         <module>langchain4j-google-ai-gemini</module>\n50:         <module>langchain4j-google-genai</module>\n51:         <module>langchain4j-typesafe</module>\n52:         <module>langchain4j-vertex-ai</module>\n53:         <module>langchain4j-vertex-ai-gemini</module>\n54:         <module>langchain4j-vertex-ai-anthropic</module>\n55:         <module>langchain4j-workers-ai</module>\n56:         <module>langchain4j-voyage-ai</module>\n57:         <module>langchain4j-watsonx</module>\n58: \n59:         <!-- in-process embeddings -->\n60:         <module>embeddings/langchain4j-embeddings</module>\n61:         <module>embeddings/langchain4j-embeddings-all-minilm-l6-v2</module>\n62:         <module>embeddings/langchain4j-embeddings-all-minilm-l6-v2-q</module>\n63:         <module>embeddings/langchain4j-embeddings-bge-small-en</module>\n64:         <module>embeddings/langchain4j-embeddings-bge-small-en-q</module>\n65:         <module>embeddings/langchain4j-embeddings-bge-small-en-v15</module>\n66:         <module>embeddings/langchain4j-embeddings-bge-small-en-v15-q</module>\n67:         <module>embeddings/langchain4j-embeddings-bge-small-zh-v15</module>\n68:         <module>embeddings/langchain4j-embeddings-bge-small-zh-v15-q</module>\n69:         <module>embeddings/langchain4j-embeddings-e5-small-v2</module>\n70:         <module>embeddings/langchain4j-embeddings-e5-small-v2-q</module>\n71: \n72:         <!-- embedding / chat memory stores -->\n73:         <module>langchain4j-azure-ai-search</module>\n74:         <module>langchain4j-azure-cosmos-mongo-vcore</module>\n75:         <module>langchain4j-azure-cosmos-nosql</module>\n76:         <module>langchain4j-azure-documentdb</module>\n77:         <module>langchain4j-cassandra</module>\n78:         <module>langchain4j-chroma</module>\n79:         <module>langchain4j-coherence</module>\n80:         <module>langchain4j-couchbase</module>\n81:         <module>langchain4j-elasticsearch</module>\n82:         <module>langchain4j-hibernate</module>\n83:         <module>langchain4j-hibernate-milvus</module>\n84:         <module>langchain4j-infinispan</module>\n85:         <module>langchain4j-mariadb</module>\n86:         <module>langchain4j-milvus</module>\n87:         <module>langchain4j-milvus-v2</module>\n88:         <module>langchain4j-mongodb-atlas</module>\n89:         <module>langchain4j-oracle</module>\n90:         <module>langchain4j-opensearch</module>\n91:         <module>langchain4j-pgvector</module>\n92:         <module>langchain4j-pinecone</module>\n93:         <module>langchain4j-qdrant</module>\n94:         <module>langchain4j-tablestore</module>\n95:         <module>langchain4j-vespa</module>\n96:         <module>langchain4j-weaviate</module>\n97: \n98:         <!-- document loaders -->\n99:         <module>document-loaders/langchain4j-document-loader-amazon-s3</module>\n100:         <module>document-loaders/langchain4j-document-loader-azure-storage-blob</module>\n101:         <module>document-loaders/langchain4j-document-loader-github</module>\n102:         <module>document-loaders/langchain4j-document-loader-selenium</module>\n103:         <module>document-loaders/langchain4j-document-loader-playwright</module>\n104:         <module>document-loaders/langchain4j-document-loader-tencent-cos</module>\n105:         <module>document-loaders/langchain4j-document-loader-google-cloud-storage</module>\n106: \n107:         <!-- document parsers -->\n108:         <module>document-parsers/langchain4j-document-parser-apache-pdfbox</module>\n109:         <module>document-parsers/langchain4j-document-parser-apache-poi</module>\n110:         <module>document-parsers/langchain4j-document-parser-apache-tika</module>\n111:         <module>document-parsers/langchain4j-document-parser-docling</module>\n112:         <module>document-parsers/langchain4j-document-parser-markdown</module>\n113:         <module>document-parsers/langchain4j-document-parser-yaml</module>\n114: \n115:         <!-- document transformers -->\n116:         <module>document-transformers/langchain4j-document-transformer-jsoup</module>\n117: \n118:         <!-- code execution engines -->\n119:         <module>code-execution-engines/langchain4j-code-execution-engine-graalvm-polyglot</module>\n120:         <module>code-execution-engines/langchain4j-code-execution-engine-judge0</module>",
+      "truncated": true
+    },
+    {
+      "id": "ev-d7c87b468e9b",
+      "repository": "langchain4j/langchain4j",
+      "kind": "metadata",
+      "url": "https://github.com/langchain4j/langchain4j",
+      "retrieved_at": "2026-11-12T10:09:49.904105+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": null,
+      "summary": "仓库元数据快照，状态适用于读取时间",
+      "content": "{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"archived\": false, \"disabled\": false, \"license\": {\"key\": \"apache-2.0\", \"name\": \"Apache License 2.0\", \"spdx_id\": \"Apache-2.0\", \"url\": \"https://api.github.com/licenses/apache-2.0\", \"node_id\": \"MDc6TGljZW5zZTI=\"}, \"pushed_at\": \"2026-11-12T09:52:36Z\", \"updated_at\": \"2026-11-12T09:34:52Z\", \"stargazers_count\": 13394, \"default_branch\": \"main\", \"open_issues_count\": 1120}",
+      "truncated": false
+    },
+    {
+      "id": "ev-d9fe9054c5ae",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/README.md#L1-L85",
+      "retrieved_at": "2026-11-12T10:10:01.874059+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 85,
+      "query": null,
+      "summary": "README.md 第 1 至 85 行，共 85 行",
+      "content": "1: # LangChain4j: idiomatic, open-source Java library for building LLM-powered applications on the JVM\n2: \n3: [![Build Status](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/main.yaml?branch=main&style=for-the-badge&label=CI%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/main.yaml)\n4: [![Nightly Build](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/nightly_jdk17.yaml?branch=main&style=for-the-badge&label=NIGHTLY%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/nightly_jdk17.yaml)\n5: [![CODACY](https://img.shields.io/badge/Codacy-Dashboard-blue?style=for-the-badge&logo=codacy)](https://app.codacy.com/gh/langchain4j/langchain4j/dashboard)\n6: \n7: [![Discord](https://img.shields.io/discord/1156626270772269217?logo=discord&style=for-the-badge)](https://discord.gg/JzTFvyjG6R)\n8: [![BlueSky](https://img.shields.io/badge/@langchain4j-follow-blue?logo=bluesky&style=for-the-badge)](https://bsky.app/profile/langchain4j.dev)\n9: [![X](https://img.shields.io/badge/@langchain4j-follow-blue?logo=x&style=for-the-badge)](https://x.com/langchain4j)\n10: [![Maven Version](https://img.shields.io/maven-central/v/dev.langchain4j/langchain4j?logo=apachemaven&style=for-the-badge)](https://search.maven.org/#search|gav|1|g:\"dev.langchain4j\"%20AND%20a:\"langchain4j\")\n11: \n12: \n13: ## Introduction\n14: \n15: Welcome!\n16: \n17: The goal of LangChain4j is to simplify integrating LLMs into Java applications.\n18: \n19: Here's how:\n20: 1. **Unified APIs:**\n21:    LLM providers (like OpenAI or Google Vertex AI) and embedding (vector) stores (such as Pinecone or Milvus)\n22:    use proprietary APIs. LangChain4j offers a unified API to avoid the need for learning and implementing specific APIs for each of them.\n23:    To experiment with different LLMs or embedding stores, you can easily switch between them without the need to rewrite your code.\n24:    LangChain4j currently supports [20+ popular LLM providers](https://docs.langchain4j.dev/integrations/language-models/)\n25:    and [30+ embedding stores](https://docs.langchain4j.dev/integrations/embedding-stores/).\n26: 2. **Comprehensive Toolbox:**\n27:    Since early 2023, the community has been building numerous LLM-powered applications,\n28:    identifying common abstractions, patterns, and techniques. LangChain4j has refined these into practical code.\n29:    Our toolbox includes tools ranging from low-level prompt templating, chat memory management, and function calling\n30:    to high-level patterns like Agents and RAG.\n31:    For each abstraction, we provide an interface along with multiple ready-to-use implementations based on common techniques.\n32:    Whether you're building a chatbot or developing a RAG with a complete pipeline from data ingestion to retrieval,\n33:    LangChain4j offers a wide variety of options.\n34: 3. **Numerous Examples:**\n35:    These [examples](https://github.com/langchain4j/langchain4j-examples) showcase how to begin creating various LLM-powered applications,\n36:    providing inspiration and enabling you to start building quickly.\n37: \n38: LangChain4j began development in early 2023 amid the ChatGPT hype.\n39: We noticed a lack of Java counterparts to the numerous Python and JavaScript LLM libraries and frameworks,\n40: and we had to fix that!\n41: \n42: **Despite the name, LangChain4j is not a Java port of LangChain (Python) — it is built for Java, not ported to it.**\n43: It is an idiomatic Java library designed from the ground up around Java conventions:\n44: type safety, POJOs, annotations, interfaces, dependency injection, fluent APIs, and first-class integrations with Quarkus, Spring Boot, Helidon, and Micronaut.\n45: Its API, internals, and release cycle are independent of the Python LangChain project.\n46: \n47: We actively monitor community developments, aiming to quickly incorporate new techniques and integrations,\n48: ensuring you stay up-to-date.\n49: The library is under active development. While some features are still being worked on,\n50: the core functionality is in place, allowing you to start building LLM-powered apps now!\n51: \n52: \n53: ## Documentation\n54: Documentation can be found [here](https://docs.langchain4j.dev).\n55: \n56: The documentation chatbot (experimental) can be found [here](https://chat.langchain4j.dev/).\n57: \n58: \n59: ## Getting Started\n60: Getting started guide can be found [here](https://docs.langchain4j.dev/get-started).\n61: \n62: \n63: ## Code Examples\n64: Please see examples of how LangChain4j can be used in [langchain4j-examples](https://github.com/langchain4j/langchain4j-examples) repo:\n65: - [Examples in plain Java](https://github.com/langchain4j/langchain4j-examples/tree/main/other-examples/src/main/java)\n66: - [Examples with Quarkus](https://github.com/quarkiverse/quarkus-langchain4j/tree/main/samples) (uses [quarkus-langchain4j](https://github.com/quarkiverse/quarkus-langchain4j) dependency)\n67: - [Example with Spring Boot](https://github.com/langchain4j/langchain4j-examples/tree/main/spring-boot-example/src/main/java/dev/langchain4j/example)\n68: - [Examples with Helidon](https://github.com/helidon-io/helidon-examples/tree/helidon-4.x/examples/integrations/langchain4j) (uses [io.helidon.integrations.langchain4j](https://mvnrepository.com/artifact/io.helidon.integrations.langchain4j) dependency)\n69: - [Examples with Micronaut](https://github.com/micronaut-projects/micronaut-langchain4j/tree/0.3.x/doc-examples/example-openai-java) (uses [micronaut-langchain4j](https://micronaut-projects.github.io/micronaut-langchain4j/latest/guide/) dependency)\n70: \n71: ## Useful Materials\n72: Useful materials can be found [here](https://docs.langchain4j.dev/useful-materials).\n73: \n74: \n75: ## Get Help\n76: Please use [Discord](https://discord.gg/JzTFvyjG6R) or [GitHub discussions](https://github.com/langchain4j/langchain4j/discussions)\n77: to get help.\n78: \n79: \n80: ## Request Features\n81: Please let us know what features you need by [opening an issue](https://github.com/langchain4j/langchain4j/issues/new/choose).\n82: \n83: \n84: ## Contribute\n85: Contribution guidelines can be found [here](https://github.com/langchain4j/langchain4j/blob/main/CONTRIBUTING.md).",
+      "truncated": false
+    },
+    {
+      "id": "ev-ec92a19223d8",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/langchain4j/pom.xml#L1-L80",
+      "retrieved_at": "2026-11-12T10:09:56.617612+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "langchain4j/pom.xml",
+      "start_line": 1,
+      "end_line": 80,
+      "query": null,
+      "summary": "langchain4j/pom.xml 第 1 至 80 行，共 227 行",
+      "content": "1: <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n2: <project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n3:     <modelVersion>4.0.0</modelVersion>\n4: \n5:     <parent>\n6:         <groupId>dev.langchain4j</groupId>\n7:         <artifactId>langchain4j-parent</artifactId>\n8:         <version>1.24.0-beta34-SNAPSHOT</version>\n9:         <relativePath>../langchain4j-parent/pom.xml</relativePath>\n10:     </parent>\n11: \n12:     <artifactId>langchain4j</artifactId>\n13:     <version>1.24.0-SNAPSHOT</version>\n14:     <name>LangChain4j</name>\n15:     <description>Build LLM-powered applications in Java: chatbots, agents, RAG, and much more</description>\n16: \n17:     <properties>\n18:         <opennlp-tools.version>2.5.12</opennlp-tools.version>\n19:     </properties>\n20: \n21:     <dependencies>\n22: \n23:         <dependency>\n24:             <groupId>dev.langchain4j</groupId>\n25:             <artifactId>langchain4j-core</artifactId>\n26:             <version>1.24.0-SNAPSHOT</version>\n27:         </dependency>\n28: \n29:         <dependency>\n30:             <groupId>com.fasterxml.jackson.core</groupId>\n31:             <artifactId>jackson-annotations</artifactId>\n32:         </dependency>\n33: \n34:         <dependency>\n35:             <groupId>com.fasterxml.jackson.core</groupId>\n36:             <artifactId>jackson-core</artifactId>\n37:         </dependency>\n38: \n39:         <dependency>\n40:             <groupId>com.fasterxml.jackson.core</groupId>\n41:             <artifactId>jackson-databind</artifactId>\n42:         </dependency>\n43: \n44:         <dependency>\n45:             <groupId>org.apache.opennlp</groupId>\n46:             <artifactId>opennlp-tools</artifactId>\n47:             <version>${opennlp-tools.version}</version>\n48:         </dependency>\n49: \n50:         <dependency>\n51:             <groupId>org.slf4j</groupId>\n52:             <artifactId>slf4j-api</artifactId>\n53:         </dependency>\n54: \n55:         <dependency>\n56:             <groupId>io.smallrye.reactive</groupId>\n57:             <artifactId>mutiny-zero</artifactId>\n58:         </dependency>\n59: \n60:         <!-- test dependencies -->\n61: \n62:         <dependency>\n63:             <groupId>dev.langchain4j</groupId>\n64:             <artifactId>langchain4j-open-ai</artifactId>\n65:             <version>1.24.0-SNAPSHOT</version>\n66:             <scope>test</scope>\n67:         </dependency>\n68: \n69:         <dependency>\n70:             <groupId>dev.langchain4j</groupId>\n71:             <artifactId>langchain4j-core</artifactId>\n72:             <version>1.24.0-SNAPSHOT</version>\n73:             <classifier>tests</classifier>\n74:             <type>test-jar</type>\n75:             <scope>test</scope>\n76:         </dependency>\n77: \n78:         <dependency>\n79:             <groupId>dev.langchain4j</groupId>\n80:             <artifactId>langchain4j-http-client</artifactId>",
+      "truncated": true
+    },
+    {
+      "id": "ev-f00318adf3f1",
+      "repository": "langchain4j/langchain4j",
+      "kind": "file",
+      "url": "https://github.com/langchain4j/langchain4j/blob/fb6e252b7a67e0d0579957127cafea9202ba1019/README.md#L1-L85",
+      "retrieved_at": "2026-11-12T10:09:54.869279+00:00",
+      "commit": "fb6e252b7a67e0d0579957127cafea9202ba1019",
+      "path": "README.md",
+      "start_line": 1,
+      "end_line": 85,
+      "query": null,
+      "summary": "README.md 第 1 至 85 行，共 85 行",
+      "content": "1: # LangChain4j: idiomatic, open-source Java library for building LLM-powered applications on the JVM\n2: \n3: [![Build Status](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/main.yaml?branch=main&style=for-the-badge&label=CI%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/main.yaml)\n4: [![Nightly Build](https://img.shields.io/github/actions/workflow/status/langchain4j/langchain4j/nightly_jdk17.yaml?branch=main&style=for-the-badge&label=NIGHTLY%20BUILD&logo=github)](https://github.com/langchain4j/langchain4j/actions/workflows/nightly_jdk17.yaml)\n5: [![CODACY](https://img.shields.io/badge/Codacy-Dashboard-blue?style=for-the-badge&logo=codacy)](https://app.codacy.com/gh/langchain4j/langchain4j/dashboard)\n6: \n7: [![Discord](https://img.shields.io/discord/1156626270772269217?logo=discord&style=for-the-badge)](https://discord.gg/JzTFvyjG6R)\n8: [![BlueSky](https://img.shields.io/badge/@langchain4j-follow-blue?logo=bluesky&style=for-the-badge)](https://bsky.app/profile/langchain4j.dev)\n9: [![X](https://img.shields.io/badge/@langchain4j-follow-blue?logo=x&style=for-the-badge)](https://x.com/langchain4j)\n10: [![Maven Version](https://img.shields.io/maven-central/v/dev.langchain4j/langchain4j?logo=apachemaven&style=for-the-badge)](https://search.maven.org/#search|gav|1|g:\"dev.langchain4j\"%20AND%20a:\"langchain4j\")\n11: \n12: \n13: ## Introduction\n14: \n15: Welcome!\n16: \n17: The goal of LangChain4j is to simplify integrating LLMs into Java applications.\n18: \n19: Here's how:\n20: 1. **Unified APIs:**\n21:    LLM providers (like OpenAI or Google Vertex AI) and embedding (vector) stores (such as Pinecone or Milvus)\n22:    use proprietary APIs. LangChain4j offers a unified API to avoid the need for learning and implementing specific APIs for each of them.\n23:    To experiment with different LLMs or embedding stores, you can easily switch between them without the need to rewrite your code.\n24:    LangChain4j currently supports [20+ popular LLM providers](https://docs.langchain4j.dev/integrations/language-models/)\n25:    and [30+ embedding stores](https://docs.langchain4j.dev/integrations/embedding-stores/).\n26: 2. **Comprehensive Toolbox:**\n27:    Since early 2023, the community has been building numerous LLM-powered applications,\n28:    identifying common abstractions, patterns, and techniques. LangChain4j has refined these into practical code.\n29:    Our toolbox includes tools ranging from low-level prompt templating, chat memory management, and function calling\n30:    to high-level patterns like Agents and RAG.\n31:    For each abstraction, we provide an interface along with multiple ready-to-use implementations based on common techniques.\n32:    Whether you're building a chatbot or developing a RAG with a complete pipeline from data ingestion to retrieval,\n33:    LangChain4j offers a wide variety of options.\n34: 3. **Numerous Examples:**\n35:    These [examples](https://github.com/langchain4j/langchain4j-examples) showcase how to begin creating various LLM-powered applications,\n36:    providing inspiration and enabling you to start building quickly.\n37: \n38: LangChain4j began development in early 2023 amid the ChatGPT hype.\n39: We noticed a lack of Java counterparts to the numerous Python and JavaScript LLM libraries and frameworks,\n40: and we had to fix that!\n41: \n42: **Despite the name, LangChain4j is not a Java port of LangChain (Python) — it is built for Java, not ported to it.**\n43: It is an idiomatic Java library designed from the ground up around Java conventions:\n44: type safety, POJOs, annotations, interfaces, dependency injection, fluent APIs, and first-class integrations with Quarkus, Spring Boot, Helidon, and Micronaut.\n45: Its API, internals, and release cycle are independent of the Python LangChain project.\n46: \n47: We actively monitor community developments, aiming to quickly incorporate new techniques and integrations,\n48: ensuring you stay up-to-date.\n49: The library is under active development. While some features are still being worked on,\n50: the core functionality is in place, allowing you to start building LLM-powered apps now!\n51: \n52: \n53: ## Documentation\n54: Documentation can be found [here](https://docs.langchain4j.dev).\n55: \n56: The documentation chatbot (experimental) can be found [here](https://chat.langchain4j.dev/).\n57: \n58: \n59: ## Getting Started\n60: Getting started guide can be found [here](https://docs.langchain4j.dev/get-started).\n61: \n62: \n63: ## Code Examples\n64: Please see examples of how LangChain4j can be used in [langchain4j-examples](https://github.com/langchain4j/langchain4j-examples) repo:\n65: - [Examples in plain Java](https://github.com/langchain4j/langchain4j-examples/tree/main/other-examples/src/main/java)\n66: - [Examples with Quarkus](https://github.com/quarkiverse/quarkus-langchain4j/tree/main/samples) (uses [quarkus-langchain4j](https://github.com/quarkiverse/quarkus-langchain4j) dependency)\n67: - [Example with Spring Boot](https://github.com/langchain4j/langchain4j-examples/tree/main/spring-boot-example/src/main/java/dev/langchain4j/example)\n68: - [Examples with Helidon](https://github.com/helidon-io/helidon-examples/tree/helidon-4.x/examples/integrations/langchain4j) (uses [io.helidon.integrations.langchain4j](https://mvnrepository.com/artifact/io.helidon.integrations.langchain4j) dependency)\n69: - [Examples with Micronaut](https://github.com/micronaut-projects/micronaut-langchain4j/tree/0.3.x/doc-examples/example-openai-java) (uses [micronaut-langchain4j](https://micronaut-projects.github.io/micronaut-langchain4j/latest/guide/) dependency)\n70: \n71: ## Useful Materials\n72: Useful materials can be found [here](https://docs.langchain4j.dev/useful-materials).\n73: \n74: \n75: ## Get Help\n76: Please use [Discord](https://discord.gg/JzTFvyjG6R) or [GitHub discussions](https://github.com/langchain4j/langchain4j/discussions)\n77: to get help.\n78: \n79: \n80: ## Request Features\n81: Please let us know what features you need by [opening an issue](https://github.com/langchain4j/langchain4j/issues/new/choose).\n82: \n83: \n84: ## Contribute\n85: Contribution guidelines can be found [here](https://github.com/langchain4j/langchain4j/blob/main/CONTRIBUTING.md).",
+      "truncated": false
+    },
+    {
+      "id": "ev-f0ab9fcfebcb",
+      "repository": null,
+      "kind": "search",
+      "url": "https://github.com/search?q=langchain4j+in%3Aname&type=repositories",
+      "retrieved_at": "2026-11-12T10:09:48.217390+00:00",
+      "commit": null,
+      "path": null,
+      "start_line": null,
+      "end_line": null,
+      "query": "langchain4j in:name",
+      "summary": "GitHub 搜索，返回 10 个公开候选",
+      "content": "[{\"full_name\": \"langchain4j/langchain4j\", \"description\": \"LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.\", \"language\": \"Java\", \"stargazers_count\": 13394, \"archived\": false, \"pushed_at\": \"2026-11-12T09:52:36Z\"}, {\"full_name\": \"doijodevenkateshwara-oss/RAG_with_LangChain4j\", \"description\": null, \"language\": \"Java\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-12T09:22:21Z\"}, {\"full_name\": \"doijodevenkateshwara-oss/AI_Chat_bot_Langchain4j\", \"description\": null, \"language\": \"Java\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-12T08:28:27Z\"}, {\"full_name\": \"quarkiverse/quarkus-langchain4j\", \"description\": \"Quarkus Langchain4j extension\", \"language\": \"Java\", \"stargazers_count\": 325, \"archived\": false, \"pushed_at\": \"2026-11-12T10:04:52Z\"}, {\"full_name\": \"xtestw/langchain4j-docs-docusaurus-jp\", \"description\": null, \"language\": \"JavaScript\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-11T23:39:18Z\"}, {\"full_name\": \"Ayajarmouni/tp2-web-langchain4j\", \"description\": null, \"language\": \"Java\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-11T22:27:53Z\"}, {\"full_name\": \"alamsoftware68/langchain4j-ollama-openai\", \"description\": \"Provider-agnostic LLM integration in Java using LangChain4j - unifies local (Ollama/Mistral) and cloud (OpenAI) chat models behind a single ChatModel abstraction, with structured responses and token-usage metrics\", \"language\": \"Java\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-11T21:24:23Z\"}, {\"full_name\": \"abchatterjee7/langchain4j-multi-agent-demo\", \"description\": \"A Spring Boot application demonstrating LangChain4j's multi-agent capabilities for building intelligent customer support systems.\", \"language\": \"Java\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-11T18:46:16Z\"}, {\"full_name\": \"CesarChaMal/LangChain4jSpringbootDeno\", \"description\": \"LangChain4jSpringbootDeno\", \"language\": \"JavaScript\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-11T18:40:06Z\"}, {\"full_name\": \"CesarChaMal/LangChain4jDeno\", \"description\": \"LangChain4jDeno\", \"language\": \"Java\", \"stargazers_count\": 0, \"archived\": false, \"pushed_at\": \"2026-11-11T18:39:54Z\"}]",
+      "truncated": false
+    }
+  ],
+  "errors": [
+    {
+      "at": "2026-11-12T10:09:52.812634+00:00",
+      "code": "response_too_large",
+      "detail": "GitHub 响应超过 2 MB 限制"
+    },
+    {
+      "at": "2026-11-12T10:09:56.174762+00:00",
+      "code": "invalid_range",
+      "detail": "每次最多读取 200 行，行号从 1 开始"
+    }
+  ],
+  "statistics": {
+    "model_calls": 12,
+    "input_tokens": 124445,
+    "output_tokens": 2491,
+    "estimated_cost_cny_upper_bound": 0.268818,
+    "global_reserved_and_spent_cny": 9.04153,
+    "unconfirmed_calls": 0,
+    "github_requests": 12,
+    "elapsed_seconds": 25.678
+  }
+}

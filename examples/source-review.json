@@ -1,0 +1,389 @@
+{
+  "reviewer": "Codex development assistant",
+  "reviewed_at": "2026-11-12T10:14:48.891601+00:00",
+  "method": "逐项读取所引用的源内容，抽查每个候选前3条claim，同时检查全部条件判定。用户尚未独立复核。",
+  "cases": [
+    {
+      "case_id": "stack",
+      "run_id": "a0127c7f112a",
+      "report_sha256": "340f4a1ecd2b16ae74947800c06fd285283a8f25c81e2e1f9a1eaa33346ae42e",
+      "fact_samples": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "README 自述为开源、惯用 Java 的 LLM 应用库，工具箱覆盖 prompt 模板、chat memory、function calling 到 Agents 与 RAG 等高层模式。",
+          "evidence_ids": [
+            "ev-d9fe9054c5ae"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "父 POM 声明 Apache-2.0 许可证，java.version=17 并作为 maven.compiler.release，说明构建目标为 Java 17。",
+          "evidence_ids": [
+            "ev-0fc601b726be"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "source"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "langchain4j-agentic/pom.xml 定义 artifactId 为 langchain4j-agentic、name 为 Agentic Framework，依赖 dev.langchain4j:langchain4j。",
+          "evidence_ids": [
+            "ev-491dd5ad0f7a"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "source"
+        }
+      ],
+      "condition_checks": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "开源",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-0fc601b726be",
+            "ev-d7c87b468e9b"
+          ]
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "支持 Java",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-d7c87b468e9b",
+            "ev-0fc601b726be",
+            "ev-08e28ea40660"
+          ]
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "提供 LLM Agent 框架能力",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-d9fe9054c5ae",
+            "ev-491dd5ad0f7a"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "maintenance",
+      "run_id": "1a4e85495217",
+      "report_sha256": "251be68adac3e163d302591696e3fa97a64ac5273efb1f1bba4e924e629055f8",
+      "fact_samples": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "README 称工具箱覆盖从 prompt 模板、chat memory、function calling 到 Agents 与 RAG 的高层模式。",
+          "evidence_ids": [
+            "ev-c37b6784bc80"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "README 声明支持 20+ LLM 提供商与 30+ embedding store，并可与 Quarkus、Spring Boot、Helidon、Micronaut 集成。",
+          "evidence_ids": [
+            "ev-c37b6784bc80"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "元数据：Apache-2.0 许可，未归档，默认分支 main，open issues 1120，pushed_at 2026-11-12。",
+          "evidence_ids": [
+            "ev-89375d8ef3cd"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "metadata"
+        }
+      ],
+      "condition_checks": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "Java Agent 项目",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-c37b6784bc80",
+            "ev-89375d8ef3cd"
+          ]
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "最近 180 天有维护活动（提交与发布）",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-daa199a23f3b"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "deployment",
+      "run_id": "a712e7066ce1",
+      "report_sha256": "92b3bd4fbcdc0a5387377fee69e772e652fccc38d45194e537a4397d47acbbae",
+      "fact_samples": [
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "statement": "README 声明为生产级 Agentic/Workflow/多 Agent 框架，含 Agent Framework、Graph 运行时与 Admin 一站式平台。",
+          "evidence_ids": [
+            "ev-55c5be9ab08b"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "statement": "示例 pom 使用 Spring Boot 3.5.7 父工程、java.version=17、spring-ai 1.1.2 与 spring-ai-alibaba 1.1.2.2，并引入 agent-framework、dashscope starter、studio、a2a-nacos 等依赖。",
+          "evidence_ids": [
+            "ev-35970f38b364"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "source"
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "statement": "元数据：Apache-2.0，Java，约 1.11 万 stars，最近推送 2026-10-07，最新正式版 v1.1.2.2（2026-03-10），另有预发布 v2.0.0-M1.1（2026-06-25）。",
+          "evidence_ids": [
+            "ev-284520d7a9ad",
+            "ev-a7eb68d20454"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "metadata"
+        }
+      ],
+      "condition_checks": [
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "criterion": "可用于 Java 后端",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-284520d7a9ad",
+            "ev-35970f38b364"
+          ]
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "criterion": "Agent 项目",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-55c5be9ab08b"
+          ]
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "criterion": "提供使用与部署资料",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-55c5be9ab08b",
+            "ev-9495fa0df738"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "comparison",
+      "run_id": "85408e0cc9b9",
+      "report_sha256": "24997b09c819a9bc7a675d4b5794a5bf936a7e5f75018ae25e0b314b8ab7777f",
+      "fact_samples": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "定位为 JVM 上构建 LLM 应用的惯用开源 Java 库，非 Python LangChain 的移植。",
+          "evidence_ids": [
+            "ev-4942bafd7041"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "统一 API 支持 20+ LLM 提供商与 30+ 向量存储，可切换而不改代码。",
+          "evidence_ids": [
+            "ev-4942bafd7041"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "工具箱含提示模板、聊天记忆、函数调用、Agent 与 RAG，并提供 Spring Boot/Quarkus/Helidon/Micronaut 示例。",
+          "evidence_ids": [
+            "ev-4942bafd7041"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "statement": "自述为生产级 Agentic/Workflow/Multi-agent 框架，含 Context Engineering 与 Human In The Loop。",
+          "evidence_ids": [
+            "ev-f0b31894e061"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "statement": "Graph 作为底层运行时提供持久化、工作流编排与流式能力；另有 Admin 可视化平台。",
+          "evidence_ids": [
+            "ev-f0b31894e061"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "statement": "要求 JDK 17+，依赖 spring-ai-alibaba-agent-framework 1.1.2.0 与 starter-dashscope 1.1.2.1。",
+          "evidence_ids": [
+            "ev-f0b31894e061"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        }
+      ],
+      "condition_checks": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "Java Agent 框架",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-4942bafd7041"
+          ]
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "技术栈",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-4942bafd7041"
+          ]
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "使用方式",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-4942bafd7041"
+          ]
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "criterion": "Java Agent 框架",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-f0b31894e061"
+          ]
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "criterion": "技术栈",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-f0b31894e061"
+          ]
+        },
+        {
+          "repository": "alibaba/spring-ai-alibaba",
+          "criterion": "使用方式",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-f0b31894e061"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "insufficient",
+      "run_id": "747fcdb5bd3e",
+      "report_sha256": "00fbd649b2bbb23073894567a212c357ab3eceef96c7689dd762233563e71474",
+      "fact_samples": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "README 自述为 JVM 上构建 LLM 应用的 Java 库，工具箱含 Agents、RAG、函数调用等高层模式。",
+          "evidence_ids": [
+            "ev-ed80b2610711"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "documentation"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "聚合 pom 含 langchain4j-agentic、agentic-a2a、agentic-mcp、agentic-patterns、skills 等模块，说明具备 Agent 相关实现。",
+          "evidence_ids": [
+            "ev-afa99e14b03b"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "source"
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "statement": "元数据：Apache-2.0，13394 stars，未归档；最近提交 2026-11-12，最近发布 1.19.5（2026-11-02），维护活跃。",
+          "evidence_ids": [
+            "ev-6da1c7e31c5e",
+            "ev-562a2c1ccdad"
+          ],
+          "judgment": "supported_by_cited_material",
+          "scope": "metadata"
+        }
+      ],
+      "condition_checks": [
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "Java Agent 框架",
+          "verdict": "满足",
+          "judgment": "supported_by_cited_material",
+          "evidence_ids": [
+            "ev-ed80b2610711",
+            "ev-afa99e14b03b"
+          ]
+        },
+        {
+          "repository": "langchain4j/langchain4j",
+          "criterion": "存在可证明单机 1 万 QPS 的独立基准",
+          "verdict": "未确认",
+          "judgment": "appropriately_unconfirmed",
+          "evidence_ids": [
+            "ev-ed80b2610711",
+            "ev-afa99e14b03b",
+            "ev-3dd1c25380d1"
+          ]
+        }
+      ]
+    }
+  ],
+  "facts_reviewed": 18,
+  "conditions_reviewed": 16,
+  "baseline_observations": [
+    {
+      "case_id": "maintenance",
+      "observation": "回答使用截至2025年中的时间基准，未提供本次180天窗口内的具体提交和release日期。",
+      "reference": "live/maintenance/baseline.md"
+    },
+    {
+      "case_id": "comparison",
+      "observation": "回答写Java 8+；本次固定commit的langchain4j-parent/pom.xml设置java.version=17。版本范围需要重新核查。",
+      "reference": "live/comparison/baseline.md"
+    },
+    {
+      "case_id": "insufficient",
+      "observation": "回答声称进行了GitHub及第三方检索，而该对照调用只收到原始问题，未提供检索工具。其全局不存在结论缺少本次执行证据。",
+      "reference": "live/insufficient/baseline.md"
+    }
+  ]
+}

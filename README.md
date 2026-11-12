@@ -12,7 +12,7 @@ Python 3.12 · Deep Agents 0.7.35 · DeepSeek · GitHub REST API · SQLite · Ty
 
 ## 快速开始
 
-准备 Python 3.12 和 [uv](https://docs.astral.sh/uv/)，执行以下命令。
+在 macOS 或 Linux 准备 Python 3.12 和 [uv](https://docs.astral.sh/uv/)，执行以下命令。
 
 ```bash
 git clone https://github.com/carefreelove/RepoScout.git

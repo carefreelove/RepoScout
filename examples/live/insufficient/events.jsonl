@@ -1,0 +1,8 @@
+{"at": "2026-11-12T10:12:12.118874+00:00", "code": "stage", "detail": "search 完成"}
+{"at": "2026-11-12T10:12:13.780910+00:00", "code": "stage", "detail": "inspect 完成"}
+{"at": "2026-11-12T10:12:16.091787+00:00", "code": "response_too_large", "detail": "GitHub 响应超过 2 MB 限制"}
+{"at": "2026-11-12T10:12:17.896285+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T10:12:17.916974+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T10:12:19.521142+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T10:12:20.958781+00:00", "code": "stage", "detail": "file 完成"}
+{"at": "2026-11-12T10:12:27.063129+00:00", "code": "submitted", "detail": "结构化报告校验通过"}
